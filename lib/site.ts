@@ -17,7 +17,7 @@ export type NavItem = {
 // Order here == order in the nav chip.
 export const navItems: NavItem[] = [
   { label: "About", href: "/about" },
-  { label: "Resume", href: site.resumeHref, external: true },
   { label: "Work", href: "/work" },
   { label: "Map", href: "/map" },
+  { label: "Resume", href: site.resumeHref, external: true },
 ];
