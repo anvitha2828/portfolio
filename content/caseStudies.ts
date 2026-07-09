@@ -27,7 +27,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "A fast, visual family-tree editor with cloud sync and sharing — two ways to explore the same data: a structured tree and a force-directed network map.",
     role: "Solo PM, Designer & Engineer",
-    year: "2025", // TODO: confirm/edit the actual year
+    year: "2026",
     tags: ["0→1 Product", "Solo Build", "Full-Stack"],
     accent: "leaf",
     sections: [
