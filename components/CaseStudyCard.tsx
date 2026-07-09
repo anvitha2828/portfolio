@@ -5,27 +5,16 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import type { CaseStudy } from "@/content/caseStudies";
 
-const accentBg: Record<CaseStudy["accent"], string> = {
-  coral: "bg-coral",
-  sky: "bg-sky",
-  leaf: "bg-leaf",
-  butter: "bg-butter",
-  peach: "bg-peach",
-};
-
 export function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
-    <motion.div
-      whileHover={{ y: -6, rotate: -0.6 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    >
+    <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 22 }}>
       <Link
         href={`/work/${study.slug}`}
-        className="group block overflow-hidden rounded-blob border border-ink/5 bg-white/70 shadow-soft"
+        className="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-blob border border-ink/5 bg-ink/[0.03] p-6 transition-colors hover:bg-ink/[0.05] sm:p-7"
       >
-        <div
-          className={`relative flex aspect-[16/10] items-center justify-center ${accentBg[study.accent]}`}
-        >
+        {/* Visual area — replace with cover art, or a custom interactive
+            preview per project later (see CaseStudyCard.tsx). */}
+        <div className="absolute inset-0 flex items-center justify-center p-8 text-center">
           {study.cover ? (
             <Image
               src={study.cover}
@@ -35,33 +24,37 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
               sizes="(max-width: 640px) 100vw, 400px"
             />
           ) : (
-            <span className="font-display text-2xl font-semibold text-ink/60">
+            <span className="font-display text-2xl font-semibold text-ink/25 sm:text-3xl">
               {study.title}
             </span>
           )}
         </div>
-        <div className="p-5">
-          <div className="mb-1 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-ink/50">
-            <span>{study.role}</span>
-            <span aria-hidden="true">•</span>
-            <span>{study.year}</span>
-          </div>
-          <h3 className="font-display text-xl font-semibold text-ink transition-colors group-hover:text-coral">
-            {study.title}
-          </h3>
-          <p className="mt-1 text-sm text-ink/70">{study.summary}</p>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {study.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-cream px-2.5 py-0.5 text-xs font-semibold text-ink/60"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
+
+        {/* Link affordance */}
+        <span
+          aria-hidden="true"
+          className="relative z-10 grid h-9 w-9 place-items-center rounded-full border border-ink/15 text-ink/50 transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-cream"
+        >
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
       </Link>
     </motion.div>
+  );
+}
+
+function ArrowUpRight({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M7 17 17 7M7 7h10v10" />
+    </svg>
   );
 }

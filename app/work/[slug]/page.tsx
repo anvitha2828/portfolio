@@ -22,14 +22,6 @@ export async function generateMetadata({
   };
 }
 
-const accentBg: Record<string, string> = {
-  coral: "bg-coral",
-  sky: "bg-sky",
-  leaf: "bg-leaf",
-  butter: "bg-butter",
-  peach: "bg-peach",
-};
-
 export default async function CaseStudyPage({
   params,
 }: {
@@ -48,45 +40,39 @@ export default async function CaseStudyPage({
         <span aria-hidden="true">←</span> Back to work
       </Link>
 
-      <header className="mt-6">
-        <div className="mb-2 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wide text-ink/50">
-          <span>{study.role}</span>
-          <span aria-hidden="true">•</span>
-          <span>{study.year}</span>
-        </div>
-        <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
-          {study.title}
-        </h1>
-        <p className="mt-3 max-w-2xl text-lg text-ink/70">{study.summary}</p>
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {study.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-ink/60 shadow-soft"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </header>
-
-      {/* Cover */}
-      <div
-        className={`relative mt-8 flex aspect-[16/8] items-center justify-center overflow-hidden rounded-blob ${accentBg[study.accent] ?? "bg-peach"}`}
-      >
+      {/* Minimal hero — muted tile with the title inside, matching the Work grid.
+          Everything below this is yours to break out and make fun. */}
+      <div className="relative mt-6 flex aspect-[21/9] items-center justify-center overflow-hidden rounded-blob border border-ink/5 bg-ink/[0.03] p-10 text-center">
         {study.cover ? (
-          <Image
-            src={study.cover}
-            alt={study.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 1024px"
-          />
+          <>
+            <h1 className="sr-only">{study.title}</h1>
+            <Image
+              src={study.cover}
+              alt={study.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 1024px"
+            />
+          </>
         ) : (
-          <span className="font-display text-2xl font-semibold text-ink/50">
-            Cover image
-          </span>
+          <h1 className="font-display text-3xl font-semibold text-ink/30 sm:text-5xl">
+            {study.title}
+          </h1>
         )}
+      </div>
+
+      <div className="mt-5 flex flex-wrap items-center gap-3">
+        <span className="text-xs font-semibold uppercase tracking-wide text-ink/40">
+          {study.role} • {study.year}
+        </span>
+        {study.tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full bg-ink/[0.04] px-2.5 py-0.5 text-xs font-semibold text-ink/50"
+          >
+            {tag}
+          </span>
+        ))}
       </div>
 
       {/* Body sections */}

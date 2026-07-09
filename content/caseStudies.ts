@@ -15,8 +15,7 @@ export type CaseStudy = {
   role: string; // e.g. "Product Designer"
   year: string; // e.g. "2024"
   tags: string[]; // e.g. ["Research", "UI"]
-  cover?: string; // e.g. "/images/project-a.jpg" (optional — falls back to a colored tile)
-  accent: "coral" | "sky" | "leaf" | "butter" | "peach"; // whimsical tile color
+  cover?: string; // e.g. "/images/project-a.jpg" (optional — falls back to a muted title tile)
   sections: CaseStudySection[];
 };
 
@@ -29,7 +28,6 @@ export const caseStudies: CaseStudy[] = [
     role: "Solo PM, Designer & Engineer",
     year: "2026",
     tags: ["0→1 Product", "Solo Build", "Full-Stack"],
-    accent: "leaf",
     sections: [
       {
         heading: "One-line summary",

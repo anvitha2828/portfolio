@@ -17,7 +17,7 @@ export default function WorkPage() {
         A selection of case studies and projects. Click any card to dive in.
       </p>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {caseStudies.map((study) => (
           <CaseStudyCard key={study.slug} study={study} />
         ))}
