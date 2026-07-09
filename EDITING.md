@@ -18,7 +18,9 @@ A quick reference for making changes without having to relearn the structure eac
   `role` / `tools` / `timeline` sidebar next to `summary` (Description) and
   `context` (paragraphs). Anything you put in `sections` renders further down
   the page behind a "Read Case Study" button — leave it empty (`[]`) until
-  you're ready to break a project out with more detail/pictures.
+  you're ready to break a project out with more detail/pictures. Optional
+  `links` (e.g. a published paper or live site) show as small underlined
+  links under Context.
 - **[content/experience.ts](content/experience.ts)** — a typed array of work-history
   entries (`period`, `role`, `company`), shown as the "Where I've Worked" list on
   `/about`. Newest first.

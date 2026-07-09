@@ -82,6 +82,23 @@ export default async function CaseStudyPage({
             </>
           )}
 
+          {study.links && study.links.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+              {study.links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-coral underline decoration-1 underline-offset-4 transition-colors hover:text-ink"
+                >
+                  {link.label}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              ))}
+            </div>
+          )}
+
           {hasMore && (
             <a
               href="#details"
