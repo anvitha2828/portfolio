@@ -1,3 +1,5 @@
+/** @format */
+
 // Your work / case studies live here.
 // Add, remove, or reorder entries — the Work index and detail pages update automatically.
 // Drop cover images into /public/images and reference them as "/images/your-file.jpg".
@@ -28,8 +30,29 @@ export const caseStudies: CaseStudy[] = [
     slug: "roots-family-tree-builder",
     title: "Roots",
     category: "Family Tree Builder",
-    summary:
-      "A web app for building, sharing, and exploring family trees.",
+    summary: "A web app for building, sharing, and exploring family trees.",
+    context: [
+      "Existing family-tree tools are either clunky, locked behind paywalls, or make it hard to actually see and share how a family connects.",
+      "I built a fast, visual tree editor with cloud sync, Google sign-in, email-based sharing (view or edit), photos, and two ways to view the same data — a structured tree and a force-directed network map.",
+    ],
+    role: ["Product Manager", "Designer", "Engineer"],
+    tools: [
+      "React",
+      "TypeScript",
+      "React Flow",
+      "vis-network",
+      "Supabase",
+      "Cloudinary",
+      "Vercel",
+    ],
+    timeline: "2026",
+    sections: [],
+  },
+  {
+    slug: "roots-family-tree-builder",
+    title: "Roots",
+    category: "Family Tree Builder",
+    summary: "A web app for building, sharing, and exploring family trees.",
     context: [
       "Existing family-tree tools are either clunky, locked behind paywalls, or make it hard to actually see and share how a family connects.",
       "I built a fast, visual tree editor with cloud sync, Google sign-in, email-based sharing (view or edit), photos, and two ways to view the same data — a structured tree and a force-directed network map.",
