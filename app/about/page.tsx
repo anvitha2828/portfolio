@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <section className="py-6">
-      <h1 className="font-title text-5xl text-ink sm:text-6xl">About me</h1>
+      <h1 className="font-display text-5xl font-bold text-ink sm:text-6xl">
+        About me
+      </h1>
 
       {/* Bio — replace the placeholder paragraphs with your real bio */}
       <div className="mt-8 max-w-2xl space-y-4 text-lg leading-relaxed text-ink/80">
@@ -40,7 +42,7 @@ export default function AboutPage() {
 
       {/* Work history — edit content/experience.ts, not this markup */}
       <div className="mt-14 max-w-2xl">
-        <h2 className="font-title text-3xl text-ink sm:text-4xl">
+        <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Where I&apos;ve Worked
         </h2>
         <div className="mt-6 divide-y divide-ink/10">

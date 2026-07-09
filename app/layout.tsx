@@ -1,15 +1,15 @@
 /** @format */
 
 import type { Metadata } from "next";
-import { Space_Grotesk, Manrope, Instrument_Serif } from "next/font/google";
+import { Plus_Jakarta_Sans, Manrope, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { NavChip } from "@/components/NavChip";
 import { site } from "@/lib/site";
 
-// Bold geometric font reserved for the hero name, a warm sans for body
-// text, and an elegant serif for page/section titles.
+// Bold display font for the name and page/section titles, a warm sans
+// for body text, and an elegant serif reserved for the hero tagline.
 // next/font self-hosts these at build time (no runtime external requests).
-const display = Space_Grotesk({
+const display = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   variable: "--font-display",

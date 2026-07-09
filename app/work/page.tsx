@@ -10,7 +10,9 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <section className="py-6">
-      <h1 className="font-title text-5xl text-ink sm:text-6xl">Work</h1>
+      <h1 className="font-display text-5xl font-bold text-ink sm:text-6xl">
+        Work
+      </h1>
       <p className="mt-3 max-w-xl text-lg text-ink/70">
         A selection of case studies and projects. Click any card to dive in.
       </p>

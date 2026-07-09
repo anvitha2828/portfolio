@@ -43,7 +43,7 @@ export default async function CaseStudyPage({
 
       {/* Title block */}
       <div className="mt-6">
-        <h1 className="font-title text-5xl text-ink sm:text-6xl">
+        <h1 className="font-display text-5xl font-bold text-ink sm:text-6xl">
           {study.title}
         </h1>
         {study.category && (
@@ -116,7 +116,7 @@ export default async function CaseStudyPage({
         <div id="details" className="mx-auto mt-16 max-w-2xl space-y-8 scroll-mt-24">
           {study.sections.map((section, i) => (
             <section key={i}>
-              <h2 className="font-title text-3xl text-ink">
+              <h2 className="font-display text-2xl font-bold text-ink">
                 {section.heading}
               </h2>
               {section.bullets ? (
