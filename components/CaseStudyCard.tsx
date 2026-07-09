@@ -24,7 +24,7 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
               sizes="(max-width: 640px) 100vw, 400px"
             />
           ) : (
-            <span className="font-display text-2xl font-semibold text-ink/25 sm:text-3xl">
+            <span className="font-title text-3xl text-ink/30 sm:text-4xl">
               {study.title}
             </span>
           )}

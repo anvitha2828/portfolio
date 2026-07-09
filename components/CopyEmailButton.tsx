@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { site } from "@/lib/site";
+import { SpeechBubble } from "./SpeechBubble";
 
 export function CopyEmailButton() {
   const [copied, setCopied] = useState(false);
@@ -30,7 +31,7 @@ export function CopyEmailButton() {
   }
 
   return (
-    <div className="relative">
+    <div className="group relative">
       <motion.button
         type="button"
         onClick={copyEmail}
@@ -56,6 +57,13 @@ export function CopyEmailButton() {
           <path d="m3 6 9 7 9-7" />
         </svg>
       </motion.button>
+
+      {/* Instructional hint — a little coral nudge on hover */}
+      {!copied && (
+        <SpeechBubble className="top-11 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          Click to copy!
+        </SpeechBubble>
+      )}
 
       <AnimatePresence>
         {copied && (

@@ -1,10 +1,13 @@
+/** @format */
+
 import type { Metadata } from "next";
-import { Space_Grotesk, Nunito } from "next/font/google";
+import { Space_Grotesk, Manrope, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { NavChip } from "@/components/NavChip";
 import { site } from "@/lib/site";
 
-// Clean, bold geometric display font for headings + a warm sans for body.
+// Bold geometric font reserved for the hero name, a warm sans for body
+// text, and an elegant serif for page/section titles.
 // next/font self-hosts these at build time (no runtime external requests).
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -12,9 +15,16 @@ const display = Space_Grotesk({
   variable: "--font-display",
 });
 
-const sans = Nunito({
+const sans = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const title = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-title",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${sans.variable} ${title.variable}`}
+    >
       <body className="font-sans antialiased">
         <NavChip />
         <main className="mx-auto w-full max-w-5xl px-5 pb-24 pt-28">

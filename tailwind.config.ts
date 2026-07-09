@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Warm, whimsical palette
-        cream: "#FBF6EF",
+        // Neutral white base with coral as the one confident accent
+        cream: "#FFFFFF",
         ink: "#2B2A26",
         coral: "#FF7A59",
         peach: "#FFD8C2",
@@ -20,6 +20,7 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-display)", "cursive"],
+        title: ["var(--font-title)", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {

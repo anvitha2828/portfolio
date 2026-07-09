@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 export default function MapPage() {
   return (
     <section className="py-6">
-      <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
+      <h1 className="font-title text-5xl text-ink sm:text-6xl">
         Map <span className="align-middle text-2xl">🗺️</span>
       </h1>
       <p className="mt-3 max-w-2xl text-lg text-ink/70">

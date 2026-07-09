@@ -25,9 +25,9 @@ export default function HomePage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
-        className="mx-auto mt-6 max-w-md text-lg text-ink/70 sm:text-xl"
+        className="mx-auto mt-6 max-w-lg font-title text-3xl leading-snug text-ink sm:text-4xl"
       >
-        {site.tagline}
+        {renderTagline(site.tagline)}
       </motion.p>
 
       <motion.div
@@ -52,6 +52,20 @@ export default function HomePage() {
         </a>
       </motion.div>
     </section>
+  );
+}
+
+// Italicizes the word "feel" wherever it appears in the tagline, echoing
+// the reference typography (upright serif with one italicized word).
+function renderTagline(text: string) {
+  return text.split(/(\bfeel\b)/i).map((part, i) =>
+    /^feel$/i.test(part) ? (
+      <em key={i} className="italic">
+        {part}
+      </em>
+    ) : (
+      part
+    )
   );
 }
 
