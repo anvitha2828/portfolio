@@ -6,69 +6,50 @@ import { site } from "@/lib/site";
 
 export default function HomePage() {
   return (
-    <section className="grid items-center gap-12 py-8 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-      {/* Text column */}
-      <div>
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 120 }}
-          className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl lg:text-8xl"
-        >
-          {site.name}
-        </motion.h1>
+    <section className="relative mx-auto max-w-2xl py-16 text-center sm:py-24">
+      {/* Sparkle decorations */}
+      <Sparkle className="absolute -top-4 right-6 h-10 w-10 text-butter animate-float sm:right-16" />
+      <Sparkle className="absolute left-2 top-10 h-6 w-6 text-coral animate-float [animation-delay:1s] sm:left-10" />
+      <Starburst className="absolute -top-2 left-16 h-8 w-8 text-butter animate-wiggle sm:left-32" />
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-          className="mt-6 max-w-md text-lg text-ink/70 sm:text-xl"
-        >
-          {site.tagline}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-8 flex flex-wrap items-center gap-6"
-        >
-          <Link
-            href="/work"
-            className="rounded-full border-2 border-ink px-6 py-3 font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
-          >
-            Check out my Work
-          </Link>
-          <a
-            href={site.resumeHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-ink/70 underline decoration-1 underline-offset-4 transition-colors hover:text-ink"
-          >
-            Resume
-          </a>
-        </motion.div>
-      </div>
-
-      {/* Photo column */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-        className="relative mx-auto w-full max-w-sm lg:max-w-none"
+      <motion.h1
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 120 }}
+        className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl"
       >
-        {/* Sparkle decorations */}
-        <Sparkle className="absolute -top-6 right-10 h-10 w-10 text-butter animate-float" />
-        <Sparkle className="absolute right-0 top-16 h-6 w-6 text-coral animate-float [animation-delay:1s]" />
-        <Starburst className="absolute -top-4 right-24 h-8 w-8 text-butter animate-wiggle" />
+        {site.name}
+      </motion.h1>
 
-        {/* Photo frame — drop a headshot into /public/images and swap the placeholder below */}
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-blob border border-ink/5 bg-ink/10 shadow-soft">
-          {/* Replace with: <Image src="/images/headshot.jpg" alt={site.name} fill className="object-cover" /> */}
-          <div className="grid h-full w-full place-items-center font-display text-lg text-ink/40">
-            Your photo
-          </div>
-        </div>
+      <motion.p
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+        className="mx-auto mt-6 max-w-md text-lg text-ink/70 sm:text-xl"
+      >
+        {site.tagline}
+      </motion.p>
+
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-8 flex flex-wrap items-center justify-center gap-6"
+      >
+        <Link
+          href="/work"
+          className="rounded-full border-2 border-ink px-6 py-3 font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
+        >
+          Check out my Work
+        </Link>
+        <a
+          href={site.resumeHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-ink/70 underline decoration-1 underline-offset-4 transition-colors hover:text-ink"
+        >
+          Resume
+        </a>
       </motion.div>
     </section>
   );
