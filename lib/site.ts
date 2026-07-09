@@ -1,9 +1,12 @@
+/** @format */
+
 // Single source of truth for site-wide config.
 // Update these values and every page/nav reflects the change.
 
 export const site = {
-  name: "Anvitha",
-  tagline: "A Product Manager making products feel simple even when they are not.",
+  name: "Anvitha Nachiappan",
+  tagline:
+    "A Product Manager, making products feel simple even when they are not.",
   email: "anvitha2828@gmail.com",
   resumeHref: "/Anvitha%20Nachiappan%20Resume%2026.pdf", // public/Anvitha Nachiappan Resume 26.pdf
 };
