@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Fredoka, Nunito } from "next/font/google";
+import { Space_Grotesk, Nunito } from "next/font/google";
 import "./globals.css";
 import { NavChip } from "@/components/NavChip";
 import { site } from "@/lib/site";
 
-// Friendly rounded display font for headings + clean sans for body.
+// Clean, bold geometric display font for headings + a warm sans for body.
 // next/font self-hosts these at build time (no runtime external requests).
-const display = Fredoka({
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-display",
 });
 
