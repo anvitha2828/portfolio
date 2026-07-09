@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
+import { experience } from "@/content/experience";
 
 export const metadata: Metadata = {
   title: `About — ${site.name}`,
@@ -37,6 +38,29 @@ export default function AboutPage() {
           </a>
           .
         </p>
+      </div>
+
+      {/* Work history — edit content/experience.ts, not this markup */}
+      <div className="mt-14 max-w-2xl">
+        <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+          Where I&apos;ve Worked
+        </h2>
+        <div className="mt-6 divide-y divide-ink/10">
+          {experience.map((role, i) => (
+            <div
+              key={i}
+              className="flex flex-col gap-1 py-5 sm:flex-row sm:items-center sm:gap-8"
+            >
+              <span className="w-full shrink-0 text-ink/50 sm:w-36">
+                {role.period}
+              </span>
+              <span className="text-lg text-ink">
+                <span className="font-semibold">{role.role}</span>{" "}
+                <span className="text-ink/60">@ {role.company}</span>
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
