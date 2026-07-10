@@ -9,24 +9,39 @@ import { WashingtonMonumentSketch } from "./WashingtonMonumentSketch";
 import { StopIcon } from "./StopIcon";
 import { SpeechBubble } from "./SpeechBubble";
 
-// A gently wobbly line through the stops, in order — quadratic bezier
-// segments with a perpendicular offset at each midpoint so the "road"
-// reads as hand-drawn rather than a ruler-straight connector.
+// A big, irregular sweeping line through the stops, in order — cubic
+// bezier segments with two asymmetric perpendicular offsets so each leg
+// bows out into its own loose curve/U-shape rather than a tight uniform
+// zigzag. Offsets scale with segment length and vary per segment (a
+// deterministic pseudo-random wobble) so no two curves look identical.
+function round(n: number): number {
+  return Math.round(n * 100) / 100;
+}
+
 function buildWigglyPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return "";
   let d = `M ${points[0].x},${points[0].y}`;
   for (let i = 1; i < points.length; i++) {
     const p1 = points[i - 1];
     const p2 = points[i];
-    const mx = (p1.x + p2.x) / 2;
-    const my = (p1.y + p2.y) / 2;
     const dx = p2.x - p1.x;
     const dy = p2.y - p1.y;
     const len = Math.sqrt(dx * dx + dy * dy) || 1;
     const nx = -dy / len;
     const ny = dx / len;
-    const wobble = i % 2 === 0 ? 5 : -5;
-    d += ` Q ${mx + nx * wobble},${my + ny * wobble} ${p2.x},${p2.y}`;
+
+    const seed = Math.sin(i * 12.9898) * 43758.5453;
+    const rand = seed - Math.floor(seed);
+    const sign = i % 2 === 0 ? 1 : -1;
+    const w1 = sign * (len * 0.3 + rand * 6);
+    const w2 = -sign * (len * 0.2 + (1 - rand) * 8);
+
+    const c1x = round(p1.x + dx * 0.33 + nx * w1);
+    const c1y = round(p1.y + dy * 0.33 + ny * w1);
+    const c2x = round(p1.x + dx * 0.66 + nx * w2);
+    const c2y = round(p1.y + dy * 0.66 + ny * w2);
+
+    d += ` C ${c1x},${c1y} ${c2x},${c2y} ${p2.x},${p2.y}`;
   }
   return d;
 }
@@ -49,7 +64,7 @@ export function JourneyMap() {
       </p>
 
       <div className="mt-10 overflow-x-auto">
-        <div className="relative h-[520px] min-w-[820px] py-6">
+        <div className="relative h-[580px] min-w-[820px] py-6">
           <svg
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
