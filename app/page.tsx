@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
-import { StickyNoteBoard } from "@/components/StickyNoteBoard";
+import { JourneyMap } from "@/components/JourneyMap";
 
 export default function HomePage() {
   return (
@@ -55,7 +55,7 @@ export default function HomePage() {
       </motion.div>
     </section>
 
-    <StickyNoteBoard />
+    <JourneyMap />
     </>
   );
 }

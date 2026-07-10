@@ -24,6 +24,11 @@ A quick reference for making changes without having to relearn the structure eac
 - **[content/experience.ts](content/experience.ts)** — a typed array of work-history
   entries (`period`, `role`, `company`), shown as the "Where I've Worked" list on
   `/portfolio`. Newest first.
+- **[content/mapPlaces.ts](content/mapPlaces.ts)** — the stops on the "Journey" map at
+  the bottom of the landing page (`journeyBefore`, `vtHub`, `vtStops`, `journeyAfter`,
+  `easterEggs`). A stop with an `href` links straight to a case study/section; a stop
+  with only a `blurb` shows that text in a popover when clicked. Add a `href` later to
+  turn a blurb-only stop into a link once it has a real case study.
 
 ## 2. Components — reusable pieces
 
@@ -34,6 +39,11 @@ A quick reference for making changes without having to relearn the structure eac
   envelope icon.
 - **[components/CaseStudyCard.tsx](components/CaseStudyCard.tsx)** — the card template
   used on the `/portfolio` grid. Edit this to change how every case-study card looks at once.
+- **[components/JourneyMap.tsx](components/JourneyMap.tsx)** — the map section on the
+  landing page. Reads from `content/mapPlaces.ts`; edit this file to change the layout
+  itself (the sketch connectors, popover behavior, easter-egg positions).
+- **[components/BurrussHallSketch.tsx](components/BurrussHallSketch.tsx)** — the Virginia
+  Tech illustration on the map, hand-built from SVG shapes (not a traced image).
 
 ## 3. Pages — actual routes
 
@@ -41,14 +51,14 @@ Next.js uses **file path = URL** (the App Router). Each folder in `app/` is a ro
 
 | File | URL | What's there |
 |---|---|---|
-| `app/page.tsx` | `/` | Landing hero |
+| `app/page.tsx` | `/` | Landing hero → the "Journey" map (`JourneyMap`) |
 | `app/portfolio/page.tsx` | `/portfolio` | Single long-scroll page: bio → "Where I've Worked" → case-study grid. Edit the placeholder bio paragraphs directly; the rest pulls from `experience.ts` / `caseStudies.ts` |
 | `app/portfolio/[slug]/page.tsx` | `/portfolio/anything` | Case-study detail template — rarely needs edits since content lives in `caseStudies.ts` |
-| `app/map/page.tsx` | `/map` | Placeholder — to be designed later |
 | `app/layout.tsx` | (wraps everything) | Fonts + `<NavChip>`, shown on every page |
 
-There's no separate About page anymore — the bio and work history live at the top of
-`/portfolio` so the whole thing reads as one continuous scroll.
+There's no separate About or Map page anymore — the bio/work history live at the top of
+`/portfolio`, and the map lives at the bottom of `/`. The nav's "Map" link is an anchor
+(`/#map`) that scrolls to it rather than a real route.
 
 ## Design tokens
 
