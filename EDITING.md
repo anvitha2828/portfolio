@@ -26,13 +26,19 @@ A quick reference for making changes without having to relearn the structure eac
   `/portfolio`. Newest first.
 - **[content/mapPlaces.ts](content/mapPlaces.ts)** — the stops on the "Journey" map at
   the bottom of the landing page. `journeyStops` is one ordered, scattered trail — each
-  stop has an `x`/`y` position (0-100, percentage of the map canvas), a `label` (bold
-  headline) and `caption` (short secondary line) that are always visible, and either an
-  `href` (links straight to a case study/section) or a `blurb` (longer text shown in a
-  popover on click). Give a stop a `sketch` ("burruss" or "dc") for a full custom
-  illustration, or an `icon` (see `StopIcon.tsx` for the available glyphs) for a
-  simpler colored-tile icon. `easterEggs` are separate, off-trail — small emoji with a
-  hover tooltip, also positioned by `x`/`y`.
+  stop is a colored dot with an `x`/`y` position (0-100, percentage of the map canvas),
+  a `label` (bold headline) and `caption` (short secondary line) that are always
+  visible, and either an `href` (links straight to a case study/section) or a `blurb`
+  (longer text shown in a popover on click). `backgroundImages` places the two full
+  illustrations (Burruss Hall, the Washington Monument — components below) behind
+  everything else, independent of any particular stop. `easterEggs` are separate,
+  off-trail — small emoji with a hover tooltip, also positioned by `x`/`y`.
+
+  **Everything on the map is currently drag-to-arrange in the browser** (dots,
+  background illustrations, easter eggs) — drag positions are kept in
+  `localStorage` so an in-progress layout survives a refresh. Once you're happy
+  with an arrangement, say so and the dragged coordinates get baked back into
+  the `x`/`y` values in this file, and dragging is turned off.
 
 ## 2. Components — reusable pieces
 
@@ -44,14 +50,16 @@ A quick reference for making changes without having to relearn the structure eac
 - **[components/CaseStudyCard.tsx](components/CaseStudyCard.tsx)** — the card template
   used on the `/portfolio` grid. Edit this to change how every case-study card looks at once.
 - **[components/JourneyMap.tsx](components/JourneyMap.tsx)** — the map section on the
-  landing page. Reads from `content/mapPlaces.ts`; edit this file to change the layout
-  itself (the wiggly connector path, marker/popover behavior, dot colors).
+  landing page. Reads from `content/mapPlaces.ts`; edit this file to change the drag
+  behavior, marker/popover behavior, or dot colors. Positions currently come from a
+  drag-to-arrange interaction (see `useDraggable`) rather than being fixed.
 - **[components/BurrussHallSketch.tsx](components/BurrussHallSketch.tsx)** and
   **[components/WashingtonMonumentSketch.tsx](components/WashingtonMonumentSketch.tsx)**
-  — the two full custom map illustrations, hand-built from SVG shapes (not traced images).
+  — the two full custom map illustrations (VT, DC), hand-built from SVG shapes (not
+  traced images), placed as background art via `backgroundImages` in `mapPlaces.ts`.
 - **[components/StopIcon.tsx](components/StopIcon.tsx)** — simpler colored-tile glyphs
-  (robot, ribbon, steering wheel, padlock, lightbulb, shield) for map stops that don't
-  have a full illustration. Add a new glyph here to give a future stop its own icon.
+  (robot, ribbon, steering wheel, padlock, lightbulb, shield); currently unused (stops
+  are plain dots for now) but kept around in case icons come back later.
 
 ## 3. Pages — actual routes
 

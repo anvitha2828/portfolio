@@ -1,8 +1,12 @@
 // The journey map on the landing page. One ordered, scattered trail —
-// x/y are percentages (0-100) within the map canvas. Each stop shows an
-// icon, a bold `label`, and a short `caption` right on the map. A stop
-// with an `href` links straight to a case study/section; a stop with a
-// `blurb` instead reveals that longer text in a popover on click.
+// x/y are percentages (0-100) within the map canvas. Each stop is a
+// colored dot with a bold `label` and short `caption` right on the map.
+// A stop with an `href` links straight to a case study/section; a stop
+// with a `blurb` instead reveals that longer text in a popover on click.
+//
+// Positions are currently draggable in the browser for layout purposes —
+// see JourneyMap.tsx. Once a layout is finalized, the dragged coordinates
+// get baked back into the x/y values below and dragging is turned off.
 
 export type MapSketch = "burruss" | "dc";
 export type MapIcon =
@@ -22,11 +26,9 @@ export type MapStop = {
   x: number;
   y: number;
   color: "coral" | "peach" | "sky" | "leaf" | "butter";
-  sketch?: MapSketch; // a full custom illustration instead of `icon`
-  icon?: MapIcon; // a simple glyph on a colored tile
 };
 
-// Chronological order — the road connects these in sequence.
+// Chronological order, top to bottom.
 export const journeyStops: MapStop[] = [
   {
     id: "robotics",
@@ -37,7 +39,6 @@ export const journeyStops: MapStop[] = [
     x: 4,
     y: 68,
     color: "leaf",
-    icon: "robot",
   },
   {
     id: "virginia-tech",
@@ -48,7 +49,6 @@ export const journeyStops: MapStop[] = [
     x: 17,
     y: 14,
     color: "coral",
-    sketch: "burruss",
   },
   {
     id: "clicker-band",
@@ -59,7 +59,6 @@ export const journeyStops: MapStop[] = [
     x: 31,
     y: 70,
     color: "butter",
-    icon: "ribbon",
   },
   {
     id: "driving-research",
@@ -69,7 +68,6 @@ export const journeyStops: MapStop[] = [
     x: 46,
     y: 12,
     color: "sky",
-    icon: "steering-wheel",
   },
   {
     id: "abbott-capstone",
@@ -79,7 +77,6 @@ export const journeyStops: MapStop[] = [
     x: 60,
     y: 74,
     color: "peach",
-    icon: "padlock",
   },
   {
     id: "invents-studio",
@@ -90,7 +87,6 @@ export const journeyStops: MapStop[] = [
     x: 74,
     y: 16,
     color: "leaf",
-    icon: "lightbulb",
   },
   {
     id: "dc",
@@ -101,7 +97,6 @@ export const journeyStops: MapStop[] = [
     x: 87,
     y: 68,
     color: "sky",
-    sketch: "dc",
   },
   {
     id: "mitre",
@@ -112,8 +107,22 @@ export const journeyStops: MapStop[] = [
     x: 98,
     y: 14,
     color: "coral",
-    icon: "shield",
   },
+];
+
+// The two full illustrations (Burruss Hall, Washington Monument) sit in
+// the background as decorative art, independent of the VT/DC dots above —
+// also draggable, also positioned by x/y percentage.
+export type MapBackground = {
+  id: string;
+  sketch: MapSketch;
+  x: number;
+  y: number;
+};
+
+export const backgroundImages: MapBackground[] = [
+  { id: "vt-illustration", sketch: "burruss", x: 17, y: 14 },
+  { id: "dc-illustration", sketch: "dc", x: 87, y: 68 },
 ];
 
 export type EasterEgg = {
