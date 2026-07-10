@@ -25,10 +25,12 @@ A quick reference for making changes without having to relearn the structure eac
   entries (`period`, `role`, `company`), shown as the "Where I've Worked" list on
   `/portfolio`. Newest first.
 - **[content/mapPlaces.ts](content/mapPlaces.ts)** — the stops on the "Journey" map at
-  the bottom of the landing page (`journeyBefore`, `vtHub`, `vtStops`, `journeyAfter`,
-  `easterEggs`). A stop with an `href` links straight to a case study/section; a stop
-  with only a `blurb` shows that text in a popover when clicked. Add a `href` later to
-  turn a blurb-only stop into a link once it has a real case study.
+  the bottom of the landing page. `journeyStops` is one ordered, scattered trail — each
+  stop has an `x`/`y` position (0-100, percentage of the map canvas) and either an
+  `href` (links straight to a case study/section) or a `blurb` (shown in a popover on
+  click). Give a stop a `sketch` ("burruss" or "dc") for a custom illustration instead
+  of a plain dot. `easterEggs` are separate, off-trail — small emoji with a hover
+  tooltip, also positioned by `x`/`y`.
 
 ## 2. Components — reusable pieces
 
@@ -41,9 +43,10 @@ A quick reference for making changes without having to relearn the structure eac
   used on the `/portfolio` grid. Edit this to change how every case-study card looks at once.
 - **[components/JourneyMap.tsx](components/JourneyMap.tsx)** — the map section on the
   landing page. Reads from `content/mapPlaces.ts`; edit this file to change the layout
-  itself (the sketch connectors, popover behavior, easter-egg positions).
-- **[components/BurrussHallSketch.tsx](components/BurrussHallSketch.tsx)** — the Virginia
-  Tech illustration on the map, hand-built from SVG shapes (not a traced image).
+  itself (the wiggly connector path, marker/popover behavior, dot colors).
+- **[components/BurrussHallSketch.tsx](components/BurrussHallSketch.tsx)** and
+  **[components/WashingtonMonumentSketch.tsx](components/WashingtonMonumentSketch.tsx)**
+  — the two custom map illustrations, hand-built from SVG shapes (not traced images).
 
 ## 3. Pages — actual routes
 
