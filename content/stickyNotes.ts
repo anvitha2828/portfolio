@@ -1,6 +1,6 @@
-// The little kanban board on the landing page. Drag a note between
-// columns — dropping one in "Done" pops confetti. Edit these with your
-// real to-dos whenever you're ready; the board picks up changes automatically.
+// The little kanban board on the landing page. Drag the note into
+// "Done" to pop confetti and reveal a thank-you note asking visitors
+// to reach out. Add more notes here if you ever want a bigger board.
 
 export type NoteStatus = "todo" | "doing" | "done";
 
@@ -12,9 +12,10 @@ export type StickyNote = {
 };
 
 export const stickyNotes: StickyNote[] = [
-  { id: "1", text: "Learn pottery", status: "todo", color: "peach" },
-  { id: "2", text: "Visit Japan", status: "todo", color: "sky" },
-  { id: "3", text: "Ship Roots v2", status: "doing", color: "butter" },
-  { id: "4", text: "Design the Map page", status: "doing", color: "leaf" },
-  { id: "5", text: "Launch this portfolio", status: "done", color: "coral" },
+  {
+    id: "1",
+    text: "Reviewed Anvitha's portfolio",
+    status: "todo",
+    color: "butter",
+  },
 ];
