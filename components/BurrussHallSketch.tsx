@@ -25,7 +25,7 @@ export function BurrussHallSketch({ className = "" }: { className?: string }) {
 
       {/* Right tower */}
       <g stroke={stroke} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M280 70 h20 v-18 h10 v18 h20 v20 h-50 z" />
+        <path d="M250 70 h20 v-18 h10 v18 h20 v20 h-50 z" />
         <rect x="245" y="90" width="60" height="110" />
         <line x1="275" y1="90" x2="275" y2="200" />
         <path d="M262 130 q13 -16 26 0 v30 h-26 z" />
