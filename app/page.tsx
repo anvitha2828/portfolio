@@ -37,10 +37,10 @@ export default function HomePage() {
         className="mt-8 flex flex-wrap items-center justify-center gap-6"
       >
         <Link
-          href="/work"
+          href="/portfolio"
           className="rounded-full border-2 border-ink px-6 py-3 font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
         >
-          Check out my Work
+          See my Portfolio
         </Link>
         <a
           href={site.resumeHref}

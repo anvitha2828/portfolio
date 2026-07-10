@@ -1,7 +1,7 @@
 /** @format */
 
 // Your work / case studies live here.
-// Add, remove, or reorder entries — the Work index and detail pages update automatically.
+// Add, remove, or reorder entries — the Portfolio page and detail pages update automatically.
 // Drop cover images into /public/images and reference them as "/images/your-file.jpg".
 
 export type CaseStudySection = {
@@ -11,7 +11,7 @@ export type CaseStudySection = {
 };
 
 export type CaseStudy = {
-  slug: string; // URL: /work/<slug>
+  slug: string; // URL: /portfolio/<slug>
   title: string;
   category?: string; // e.g. "Concept Project" — shown under the title
   summary: string; // one-line "Description"
@@ -29,7 +29,7 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "roots-family-tree-builder",
-    title: "Roots",
+    title: "Rooted",
     category: "Family Tree Builder",
     summary: "A web app for building, sharing, and exploring family trees.",
     context: [
@@ -51,7 +51,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "ar-hud-monotonous-driving",
-    title: "AR HUD & Monotonous Driving",
+    title: "AR Driving Research",
     category: "Published Research",
     summary:
       "A user study on how secondary tasks on an augmented-reality head-up display affect driver workload and performance during monotonous driving.",
@@ -60,7 +60,12 @@ export const caseStudies: CaseStudy[] = [
       "A mixed-methods analysis evaluated perceived workload (NASA-TLX) alongside lateral and longitudinal driving performance. Drivers subjectively rated the AR HUD tasks as more cognitively demanding and distracting than driving alone — yet those same tasks improved objective driving performance, and task duration had no measurable effect either way. The findings suggest AR HUDs have real potential to improve driver alertness and vigilance on monotonous drives, rather than simply adding risk.",
     ],
     role: ["Co-Author", "Study Design", "Data Collection", "Data Analysis"],
-    tools: ["Driving Simulator", "AR HUD", "NASA-TLX", "Mixed-Methods Analysis"],
+    tools: [
+      "Driving Simulator",
+      "AR HUD",
+      "NASA-TLX",
+      "Mixed-Methods Analysis",
+    ],
     timeline: "2021",
     links: [
       {

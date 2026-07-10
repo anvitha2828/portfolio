@@ -12,8 +12,8 @@ A quick reference for making changes without having to relearn the structure eac
   resume link, and the nav menu (labels + order). Change something here once and it
   updates everywhere it's used (nav, page titles, hero, etc.).
 - **[content/caseStudies.ts](content/caseStudies.ts)** — a typed array, one object per
-  project. Add a new entry and it automatically appears as a card on `/work` and gets
-  its own page at `/work/<slug>`. You never touch page code to add a project.
+  project. Add a new entry and it automatically appears as a card on `/portfolio` and
+  gets its own page at `/portfolio/<slug>`. You never touch page code to add a project.
   The detail page top is an editorial layout: `title` + `category`, then a
   `role` / `tools` / `timeline` sidebar next to `summary` (Description) and
   `context` (paragraphs). Anything you put in `sections` renders further down
@@ -23,7 +23,7 @@ A quick reference for making changes without having to relearn the structure eac
   links under Context.
 - **[content/experience.ts](content/experience.ts)** — a typed array of work-history
   entries (`period`, `role`, `company`), shown as the "Where I've Worked" list on
-  `/about`. Newest first.
+  `/portfolio`. Newest first.
 
 ## 2. Components — reusable pieces
 
@@ -33,7 +33,7 @@ A quick reference for making changes without having to relearn the structure eac
 - **[components/CopyEmailButton.tsx](components/CopyEmailButton.tsx)** — the click-to-copy
   envelope icon.
 - **[components/CaseStudyCard.tsx](components/CaseStudyCard.tsx)** — the card template
-  used on the `/work` grid. Edit this to change how every case-study card looks at once.
+  used on the `/portfolio` grid. Edit this to change how every case-study card looks at once.
 
 ## 3. Pages — actual routes
 
@@ -42,11 +42,13 @@ Next.js uses **file path = URL** (the App Router). Each folder in `app/` is a ro
 | File | URL | What's there |
 |---|---|---|
 | `app/page.tsx` | `/` | Landing hero |
-| `app/about/page.tsx` | `/about` | Bio — edit the placeholder paragraphs directly |
-| `app/work/page.tsx` | `/work` | Grid — pulls from `caseStudies.ts`, rarely needs edits |
-| `app/work/[slug]/page.tsx` | `/work/anything` | Case-study detail template — rarely needs edits since content lives in `caseStudies.ts` |
+| `app/portfolio/page.tsx` | `/portfolio` | Single long-scroll page: bio → "Where I've Worked" → case-study grid. Edit the placeholder bio paragraphs directly; the rest pulls from `experience.ts` / `caseStudies.ts` |
+| `app/portfolio/[slug]/page.tsx` | `/portfolio/anything` | Case-study detail template — rarely needs edits since content lives in `caseStudies.ts` |
 | `app/map/page.tsx` | `/map` | Placeholder — to be designed later |
 | `app/layout.tsx` | (wraps everything) | Fonts + `<NavChip>`, shown on every page |
+
+There's no separate About page anymore — the bio and work history live at the top of
+`/portfolio` so the whole thing reads as one continuous scroll.
 
 ## Design tokens
 

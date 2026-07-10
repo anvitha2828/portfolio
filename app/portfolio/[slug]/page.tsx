@@ -17,7 +17,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const study = getCaseStudy(slug);
   return {
-    title: study ? `${study.title} — ${site.name}` : `Work — ${site.name}`,
+    title: study
+      ? `${study.title} — ${site.name}`
+      : `Portfolio — ${site.name}`,
   };
 }
 
@@ -35,10 +37,10 @@ export default async function CaseStudyPage({
   return (
     <article className="py-6">
       <Link
-        href="/work"
+        href="/portfolio"
         className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/60 transition-colors hover:text-coral"
       >
-        <span aria-hidden="true">←</span> Back to work
+        <span aria-hidden="true">←</span> Back to portfolio
       </Link>
 
       {/* Title block */}

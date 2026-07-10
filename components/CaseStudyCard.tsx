@@ -9,7 +9,7 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 22 }}>
       <Link
-        href={`/work/${study.slug}`}
+        href={`/portfolio/${study.slug}`}
         className="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-blob border border-ink/5 bg-ink/[0.03] p-6 transition-colors hover:bg-ink/[0.05] sm:p-7"
       >
         {/* Visual area — replace with cover art, or a custom interactive
