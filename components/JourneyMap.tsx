@@ -201,7 +201,7 @@ export function JourneyMap() {
             >
               <path
                 d={pathD}
-                stroke="rgba(43,42,38,0.16)"
+                stroke="rgba(43,42,38,0.3)"
                 strokeWidth="1.6"
                 strokeDasharray="0.1 9"
                 strokeLinecap="round"
