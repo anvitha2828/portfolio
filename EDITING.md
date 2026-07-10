@@ -67,7 +67,7 @@ Next.js uses **file path = URL** (the App Router). Each folder in `app/` is a ro
 
 | File | URL | What's there |
 |---|---|---|
-| `app/page.tsx` | `/` | Landing hero → the "Journey" map (`JourneyMap`) |
+| `app/page.tsx` | `/` | Landing hero → the map (`JourneyMap`, no heading — the section breaks out to full viewport width via a full-bleed negative-margin trick, ignoring `main`'s `max-w-5xl`) |
 | `app/portfolio/page.tsx` | `/portfolio` | Single long-scroll page: bio → "Where I've Worked" → case-study grid. Edit the placeholder bio paragraphs directly; the rest pulls from `experience.ts` / `caseStudies.ts` |
 | `app/portfolio/[slug]/page.tsx` | `/portfolio/anything` | Case-study detail template — rarely needs edits since content lives in `caseStudies.ts` |
 | `app/layout.tsx` | (wraps everything) | Fonts + `<NavChip>`, shown on every page |

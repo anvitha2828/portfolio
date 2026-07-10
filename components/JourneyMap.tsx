@@ -125,15 +125,12 @@ export function JourneyMap() {
   }
 
   return (
-    <section id="map" className="scroll-mt-24 py-10">
-      <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
-        The Journey
-      </h2>
-      <p className="mt-3 max-w-xl text-lg text-ink/70">
-        A few of the places along the way — click a stop for more.
-      </p>
-
-      <div className="mt-10 overflow-x-auto">
+    <section
+      id="map"
+      className="w-screen scroll-mt-24 py-10"
+      style={{ marginLeft: "calc(50% - 50vw)", marginRight: "calc(50% - 50vw)" }}
+    >
+      <div className="overflow-x-auto">
         <div ref={containerRef} className="relative h-[580px] min-w-[820px] py-6">
           {backgroundImages.map((bg) => (
             <BackgroundMarker

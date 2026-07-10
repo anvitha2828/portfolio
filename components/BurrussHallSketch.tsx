@@ -1,10 +1,11 @@
-// A simplified line-art sketch of Virginia Tech's Burruss Hall — white
-// strokes on a coral fill, echoing the site's hand-drawn aesthetic.
-// Original illustration (not traced from a photo), built from primitive
-// shapes rather than a freehand path for maintainability.
+// A simplified line-art sketch of Virginia Tech's Burruss Hall — coral
+// strokes directly on the page (no background), echoing the site's
+// hand-drawn aesthetic. Original illustration (not traced from a photo),
+// built from primitive shapes rather than a freehand path for
+// maintainability.
 export function BurrussHallSketch({ className = "" }: { className?: string }) {
-  const stroke = "#FFF8F3";
-  const sw = 2.5;
+  const stroke = "#FF7A59";
+  const sw = 3;
 
   return (
     <svg
@@ -13,7 +14,6 @@ export function BurrussHallSketch({ className = "" }: { className?: string }) {
       role="img"
       aria-label="Sketch of Burruss Hall at Virginia Tech"
     >
-      <rect width="400" height="480" fill="#FF7A59" rx="24" />
 
       {/* Left tower */}
       <g stroke={stroke} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">

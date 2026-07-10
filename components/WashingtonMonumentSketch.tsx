@@ -1,12 +1,13 @@
-// A simplified line-art sketch of the Washington Monument — white strokes
-// on a sky-blue fill, matching BurrussHallSketch's hand-drawn treatment.
+// A simplified line-art sketch of the Washington Monument — sky-blue
+// strokes directly on the page (no background), matching
+// BurrussHallSketch's hand-drawn treatment.
 export function WashingtonMonumentSketch({
   className = "",
 }: {
   className?: string;
 }) {
-  const stroke = "#FFF8F3";
-  const sw = 2.5;
+  const stroke = "#5AA9CE";
+  const sw = 3;
 
   return (
     <svg
@@ -15,7 +16,6 @@ export function WashingtonMonumentSketch({
       role="img"
       aria-label="Sketch of the Washington Monument"
     >
-      <rect width="400" height="480" fill="#8ECae6" rx="24" />
 
       {/* Obelisk */}
       <g stroke={stroke} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
