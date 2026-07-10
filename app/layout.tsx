@@ -1,12 +1,7 @@
 /** @format */
 
 import type { Metadata } from "next";
-import {
-  Plus_Jakarta_Sans,
-  Manrope,
-  Instrument_Serif,
-  Caveat,
-} from "next/font/google";
+import { Plus_Jakarta_Sans, Manrope, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { NavChip } from "@/components/NavChip";
 import { site } from "@/lib/site";
@@ -30,13 +25,6 @@ const title = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
   variable: "--font-title",
-});
-
-// Handwritten font, scoped to the sticky-note board only.
-const handwritten = Caveat({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-handwritten",
 });
 
 export const metadata: Metadata = {

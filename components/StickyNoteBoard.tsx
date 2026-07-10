@@ -71,20 +71,12 @@ export function StickyNoteBoard() {
 
   return (
     <section className="py-8">
-      <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
-        What I&apos;m Up To
-      </h2>
-      <p className="mt-3 max-w-xl text-lg text-ink/70">
-        Drag the note across the board — see what happens when it lands in
-        Done.
-      </p>
-
       <DndContext
         id="sticky-note-board"
         sensors={sensors}
         onDragEnd={handleDragEnd}
       >
-        <div className="mt-8">
+        <div>
           {/* Column headers */}
           <div className="grid grid-cols-3">
             {COLUMNS.map((column) => (
@@ -205,19 +197,11 @@ function Note({ note }: { note: StickyNote }) {
       {...listeners}
       {...attributes}
       style={style}
-      className={`sticky-note w-36 cursor-grab touch-none select-none rounded-sm px-3 py-4 font-handwritten text-xl leading-snug shadow-soft transition-shadow active:cursor-grabbing ${
+      className={`sticky-note w-36 cursor-grab touch-none select-none rounded-md px-3 py-4 text-sm font-semibold leading-snug shadow-soft transition-shadow active:cursor-grabbing ${
         noteBg[note.color]
       } ${isDragging ? "z-30 shadow-chip" : "z-0"}`}
     >
-      <div
-        className="pointer-events-none absolute inset-0 rounded-sm"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(to bottom, transparent, transparent 23px, rgba(43,42,38,0.1) 24px)",
-        }}
-        aria-hidden="true"
-      />
-      <span className="relative">{note.text}</span>
+      {note.text}
     </div>
   );
 }

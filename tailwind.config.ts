@@ -22,7 +22,6 @@ const config: Config = {
         display: ["var(--font-display)", "cursive"],
         title: ["var(--font-title)", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        handwritten: ["var(--font-handwritten)", "cursive"],
       },
       boxShadow: {
         soft: "0 8px 30px rgba(43, 42, 38, 0.10)",
