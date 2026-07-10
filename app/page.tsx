@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { StickyNoteBoard } from "@/components/StickyNoteBoard";
 
 export default function HomePage() {
   return (
-    <section className="relative mx-auto max-w-2xl py-16 text-center sm:py-24">
+    <>
+      <section className="relative mx-auto max-w-2xl py-16 text-center sm:py-24">
       {/* Sparkle decorations */}
       <Sparkle className="absolute -top-4 right-6 h-10 w-10 text-butter animate-float sm:right-16" />
       <Sparkle className="absolute left-2 top-10 h-6 w-6 text-coral animate-float [animation-delay:1s] sm:left-10" />
@@ -52,6 +54,9 @@ export default function HomePage() {
         </a>
       </motion.div>
     </section>
+
+    <StickyNoteBoard />
+    </>
   );
 }
 
