@@ -75,6 +75,27 @@ export const caseStudies: CaseStudy[] = [
     ],
     sections: [],
   },
+  {
+    slug: "abbott-loto-mixed-reality",
+    title: "Mixed Reality LOTO Training",
+    category: "Senior Design Project",
+    summary:
+      "A HoloLens mixed-reality training solution for Abbott Nutrition's lock-out tag-out safety procedures.",
+    context: [
+      "Abbott Nutrition trains employees on lock-out tag-out (LOTO) — a safety procedure that restricts and labels equipment during maintenance — using a physical training cart fitted with the same valves and switches found on the production floor. As part of a four-person Virginia Tech senior design team advised by Dr. Joe Gabbard, I helped research and design a mixed-reality alternative built on Microsoft Guides and the HoloLens to make that training more immersive and effective.",
+      "The solution was projected to improve safety and employee knowledge retention while supporting Abbott's broader digital transformation goals — with an estimated $387,820 in impact over three years, combining $176,000 in reduced injury costs, $117,320 from streamlined training processes, and $94,500 from accelerated digital transformation.",
+    ],
+    role: ["User Research", "Training Design"],
+    tools: ["Microsoft Guides", "HoloLens", "Mixed Reality"],
+    timeline: "2021 - 2022",
+    links: [
+      {
+        label: "View Project",
+        href: "https://www.ise.vt.edu/academics/undergrad/seniordesign-program/Team2-Abbott.html",
+      },
+    ],
+    sections: [],
+  },
 ];
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
