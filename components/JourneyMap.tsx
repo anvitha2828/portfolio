@@ -34,6 +34,45 @@ function defaultPositions(items: { id: string; x: number; y: number }[]): Positi
   return Object.fromEntries(items.map((item) => [item.id, { x: item.x, y: item.y }]));
 }
 
+// A smooth curve through every point (Catmull-Rom, converted to cubic
+// bezier segments) — always rounded, never a straight ruled line, and
+// happy to re-flow into new U-shaped bends as points move around.
+function smoothPath(points: Point[]): string {
+  if (points.length === 0) return "";
+  if (points.length === 1) return `M ${points[0].x},${points[0].y}`;
+  let d = `M ${points[0].x.toFixed(1)},${points[0].y.toFixed(1)}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] ?? points[i];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] ?? p2;
+    const c1x = p1.x + (p2.x - p0.x) / 6;
+    const c1y = p1.y + (p2.y - p0.y) / 6;
+    const c2x = p2.x - (p3.x - p1.x) / 6;
+    const c2y = p2.y - (p3.y - p1.y) / 6;
+    d += ` C ${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+  }
+  return d;
+}
+
+// Tracks the map canvas's actual pixel size so the connecting line can be
+// drawn in real pixel coordinates (1 SVG unit = 1px) instead of a
+// non-uniformly stretched 0-100 viewBox, which kept warping the dotted
+// line's round dots into ellipses whenever the canvas wasn't square.
+function useElementSize(ref: RefObject<HTMLDivElement | null>) {
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setSize({ width: el.clientWidth, height: el.clientHeight });
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref]);
+  return size;
+}
+
 // Drag-to-arrange, everything positioned by x/y percentage of the map
 // canvas. This is a temporary editing aid — arrangements are kept in
 // localStorage so they survive a refresh while things get moved around;
@@ -92,6 +131,7 @@ function useDraggable(
 
 export function JourneyMap() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasSize = useElementSize(containerRef);
   const [openId, setOpenId] = useState<string | null>(null);
   const [positions, setPositions] = useState<PositionMap>(() => defaultPositions(journeyStops));
   const [bgPositions, setBgPositions] = useState<PositionMap>(() => defaultPositions(backgroundImages));
@@ -124,6 +164,16 @@ export function JourneyMap() {
     }
   }
 
+  const pathD =
+    canvasSize.width > 0
+      ? smoothPath(
+          journeyStops.map((stop) => {
+            const p = positions[stop.id] ?? { x: stop.x, y: stop.y };
+            return { x: (p.x / 100) * canvasSize.width, y: (p.y / 100) * canvasSize.height };
+          })
+        )
+      : "";
+
   return (
     <section
       id="map"
@@ -142,6 +192,23 @@ export function JourneyMap() {
               onDragEnd={(p) => persist(BG_KEY, { ...bgPositions, [bg.id]: p })}
             />
           ))}
+
+          {pathD && (
+            <svg
+              viewBox={`0 0 ${canvasSize.width} ${canvasSize.height}`}
+              className="pointer-events-none absolute inset-0 z-[1] h-full w-full"
+              aria-hidden="true"
+            >
+              <path
+                d={pathD}
+                stroke="rgba(43,42,38,0.16)"
+                strokeWidth="1.6"
+                strokeDasharray="0.1 9"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </svg>
+          )}
 
           {journeyStops.map((stop) => (
             <Marker
