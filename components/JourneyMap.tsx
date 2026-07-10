@@ -6,20 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { journeyStops, easterEggs, type MapStop } from "@/content/mapPlaces";
 import { BurrussHallSketch } from "./BurrussHallSketch";
 import { WashingtonMonumentSketch } from "./WashingtonMonumentSketch";
+import { StopIcon } from "./StopIcon";
 import { SpeechBubble } from "./SpeechBubble";
 
-const dotColors = ["coral", "peach", "sky", "leaf", "butter"] as const;
-const dotColorClass: Record<(typeof dotColors)[number], string> = {
-  coral: "bg-coral",
-  peach: "bg-peach",
-  sky: "bg-sky",
-  leaf: "bg-leaf",
-  butter: "bg-butter",
-};
-
 // A gently wobbly line through the stops, in order — quadratic bezier
-// segments with a perpendicular offset at each midpoint so it reads as
-// hand-drawn rather than a ruler-straight connector.
+// segments with a perpendicular offset at each midpoint so the "road"
+// reads as hand-drawn rather than a ruler-straight connector.
 function buildWigglyPath(points: { x: number; y: number }[]): string {
   if (points.length === 0) return "";
   let d = `M ${points[0].x},${points[0].y}`;
@@ -53,23 +45,25 @@ export function JourneyMap() {
         The Journey
       </h2>
       <p className="mt-3 max-w-xl text-lg text-ink/70">
-        A few of the places along the way — click a stop to see what happened
-        there.
+        A few of the places along the way — click a stop for more.
       </p>
 
       <div className="mt-10 overflow-x-auto">
-        <div className="relative h-[440px] min-w-[760px] py-6">
+        <div className="relative h-[520px] min-w-[820px] py-6">
           <svg
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
-            className="pointer-events-none absolute inset-0 h-full w-full text-ink/20"
+            className="pointer-events-none absolute inset-0 h-full w-full"
             aria-hidden="true"
           >
+            {/* road body */}
+            <path d={pathD} stroke="rgba(43,42,38,0.12)" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+            {/* center dashes */}
             <path
               d={pathD}
-              stroke="currentColor"
+              stroke="rgba(43,42,38,0.35)"
               strokeWidth="0.4"
-              strokeDasharray="1.5 2.5"
+              strokeDasharray="1.2 1.8"
               strokeLinecap="round"
               fill="none"
             />
@@ -116,26 +110,14 @@ function Marker({
   isOpen: boolean;
   onToggle: (id: string) => void;
 }) {
-  const color = dotColors[index % dotColors.length];
-  const isSketch = Boolean(stop.sketch);
-
-  const inner = isSketch ? (
-    <div className={`overflow-hidden rounded-xl shadow-soft ${stop.sketch === "dc" ? "h-14 w-14" : "h-16 w-16"}`}>
-      {stop.sketch === "burruss" ? (
-        <BurrussHallSketch className="h-full w-full" />
-      ) : (
-        <WashingtonMonumentSketch className="h-full w-full" />
-      )}
-    </div>
-  ) : (
-    <span className={`block h-4 w-4 rounded-full shadow-soft ${dotColorClass[color]}`} />
-  );
-
-  const label = (
-    <span className="mt-2 whitespace-nowrap rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink/70 shadow-soft">
-      {stop.label}
-    </span>
-  );
+  const icon =
+    stop.sketch === "burruss" ? (
+      <BurrussHallSketch className="h-full w-full" />
+    ) : stop.sketch === "dc" ? (
+      <WashingtonMonumentSketch className="h-full w-full" />
+    ) : stop.icon ? (
+      <StopIcon icon={stop.icon} color={stop.color} className="h-full w-full" />
+    ) : null;
 
   const content = (
     <motion.div
@@ -146,10 +128,17 @@ function Marker({
         ease: "easeInOut",
         delay: (index % 4) * 0.4,
       }}
-      className="flex flex-col items-center"
+      className="flex w-28 flex-col items-center text-center"
     >
-      {inner}
-      {label}
+      <div className="h-16 w-16 overflow-hidden rounded-2xl shadow-soft">{icon}</div>
+      <span className="mt-2 text-sm font-bold leading-tight text-coral">
+        {stop.label}
+      </span>
+      {stop.caption && (
+        <span className="mt-0.5 text-xs leading-snug text-ink/60">
+          {stop.caption}
+        </span>
+      )}
     </motion.div>
   );
 

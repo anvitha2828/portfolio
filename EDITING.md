@@ -26,11 +26,13 @@ A quick reference for making changes without having to relearn the structure eac
   `/portfolio`. Newest first.
 - **[content/mapPlaces.ts](content/mapPlaces.ts)** — the stops on the "Journey" map at
   the bottom of the landing page. `journeyStops` is one ordered, scattered trail — each
-  stop has an `x`/`y` position (0-100, percentage of the map canvas) and either an
-  `href` (links straight to a case study/section) or a `blurb` (shown in a popover on
-  click). Give a stop a `sketch` ("burruss" or "dc") for a custom illustration instead
-  of a plain dot. `easterEggs` are separate, off-trail — small emoji with a hover
-  tooltip, also positioned by `x`/`y`.
+  stop has an `x`/`y` position (0-100, percentage of the map canvas), a `label` (bold
+  headline) and `caption` (short secondary line) that are always visible, and either an
+  `href` (links straight to a case study/section) or a `blurb` (longer text shown in a
+  popover on click). Give a stop a `sketch` ("burruss" or "dc") for a full custom
+  illustration, or an `icon` (see `StopIcon.tsx` for the available glyphs) for a
+  simpler colored-tile icon. `easterEggs` are separate, off-trail — small emoji with a
+  hover tooltip, also positioned by `x`/`y`.
 
 ## 2. Components — reusable pieces
 
@@ -46,7 +48,10 @@ A quick reference for making changes without having to relearn the structure eac
   itself (the wiggly connector path, marker/popover behavior, dot colors).
 - **[components/BurrussHallSketch.tsx](components/BurrussHallSketch.tsx)** and
   **[components/WashingtonMonumentSketch.tsx](components/WashingtonMonumentSketch.tsx)**
-  — the two custom map illustrations, hand-built from SVG shapes (not traced images).
+  — the two full custom map illustrations, hand-built from SVG shapes (not traced images).
+- **[components/StopIcon.tsx](components/StopIcon.tsx)** — simpler colored-tile glyphs
+  (robot, ribbon, steering wheel, padlock, lightbulb, shield) for map stops that don't
+  have a full illustration. Add a new glyph here to give a future stop its own icon.
 
 ## 3. Pages — actual routes
 
