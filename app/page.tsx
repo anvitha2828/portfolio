@@ -3,59 +3,76 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
-import { JourneySection } from "@/components/JourneySection";
+import { JourneyCards } from "@/components/JourneyCards";
+import { HeroSketches } from "@/components/HeroSketches";
 
 export default function HomePage() {
   return (
     <>
-      <section className="relative mx-auto max-w-2xl py-16 text-center sm:py-24">
-      {/* Sparkle decorations */}
-      <Sparkle className="absolute -top-4 right-6 h-10 w-10 text-butter animate-float sm:right-16" />
-      <Sparkle className="absolute left-2 top-10 h-6 w-6 text-coral animate-float [animation-delay:1s] sm:left-10" />
-      <Starburst className="absolute -top-2 left-16 h-8 w-8 text-butter animate-wiggle sm:left-32" />
-
-      <motion.h1
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 120 }}
-        className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl"
+      <section
+        className="relative w-screen min-h-[520px] py-16 sm:py-24"
+        style={{
+          marginLeft: "calc(50% - 50vw)",
+          marginRight: "calc(50% - 50vw)",
+        }}
       >
-        {site.name}
-      </motion.h1>
+        {/* Every line-art drawing from the map, scattered here instead —
+            draggable, so they can be dragged around freely. */}
+        <div className="hidden sm:block">
+          <HeroSketches />
+        </div>
 
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
-        className="mx-auto mt-6 max-w-lg font-title text-3xl leading-snug text-ink sm:text-4xl"
-      >
-        {renderTagline(site.tagline)}
-      </motion.p>
+        <div className="relative z-10 mx-auto max-w-2xl text-center">
+          {/* Sparkle decorations — offset enough to clear the h1's own
+              bounding box (icon height + top offset must stay negative),
+              so they sit above the title instead of behind its letters. */}
+          <Sparkle className="absolute -top-12 right-4 h-10 w-10 text-butter animate-float sm:-top-16 sm:right-12" />
+          <Sparkle className="absolute -top-8 left-0 h-6 w-6 text-coral animate-float [animation-delay:1s] sm:-top-10 sm:left-6" />
+          <Starburst className="absolute -top-14 left-24 h-8 w-8 text-butter animate-wiggle sm:-top-20 sm:left-40" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="mt-8 flex flex-wrap items-center justify-center gap-6"
-      >
-        <Link
-          href="/portfolio"
-          className="rounded-full border-2 border-ink px-6 py-3 font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
-        >
-          See my Portfolio
-        </Link>
-        <a
-          href={site.resumeHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-semibold text-ink/70 underline decoration-1 underline-offset-4 transition-colors hover:text-ink"
-        >
-          Resume
-        </a>
-      </motion.div>
-    </section>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 120 }}
+            className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl"
+          >
+            {site.name}
+          </motion.h1>
 
-    <JourneySection />
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="mx-auto mt-6 max-w-lg font-title text-3xl leading-snug text-ink sm:text-4xl"
+          >
+            {renderTagline(site.tagline)}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-6"
+          >
+            <Link
+              href="/portfolio"
+              className="rounded-full border-2 border-ink px-6 py-3 font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
+            >
+              See my Portfolio
+            </Link>
+            <a
+              href={site.resumeHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-ink/70 underline decoration-1 underline-offset-4 transition-colors hover:text-ink"
+            >
+              Resume
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      <JourneyCards />
     </>
   );
 }

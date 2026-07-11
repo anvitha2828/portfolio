@@ -20,6 +20,8 @@ export type CaseStudy = {
   tools: string[]; // e.g. ["Figma", "React"] — sidebar list
   timeline: string; // e.g. "2026" or "February 2026"
   cover?: string; // e.g. "/images/project-a.jpg" (optional — falls back to a muted title tile)
+  featuredImages?: string[]; // 1-2 hero screenshots, shown large, full-width, in order
+  gallery?: string[]; // additional screenshots, shown smaller in a grid below the featured images
   links?: { label: string; href: string }[]; // e.g. published paper, live site — shown under Context
   // Optional deeper write-up, rendered further down the page below the
   // "Read Case Study" button. Leave empty until you're ready to break it out.
@@ -47,6 +49,21 @@ export const caseStudies: CaseStudy[] = [
       "Vercel",
     ],
     timeline: "2026",
+    links: [
+      {
+        label: "View Live Site",
+        href: "https://rooted-rosy-iota.vercel.app/#",
+      },
+    ],
+    featuredImages: [
+      "/images/full_view.png",
+      "/images/full_visualizedview.png",
+    ],
+    gallery: [
+      "/images/immediate_family.png",
+      "/images/details_window.png",
+      "/images/image_crop.png",
+    ],
     sections: [],
   },
   {

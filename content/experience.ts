@@ -8,7 +8,16 @@ export type Experience = {
 };
 
 export const experience: Experience[] = [
-  { period: "2025 - Now", role: "Your Role", company: "Company" },
-  { period: "2023 - 2025", role: "Your Role", company: "Company" },
-  { period: "2021 - 2023", role: "Your Role", company: "Company" },
+  { period: "2023 - Now", role: "Systems Engineer", company: "MITRE" },
+  {
+    period: "2022 - 2023",
+    role: "Graduate Assistant",
+    company: "Virginia Tech",
+  },
+  { period: "Summer 2022", role: "Summer Associate", company: "IDA" },
+  {
+    period: "2020 - 2023",
+    role: "Researcher",
+    company: "COGENT Lab & 3M Lab, Virginia Tech",
+  },
 ];

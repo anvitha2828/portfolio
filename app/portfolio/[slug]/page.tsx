@@ -113,6 +113,37 @@ export default async function CaseStudyPage({
         </div>
       </div>
 
+      {/* Screenshots — featuredImages shown large and full-width first,
+          gallery shown smaller in a grid below */}
+      {((study.featuredImages && study.featuredImages.length > 0) ||
+        (study.gallery && study.gallery.length > 0)) && (
+        <div className="mt-16 space-y-6">
+          {study.featuredImages?.map((src) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={src}
+              src={src}
+              alt={study.title}
+              className="w-full rounded-2xl border border-ink/10 shadow-soft"
+            />
+          ))}
+
+          {study.gallery && study.gallery.length > 0 && (
+            <div className="grid gap-4 sm:grid-cols-3">
+              {study.gallery.map((src) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={src}
+                  src={src}
+                  alt={study.title}
+                  className="w-full rounded-xl border border-ink/10 shadow-soft"
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Deeper write-up — add sections in content/caseStudies.ts to fill this in */}
       {hasMore && (
         <div id="details" className="mx-auto mt-16 max-w-2xl space-y-8 scroll-mt-24">
