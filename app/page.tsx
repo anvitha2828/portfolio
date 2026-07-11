@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
-import { JourneyMap } from "@/components/JourneyMap";
+import { JourneySection } from "@/components/JourneySection";
 
 export default function HomePage() {
   return (
@@ -55,7 +55,7 @@ export default function HomePage() {
       </motion.div>
     </section>
 
-    <JourneyMap />
+    <JourneySection />
     </>
   );
 }

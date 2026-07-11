@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { useEffect, useRef, useState, type RefObject } from "react";
@@ -30,8 +32,12 @@ const dotColor: Record<string, string> = {
   butter: "bg-butter",
 };
 
-function defaultPositions(items: { id: string; x: number; y: number }[]): PositionMap {
-  return Object.fromEntries(items.map((item) => [item.id, { x: item.x, y: item.y }]));
+function defaultPositions(
+  items: { id: string; x: number; y: number }[],
+): PositionMap {
+  return Object.fromEntries(
+    items.map((item) => [item.id, { x: item.x, y: item.y }]),
+  );
 }
 
 // A smooth curve through every point (Catmull-Rom, converted to cubic
@@ -64,7 +70,8 @@ function useElementSize(ref: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const update = () => setSize({ width: el.clientWidth, height: el.clientHeight });
+    const update = () =>
+      setSize({ width: el.clientWidth, height: el.clientHeight });
     update();
     const observer = new ResizeObserver(update);
     observer.observe(el);
@@ -82,7 +89,7 @@ function useDraggable(
   containerRef: RefObject<HTMLDivElement | null>,
   onDrag: (p: Point) => void,
   onDragEnd: (p: Point) => void,
-  onClick?: () => void
+  onClick?: () => void,
 ) {
   const draggingRef = useRef(false);
   const movedRef = useRef(false);
@@ -91,8 +98,14 @@ function useDraggable(
 
   function toPercent(clientX: number, clientY: number): Point {
     const rect = containerRef.current!.getBoundingClientRect();
-    const x = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
-    const y = Math.min(100, Math.max(0, ((clientY - rect.top) / rect.height) * 100));
+    const x = Math.min(
+      100,
+      Math.max(0, ((clientX - rect.left) / rect.width) * 100),
+    );
+    const y = Math.min(
+      100,
+      Math.max(0, ((clientY - rect.top) / rect.height) * 100),
+    );
     return { x, y };
   }
 
@@ -126,27 +139,45 @@ function useDraggable(
     lastRef.current = null;
   };
 
-  return { onPointerDown, onPointerMove, onPointerUp, style: { touchAction: "none" as const } };
+  return {
+    onPointerDown,
+    onPointerMove,
+    onPointerUp,
+    style: { touchAction: "none" as const },
+  };
 }
 
-export function JourneyMap() {
+export function JourneyMap({
+  onStopHover,
+}: {
+  onStopHover?: (id: string | null) => void;
+} = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasSize = useElementSize(containerRef);
   const [openId, setOpenId] = useState<string | null>(null);
-  const [positions, setPositions] = useState<PositionMap>(() => defaultPositions(journeyStops));
-  const [bgPositions, setBgPositions] = useState<PositionMap>(() => defaultPositions(backgroundImages));
-  const [eggPositions, setEggPositions] = useState<PositionMap>(() => defaultPositions(easterEggs));
+  const [positions, setPositions] = useState<PositionMap>(() =>
+    defaultPositions(journeyStops),
+  );
+  const [bgPositions, setBgPositions] = useState<PositionMap>(() =>
+    defaultPositions(backgroundImages),
+  );
+  const [eggPositions, setEggPositions] = useState<PositionMap>(() =>
+    defaultPositions(easterEggs),
+  );
 
   // Pick up any in-progress arrangement saved in this browser, after mount —
   // kept out of the initial render so server/client HTML always match.
   useEffect(() => {
     try {
       const savedStops = localStorage.getItem(STOPS_KEY);
-      if (savedStops) setPositions((prev) => ({ ...prev, ...JSON.parse(savedStops) }));
+      if (savedStops)
+        setPositions((prev) => ({ ...prev, ...JSON.parse(savedStops) }));
       const savedBg = localStorage.getItem(BG_KEY);
-      if (savedBg) setBgPositions((prev) => ({ ...prev, ...JSON.parse(savedBg) }));
+      if (savedBg)
+        setBgPositions((prev) => ({ ...prev, ...JSON.parse(savedBg) }));
       const savedEggs = localStorage.getItem(EGG_KEY);
-      if (savedEggs) setEggPositions((prev) => ({ ...prev, ...JSON.parse(savedEggs) }));
+      if (savedEggs)
+        setEggPositions((prev) => ({ ...prev, ...JSON.parse(savedEggs) }));
     } catch {
       // ignore malformed/unavailable storage
     }
@@ -169,8 +200,11 @@ export function JourneyMap() {
       ? smoothPath(
           journeyStops.map((stop) => {
             const p = positions[stop.id] ?? { x: stop.x, y: stop.y };
-            return { x: (p.x / 100) * canvasSize.width, y: (p.y / 100) * canvasSize.height };
-          })
+            return {
+              x: (p.x / 100) * canvasSize.width,
+              y: (p.y / 100) * canvasSize.height,
+            };
+          }),
         )
       : "";
 
@@ -178,17 +212,25 @@ export function JourneyMap() {
     <section
       id="map"
       className="w-screen scroll-mt-24 py-10"
-      style={{ marginLeft: "calc(50% - 50vw)", marginRight: "calc(50% - 50vw)" }}
+      style={{
+        marginLeft: "calc(50% - 50vw)",
+        marginRight: "calc(50% - 50vw)",
+      }}
     >
       <div className="overflow-x-auto">
-        <div ref={containerRef} className="relative h-[580px] min-w-[820px] py-6">
+        <div
+          ref={containerRef}
+          className="relative h-[580px] min-w-[820px] py-6"
+        >
           {backgroundImages.map((bg) => (
             <BackgroundMarker
               key={bg.id}
               bg={bg}
               position={bgPositions[bg.id]}
               containerRef={containerRef}
-              onDrag={(p) => setBgPositions((prev) => ({ ...prev, [bg.id]: p }))}
+              onDrag={(p) =>
+                setBgPositions((prev) => ({ ...prev, [bg.id]: p }))
+              }
               onDragEnd={(p) => persist(BG_KEY, { ...bgPositions, [bg.id]: p })}
             />
           ))}
@@ -201,8 +243,8 @@ export function JourneyMap() {
             >
               <path
                 d={pathD}
-                stroke="rgba(43,42,38,0.3)"
-                strokeWidth="1.6"
+                stroke="rgba(43,42,38,0.5)"
+                strokeWidth="1.8"
                 strokeDasharray="0.1 9"
                 strokeLinecap="round"
                 fill="none"
@@ -218,8 +260,13 @@ export function JourneyMap() {
               containerRef={containerRef}
               isOpen={openId === stop.id}
               onToggle={toggle}
-              onDrag={(p) => setPositions((prev) => ({ ...prev, [stop.id]: p }))}
-              onDragEnd={(p) => persist(STOPS_KEY, { ...positions, [stop.id]: p })}
+              onDrag={(p) =>
+                setPositions((prev) => ({ ...prev, [stop.id]: p }))
+              }
+              onDragEnd={(p) =>
+                persist(STOPS_KEY, { ...positions, [stop.id]: p })
+              }
+              onHover={(id) => onStopHover?.(id)}
             />
           ))}
 
@@ -229,8 +276,12 @@ export function JourneyMap() {
               egg={egg}
               position={eggPositions[egg.id]}
               containerRef={containerRef}
-              onDrag={(p) => setEggPositions((prev) => ({ ...prev, [egg.id]: p }))}
-              onDragEnd={(p) => persist(EGG_KEY, { ...eggPositions, [egg.id]: p })}
+              onDrag={(p) =>
+                setEggPositions((prev) => ({ ...prev, [egg.id]: p }))
+              }
+              onDragEnd={(p) =>
+                persist(EGG_KEY, { ...eggPositions, [egg.id]: p })
+              }
             />
           ))}
         </div>
@@ -247,6 +298,7 @@ function Marker({
   onToggle,
   onDrag,
   onDragEnd,
+  onHover,
 }: {
   stop: MapStop;
   position: Point;
@@ -255,6 +307,7 @@ function Marker({
   onToggle: (id: string) => void;
   onDrag: (p: Point) => void;
   onDragEnd: (p: Point) => void;
+  onHover?: (id: string | null) => void;
 }) {
   const router = useRouter();
 
@@ -279,12 +332,20 @@ function Marker({
       onPointerDown={drag.onPointerDown}
       onPointerMove={drag.onPointerMove}
       onPointerUp={drag.onPointerUp}
+      onMouseEnter={() => onHover?.(stop.id)}
+      onMouseLeave={() => onHover?.(null)}
     >
       <div className="flex w-28 flex-col items-center text-center">
-        <span className={`h-4 w-4 rounded-full shadow-soft ${dotColor[stop.color]}`} />
-        <span className="mt-2 text-sm font-bold leading-tight text-coral">{stop.label}</span>
+        <span
+          className={`h-4 w-4 rounded-full shadow-soft ${dotColor[stop.color]}`}
+        />
+        <span className="mt-2 text-sm font-bold leading-tight text-coral">
+          {stop.label}
+        </span>
         {stop.caption && (
-          <span className="mt-0.5 text-xs leading-snug text-ink/60">{stop.caption}</span>
+          <span className="mt-0.5 text-xs leading-snug text-ink/60">
+            {stop.caption}
+          </span>
         )}
       </div>
       <BlurbPopover stop={stop} isOpen={isOpen} />
@@ -306,12 +367,18 @@ function BackgroundMarker({
   onDragEnd: (p: Point) => void;
 }) {
   const drag = useDraggable(containerRef, onDrag, onDragEnd);
-  const Illustration = bg.sketch === "burruss" ? BurrussHallSketch : WashingtonMonumentSketch;
+  const Illustration =
+    bg.sketch === "burruss" ? BurrussHallSketch : WashingtonMonumentSketch;
 
   return (
     <div
       className="absolute z-0 w-36 -translate-x-1/2 -translate-y-1/2 cursor-grab select-none opacity-80 active:cursor-grabbing"
-      style={{ left: `${position.x}%`, top: `${position.y}%`, aspectRatio: "5 / 6", ...drag.style }}
+      style={{
+        left: `${position.x}%`,
+        top: `${position.y}%`,
+        aspectRatio: "5 / 6",
+        ...drag.style,
+      }}
       onPointerDown={drag.onPointerDown}
       onPointerMove={drag.onPointerMove}
       onPointerUp={drag.onPointerUp}
@@ -344,7 +411,9 @@ function EasterEggMarker({
       onPointerMove={drag.onPointerMove}
       onPointerUp={drag.onPointerUp}
     >
-      <span className="text-2xl opacity-70 transition-opacity hover:opacity-100">{egg.emoji}</span>
+      <span className="text-2xl opacity-70 transition-opacity hover:opacity-100">
+        {egg.emoji}
+      </span>
       <SpeechBubble className="top-9 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
         {egg.tooltip}
       </SpeechBubble>

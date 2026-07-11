@@ -26,6 +26,7 @@ export type MapStop = {
   x: number;
   y: number;
   color: "coral" | "peach" | "sky" | "leaf" | "butter";
+  photoSrc?: string; // e.g. "/images/journey/robotics.jpg" — unset shows a placeholder card in PhotoScroll
 };
 
 // Chronological order, top to bottom.

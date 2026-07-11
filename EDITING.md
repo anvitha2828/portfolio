@@ -32,7 +32,11 @@ A quick reference for making changes without having to relearn the structure eac
   (longer text shown in a popover on click). `backgroundImages` places the two full
   illustrations (Burruss Hall, the Washington Monument — components below) behind
   everything else, independent of any particular stop. `easterEggs` are separate,
-  off-trail — small emoji with a hover tooltip, also positioned by `x`/`y`.
+  off-trail — small emoji with a hover tooltip, also positioned by `x`/`y`. Each stop
+  also has an optional `photoSrc` — drop a real image into `public/images/journey/`
+  and point a stop's `photoSrc` at it (e.g. `/images/journey/robotics.jpg`) to replace
+  its placeholder card in the photo filmstrip below the map; unset stops just show a
+  placeholder.
 
   **Everything on the map is currently drag-to-arrange in the browser** (dots,
   background illustrations, easter eggs) — drag positions are kept in
@@ -60,6 +64,13 @@ A quick reference for making changes without having to relearn the structure eac
 - **[components/StopIcon.tsx](components/StopIcon.tsx)** — simpler colored-tile glyphs
   (robot, ribbon, steering wheel, padlock, lightbulb, shield); currently unused (stops
   are plain dots for now) but kept around in case icons come back later.
+- **[components/PhotoScroll.tsx](components/PhotoScroll.tsx)** — the full-bleed photo
+  filmstrip below the map, one card per stop (from `photoSrc`, or a placeholder if
+  unset). Auto-scrolls continuously and loops seamlessly; when `hoveredStopId` matches
+  a stop it pauses and glides to that stop's card instead.
+- **[components/JourneySection.tsx](components/JourneySection.tsx)** — thin wrapper
+  around `JourneyMap` + `PhotoScroll` that holds the shared hover state connecting
+  them. This is what `app/page.tsx` actually renders.
 
 ## 3. Pages — actual routes
 
