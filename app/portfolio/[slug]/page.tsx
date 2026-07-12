@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { caseStudies, getCaseStudy } from "@/content/caseStudies";
 import { site } from "@/lib/site";
+import { CaseStudyGallery } from "@/components/CaseStudyGallery";
 
 // Pre-render a static page for every case study.
 export function generateStaticParams() {
@@ -114,35 +115,13 @@ export default async function CaseStudyPage({
       </div>
 
       {/* Screenshots — featuredImages shown large and full-width first,
-          gallery shown smaller in a grid below */}
-      {((study.featuredImages && study.featuredImages.length > 0) ||
-        (study.gallery && study.gallery.length > 0)) && (
-        <div className="mt-16 space-y-6">
-          {study.featuredImages?.map((src) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={src}
-              src={src}
-              alt={study.title}
-              className="w-full rounded-2xl border border-ink/10 shadow-soft"
-            />
-          ))}
-
-          {study.gallery && study.gallery.length > 0 && (
-            <div className="grid gap-4 sm:grid-cols-3">
-              {study.gallery.map((src) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={src}
-                  src={src}
-                  alt={study.title}
-                  className="w-full rounded-xl border border-ink/10 shadow-soft"
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+          gallery shown smaller in a grid below; click any to open a
+          full-screen, arrow-key/filmstrip-navigable lightbox */}
+      <CaseStudyGallery
+        featuredImages={study.featuredImages}
+        gallery={study.gallery}
+        alt={study.title}
+      />
 
       {/* Deeper write-up — add sections in content/caseStudies.ts to fill this in */}
       {hasMore && (

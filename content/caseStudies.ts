@@ -90,6 +90,8 @@ export const caseStudies: CaseStudy[] = [
         href: "https://par.nsf.gov/servlets/purl/10283675",
       },
     ],
+    featuredImages: ["/images/semiauto_setup.png"],
+    gallery: ["/images/trust_autoagent.jpg", "/images/trust_autoagent2.jpg"],
     sections: [],
   },
   {
@@ -111,6 +113,8 @@ export const caseStudies: CaseStudy[] = [
         href: "https://www.ise.vt.edu/academics/undergrad/seniordesign-program/Team2-Abbott.html",
       },
     ],
+    cover: "/images/abbott.jpg",
+    featuredImages: ["/images/abbott.jpg"],
     sections: [],
   },
 ];

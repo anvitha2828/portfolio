@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { experience } from "@/content/experience";
 import { caseStudies } from "@/content/caseStudies";
-import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { StackedCaseStudies } from "@/components/StackedCaseStudies";
 import { DefinitionTerm } from "@/components/DefinitionTerm";
 
 export const metadata: Metadata = {
@@ -85,21 +85,19 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Selected work — edit content/caseStudies.ts, not this markup */}
+      {/* Selected work — edit content/caseStudies.ts, not this markup.
+          Each case study below is its own full-page, scroll-stacked
+          section (see StackedCaseStudies.tsx) rather than a grid. */}
       <section id="work" className="mt-16 scroll-mt-24">
         <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Selected Work
         </h2>
         <p className="mt-3 max-w-xl text-lg text-ink/70">
-          A selection of case studies and projects. Click any card to dive in.
+          A selection of case studies and projects. Keep scrolling.
         </p>
-
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((study) => (
-            <CaseStudyCard key={study.slug} study={study} />
-          ))}
-        </div>
       </section>
+
+      <StackedCaseStudies caseStudies={caseStudies} />
     </div>
   );
 }

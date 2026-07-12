@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Manrope, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { NavChip } from "@/components/NavChip";
+import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 import { site } from "@/lib/site";
 
 // Bold display font for the name and page/section titles, a warm sans
@@ -43,6 +44,7 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} ${title.variable}`}
     >
       <body className="font-sans antialiased">
+        <ScrollProgressBar />
         <NavChip />
         <main className="mx-auto w-full max-w-5xl px-5 pb-24 pt-28">
           {children}
