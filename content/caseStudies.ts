@@ -90,8 +90,13 @@ export const caseStudies: CaseStudy[] = [
         href: "https://par.nsf.gov/servlets/purl/10283675",
       },
     ],
-    featuredImages: ["/images/semiauto_setup.png"],
-    gallery: ["/images/trust_autoagent.jpg", "/images/trust_autoagent2.jpg"],
+    featuredImages: ["/images/semiauto_setup.png", "/images/ar_hud.jpg"],
+    gallery: [
+      "/images/trust_autoagent.jpg",
+      "/images/trust_autoagent2.jpg",
+      "/images/lettertask.png",
+      "/images/metrics.png",
+    ],
     sections: [],
   },
   {
@@ -115,6 +120,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     cover: "/images/abbott.jpg",
     featuredImages: ["/images/abbott.jpg"],
+    gallery: ["/images/hololens.png"],
     sections: [],
   },
 ];

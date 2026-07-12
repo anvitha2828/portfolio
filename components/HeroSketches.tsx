@@ -8,6 +8,7 @@ import {
 } from "@/lib/useDraggableCanvas";
 import { BurrussHallSketch } from "./BurrussHallSketch";
 import { WashingtonMonumentSketch } from "./WashingtonMonumentSketch";
+import { RobotSketch } from "./RobotSketch";
 
 const POSITIONS_KEY = "heroSketchPositions";
 
@@ -16,6 +17,7 @@ type HeroItem = {
   x: number;
   y: number;
   size: number; // px, square
+  href?: string; // opens in a new tab on click (not drag)
   render: () => ReactNode;
 };
 
@@ -36,6 +38,14 @@ const items: HeroItem[] = [
     y: 22,
     size: 110,
     render: () => <WashingtonMonumentSketch className="h-full w-full" />,
+  },
+  {
+    id: "robot",
+    x: 50,
+    y: 90,
+    size: 90,
+    href: "https://chantillyhs.fcps.edu/features/students-compete-qualify-global-robotics-championship-first-r-robotics-competition",
+    render: () => <RobotSketch className="h-full w-full" />,
   },
 ];
 
@@ -97,11 +107,20 @@ function SketchItem({
   onDrag: (p: { x: number; y: number }) => void;
   onDragEnd: (p: { x: number; y: number }) => void;
 }) {
-  const drag = useDraggable(containerRef, onDrag, onDragEnd);
+  const drag = useDraggable(
+    containerRef,
+    onDrag,
+    onDragEnd,
+    item.href
+      ? () => window.open(item.href, "_blank", "noopener,noreferrer")
+      : undefined,
+  );
 
   return (
     <div
-      className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 cursor-grab select-none opacity-80 transition-opacity hover:opacity-100 active:cursor-grabbing"
+      className={`pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 select-none opacity-80 transition-opacity hover:opacity-100 active:cursor-grabbing ${
+        item.href ? "cursor-pointer" : "cursor-grab"
+      }`}
       style={{
         left: `${position.x}%`,
         top: `${position.y}%`,
