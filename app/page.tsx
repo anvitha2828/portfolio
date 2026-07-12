@@ -3,14 +3,15 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
-import { JourneyCards } from "@/components/JourneyCards";
+import { caseStudies } from "@/content/caseStudies";
+import { StackedCaseStudies } from "@/components/StackedCaseStudies";
 import { HeroSketches } from "@/components/HeroSketches";
 
 export default function HomePage() {
   return (
     <>
       <section
-        className="relative w-screen min-h-[520px] py-16 sm:py-24"
+        className="relative w-screen min-h-screen py-16 sm:py-24"
         style={{
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
@@ -72,7 +73,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <JourneyCards />
+      <StackedCaseStudies caseStudies={caseStudies} />
     </>
   );
 }

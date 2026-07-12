@@ -47,6 +47,15 @@ export default function PortfolioPage() {
               >
                 resume
               </a>
+              , or connect with me on{" "}
+              <a
+                href="https://www.linkedin.com/in/anvitha-nachi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-coral underline decoration-wavy underline-offset-4"
+              >
+                LinkedIn
+              </a>
               .
             </p>
           </div>
