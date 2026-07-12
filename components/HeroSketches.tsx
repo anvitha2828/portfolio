@@ -9,6 +9,7 @@ import {
 import { BurrussHallSketch } from "./BurrussHallSketch";
 import { WashingtonMonumentSketch } from "./WashingtonMonumentSketch";
 import { RobotSketch } from "./RobotSketch";
+import { SpeechBubble } from "./SpeechBubble";
 
 const POSITIONS_KEY = "heroSketchPositions";
 
@@ -18,6 +19,7 @@ type HeroItem = {
   y: number;
   size: number; // px, square
   href?: string; // opens in a new tab on click (not drag)
+  tooltip?: string; // shown in a speech bubble below the icon on hover
   render: () => ReactNode;
 };
 
@@ -30,6 +32,9 @@ const items: HeroItem[] = [
     x: 6,
     y: 22,
     size: 110,
+    href: "https://eng.vt.edu/about/biographies/anvitha-nachiappan.html",
+    tooltip:
+      "BS Industrial and Systems Engineering and MEng Human Factors Engineering @ VT",
     render: () => <BurrussHallSketch className="h-full w-full" />,
   },
   {
@@ -45,6 +50,7 @@ const items: HeroItem[] = [
     y: 90,
     size: 90,
     href: "https://chantillyhs.fcps.edu/features/students-compete-qualify-global-robotics-championship-first-r-robotics-competition",
+    tooltip: "CEO Chantilly Robotics 2018, went to the world competition!",
     render: () => <RobotSketch className="h-full w-full" />,
   },
 ];
@@ -118,7 +124,7 @@ function SketchItem({
 
   return (
     <div
-      className={`pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 select-none opacity-80 transition-opacity hover:opacity-100 active:cursor-grabbing ${
+      className={`group pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 select-none opacity-80 transition-opacity hover:opacity-100 active:cursor-grabbing ${
         item.href ? "cursor-pointer" : "cursor-grab"
       }`}
       style={{
@@ -133,6 +139,39 @@ function SketchItem({
       onPointerUp={drag.onPointerUp}
     >
       {item.render()}
+      {item.href && (
+        <span
+          className="absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-white text-ink shadow-soft"
+          aria-hidden="true"
+        >
+          <ArrowIcon className="h-3 w-3" />
+        </span>
+      )}
+      {item.tooltip && (
+        <SpeechBubble
+          wrap
+          className="top-full mt-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        >
+          {item.tooltip}
+        </SpeechBubble>
+      )}
     </div>
+  );
+}
+
+function ArrowIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M7 17 17 7M7 7h10v10" />
+    </svg>
   );
 }
