@@ -12,15 +12,13 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <div className="py-6">
-      <section>
-        <h1 className="font-display text-5xl font-bold text-ink sm:text-6xl">
-          Portfolio
-        </h1>
-      </section>
-
-      <section className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <section className="grid gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
-          <div className="space-y-4 text-lg leading-relaxed text-ink/80">
+          <h1 className="font-display text-5xl font-bold text-ink sm:text-6xl">
+            Portfolio
+          </h1>
+
+          <div className="mt-8 space-y-4 text-lg leading-relaxed text-ink/80">
             <p>
               I&apos;m a product manager with a background in{" "}
               <DefinitionTerm
@@ -33,14 +31,14 @@ export default function PortfolioPage() {
               and useful.
             </p>
             <p>
-              This portfolio highlights projects where I&apos;ve led
-              research, defined product direction, collaborated with
-              engineers and designers, and made decisions grounded in user
-              needs.
-            </p>
-            <p>
-              Want to reach out? Grab my email from the ✉️ icon in the nav,
-              or check out my{" "}
+              Want to reach out? Email me at{" "}
+              <a
+                href="mailto:anvitha2828@gmail.com"
+                className="font-semibold text-coral underline decoration-solid underline-offset-4"
+              >
+                anvitha2828@gmail.com
+              </a>{" "}
+              and check out my{" "}
               <a
                 href={site.resumeHref}
                 target="_blank"
@@ -63,7 +61,7 @@ export default function PortfolioPage() {
 
         {/* Work history — edit content/experience.ts, not this markup */}
         <div>
-          <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
+          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
             Where I&apos;ve Worked
           </h2>
           <div className="mt-6 divide-y divide-ink/10">
@@ -88,13 +86,14 @@ export default function PortfolioPage() {
       {/* Selected work — edit content/caseStudies.ts, not this markup.
           Each case study below is its own full-page, scroll-stacked
           section (see StackedCaseStudies.tsx) rather than a grid. */}
-      <section id="work" className="mt-16 scroll-mt-24">
+      <section id="work" className="mt-6 scroll-mt-24">
         <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
           Selected Work
         </h2>
         <p className="mt-3 max-w-xl text-lg text-ink/70">
           A selection of case studies and projects. Keep scrolling.
         </p>
+        <div className="h-6" aria-hidden="true" />
       </section>
 
       <StackedCaseStudies caseStudies={caseStudies} />
