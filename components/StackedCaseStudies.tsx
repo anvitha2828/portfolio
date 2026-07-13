@@ -65,7 +65,7 @@ function StackedCard({ study }: { study: CaseStudy }) {
             href={`/portfolio/${study.slug}`}
             className="absolute right-0 top-0 inline-flex shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-cream transition-transform hover:scale-105"
           >
-            View case study
+            {study.ctaLabel ?? "View case study"}
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>

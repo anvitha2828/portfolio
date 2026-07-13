@@ -9,6 +9,7 @@ import {
 import { BurrussHallSketch } from "./BurrussHallSketch";
 import { WashingtonMonumentSketch } from "./WashingtonMonumentSketch";
 import { RobotSketch } from "./RobotSketch";
+import { MouseSketch } from "./MouseSketch";
 import { SpeechBubble } from "./SpeechBubble";
 
 const POSITIONS_KEY = "heroSketchPositions";
@@ -52,6 +53,15 @@ const items: HeroItem[] = [
     href: "https://chantillyhs.fcps.edu/features/students-compete-qualify-global-robotics-championship-first-r-robotics-competition",
     tooltip: "CEO Chantilly Robotics 2018, went to the world competition!",
     render: () => <RobotSketch className="h-full w-full" />,
+  },
+  {
+    id: "mouse",
+    x: 84,
+    y: 60,
+    size: 70,
+    href: "https://montcova.com/2019/07/09/virginia-tech-takes-first-place-in-sourceamerica-2019-college-design-challenge/",
+    tooltip: "Won the 2019 Source America Design Challenge",
+    render: () => <MouseSketch className="h-full w-full" />,
   },
 ];
 

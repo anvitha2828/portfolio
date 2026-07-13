@@ -19,6 +19,7 @@ export type CaseStudy = {
   role: string[]; // e.g. ["Product Manager", "Designer"] — sidebar list
   tools: string[]; // e.g. ["Figma", "React"] — sidebar list
   timeline: string; // e.g. "2026" or "February 2026"
+  ctaLabel?: string; // button text on the /portfolio scroll-stack card — defaults to "View case study"
   cover?: string; // e.g. "/images/project-a.jpg" (optional — falls back to a muted title tile)
   featuredImages?: string[]; // 1-2 hero screenshots, shown large, full-width, in order
   gallery?: string[]; // additional screenshots, shown smaller in a grid below the featured images
@@ -29,6 +30,24 @@ export type CaseStudy = {
 };
 
 export const caseStudies: CaseStudy[] = [
+  {
+    // TODO: replace this placeholder with your real process write-up —
+    // how you go from an ambiguous problem to a shipped solution, the
+    // frameworks/principles you lean on, and how you work with engineers,
+    // designers, and stakeholders along the way.
+    slug: "my-process",
+    title: "My Process",
+    category: "How I Work",
+    summary: "How I approach product problems — from framing to shipping.",
+    context: [
+      "TODO: Describe your process here. What does the first week of a new problem look like? How do you decide what to build, and how do you know when it's working?",
+    ],
+    role: ["Product Manager"],
+    tools: [],
+    timeline: "",
+    ctaLabel: "View More",
+    sections: [],
+  },
   {
     slug: "roots-family-tree-builder",
     title: "Rooted",

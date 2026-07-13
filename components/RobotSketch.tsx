@@ -1,9 +1,10 @@
-// A simplified line-art sketch of a friendly boxy robot — coral strokes
-// directly on the page (no background), echoing the site's hand-drawn
-// aesthetic. Built from primitive shapes, matching BurrussHallSketch and
-// WashingtonMonumentSketch.
+// A simplified line-art sketch of a friendly boxy robot — deepened
+// "leaf" green strokes directly on the page (no background), echoing the
+// site's hand-drawn aesthetic. Built from primitive shapes, matching
+// BurrussHallSketch and WashingtonMonumentSketch (each sketch gets its own
+// distinct but on-palette color).
 export function RobotSketch({ className = "" }: { className?: string }) {
-  const stroke = "#FF7A59";
+  const stroke = "#6B9E5C";
   const sw = 3;
 
   return (
