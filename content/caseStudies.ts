@@ -14,12 +14,17 @@ export type CaseStudySection = {
 // e.g. "/images/shot.png" or { src: "/images/shot.png", caption: "..." }.
 export type GalleryImage = string | { src: string; caption?: string };
 
+// A context paragraph is either a plain string, or an object with a
+// `label` — e.g. a project name — highlighted in the accent color at the
+// start of the paragraph.
+export type ContextItem = string | { label: string; text: string };
+
 export type CaseStudy = {
   slug: string; // URL: /portfolio/<slug>
   title: string;
   category?: string; // e.g. "Concept Project" — shown under the title
   summary: string; // one-line "Description"
-  context: string[]; // one paragraph per array item — the longer "Context" blurb
+  context: ContextItem[]; // one paragraph per array item — the longer "Context" blurb
   role: string[]; // e.g. ["Product Manager", "Designer"] — sidebar list
   tools: string[]; // e.g. ["Figma", "React"] — sidebar list
   timeline: string; // e.g. "2026" or "February 2026"
@@ -54,9 +59,18 @@ export const caseStudies: CaseStudy[] = [
     context: [
       "As a consultant, I work on many distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
       "I look at every challenge through two distinct lenses: the Systems Lens (macro strategy) and the Product Lens (micro delivery).",
-      "Anomaly Detection Tool: Owned product definition and delivery of an ML-enabled prototype by driving UX design, wireframing, defining data requirements, and aligning data science and development teams.",
-      "Model-Based Systems Engineering: Modeled mission-specific end-to-end user journeys to map events, ownership, data flows, and timing dependencies needed to achieve target operational outcomes.",
-      "Autonomy Strategy: Delivered an enterprise-level strategy by translating extensive field research into organizational, technical, and operational decision-making.",
+      {
+        label: "Anomaly Detection Tool",
+        text: "Owned product definition and delivery of an ML-enabled prototype by driving UX design, wireframing, defining data requirements, and aligning data science and development teams.",
+      },
+      {
+        label: "Model-Based Systems Engineering",
+        text: "Modeled mission-specific end-to-end user journeys to map events, ownership, data flows, and timing dependencies needed to achieve target operational outcomes.",
+      },
+      {
+        label: "Autonomy Strategy",
+        text: "Delivered an enterprise-level strategy by translating extensive field research into organizational, technical, and operational decision-making.",
+      },
     ],
     role: ["Systems Engineer"],
     tools: [

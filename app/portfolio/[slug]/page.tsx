@@ -78,9 +78,18 @@ export default async function CaseStudyPage({
                 Context
               </p>
               <div className="mt-2 space-y-4 text-lg leading-relaxed text-ink/80">
-                {study.context.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
+                {study.context.map((paragraph, i) =>
+                  typeof paragraph === "string" ? (
+                    <p key={i}>{paragraph}</p>
+                  ) : (
+                    <p key={i} className="text-base">
+                      <span className="font-semibold text-coral">
+                        {paragraph.label}:
+                      </span>{" "}
+                      {paragraph.text}
+                    </p>
+                  )
+                )}
               </div>
             </>
           )}
