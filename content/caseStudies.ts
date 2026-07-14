@@ -380,10 +380,10 @@ export const caseStudies: CaseStudy[] = [
     title: "Mixed Reality LOTO Training",
     category: "Senior Design Project",
     summary:
-      "A HoloLens mixed-reality training solution for Abbott Nutrition's lock-out tag-out safety procedures.",
+      "An immersive mixed-reality (MR) training workflow on the Microsoft HoloLens that eliminates the dangers and operational downtime of heavy machinery safety training.",
     context: [
-      "Abbott Nutrition trains employees on lock-out tag-out (LOTO) — a safety procedure that restricts and labels equipment during maintenance — using a physical training cart fitted with the same valves and switches found on the production floor. As part of a four-person Virginia Tech senior design team advised by Dr. Joe Gabbard, I helped research and design a mixed-reality alternative built on Microsoft Guides and the HoloLens to make that training more immersive and effective.",
-      "The solution was projected to improve safety and employee knowledge retention while supporting Abbott's broader digital transformation goals — with an estimated $387,820 in impact over three years, combining $176,000 in reduced injury costs, $117,320 from streamlined training processes, and $94,500 from accelerated digital transformation.",
+      "Abbott Nutrition trains employees on lock-out tag-out (LOTO), a safety procedure that restricts and labels equipment during maintenance. Traditionally, training on the actual production floor is highly hazardous for trainees and forces costly operational shutdowns. To mitigate this risk, Abbott utilized a mobile training cart fitted with physical valves, but this workaround completely lacked the visual layout, scale, and environmental stressors of the real factory floor.",
+      "To bridge this gap, I worked within a 4-person Virginia Tech senior design team advised by Dr. Joe Gabbard to research and design a mixed-reality alternative built on Microsoft Guides. As the Workflow and User Testing Lead, I managed the end-to-end design of the spatial training logic and validated it through operator testing. The resulting solution simulates high-fidelity floor context without the safety risks.",
     ],
     role: ["User Research", "Training Design"],
     tools: ["Microsoft Guides", "HoloLens", "Mixed Reality"],
@@ -407,7 +407,76 @@ export const caseStudies: CaseStudy[] = [
         caption: "HoloLens augmented reality view with Microsoft Guides",
       },
     ],
-    sections: [],
+    sections: [
+      {
+        heading: "Success Metrics",
+        bullets: [
+          {
+            label: "Time-to-Compliance",
+            text: "Accelerate the time it takes an operator to successfully complete the LOTO checklist without a safety infraction.",
+          },
+          {
+            label: "Cognitive Error Rate",
+            text: "Minimize the number of visual or procedural missteps during critical equipment isolation sequences.",
+          },
+        ],
+      },
+      {
+        heading: "Overcoming Adoption Inertia",
+        bullets: [
+          {
+            label: "Constraint",
+            text: "Plant operators are accustomed to physical hardware; if the HoloLens felt like a technical gimmick or added unnecessary administrative steps, it would be rejected on the factory floor.",
+          },
+          {
+            label: "The Strategy",
+            text: "I designed the workflow to leverage 'holographic context' to provide explicit, new value that a physical cart could not. Instead of just mimicking the training hardware, the HoloLens overlay pulled up real world examples, hazard warnings, and guidance when the worker looked at the machinery.",
+          },
+          {
+            label: "The Result",
+            text: "By turning the headset into an asset that gave workers clear operational advantages rather than a rigid digital checklist, we shifted operator perception from a forced compliance tool to an new interactive training opportunity.",
+          },
+        ],
+      },
+      {
+        heading: "Key Features",
+        bullets: [
+          {
+            label: "Spatial Step-by-Step Guides",
+            text: "An intuitive HoloLens workflow that overlays digital checkpoints directly onto the hardware, guiding operators flawlessly through the physical LOTO sequence.",
+          },
+          {
+            label: "Context-Aware Visuals",
+            text: "Instead of text-heavy instructions, the system anchors clean spatial markers (like arrows and indicators) directly onto the machinery, keeping the operator’s eyes on the hardware.",
+          },
+          {
+            label: "Low Cognitive-Load Interface",
+            text: "Defined through iterative user testing to ensure the interface is highly accessible to frontline workers of all digital literacy levels.",
+          },
+        ],
+      },
+      {
+        heading: "Financial Impact",
+        bullets: [
+          {
+            label: "$387.820 Projected 3-Year Savings",
+            text: "",
+          },
+          {
+            label: "$176,000",
+            text: "saved via reduced workplace injury costs.",
+          },
+          {
+            label: "$117,320",
+            text: "saved by streamlining and accelerating the training lifecycle.",
+          },
+          {
+            label: "$94,500",
+            text: "generated by directly advancing Abbott's corporate digital transformation metrics.",
+          },
+        ],
+      },
+    ],
   },
 ];
 
