@@ -92,7 +92,7 @@ export function AutoScrollGallery({
       onPointerMove={onPointerMove}
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
-      className="flex h-full w-full cursor-grab gap-6 overflow-x-auto select-none active:cursor-grabbing [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      className="flex h-full w-full cursor-grab items-center gap-6 overflow-x-auto select-none active:cursor-grabbing [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {images.map((image, i) => (
         // eslint-disable-next-line @next/next/no-img-element
@@ -101,7 +101,7 @@ export function AutoScrollGallery({
           src={imageSrc(image)}
           alt={alt}
           draggable={false}
-          className="h-full w-auto shrink-0 rounded-2xl border border-ink/10 object-cover"
+          className="h-full max-h-40 w-auto shrink-0 rounded-2xl border border-ink/10 object-contain sm:max-h-none"
         />
       ))}
     </div>

@@ -12,7 +12,11 @@ export type CaseStudySection = {
 
 // A photo is either a plain path (no caption) or an object with a caption —
 // e.g. "/images/shot.png" or { src: "/images/shot.png", caption: "..." }.
-export type GalleryImage = string | { src: string; caption?: string };
+// Set `small: true` to render a featured image at the smaller gallery
+// size instead of the default large hero size.
+export type GalleryImage =
+  | string
+  | { src: string; caption?: string; small?: boolean };
 
 // A context paragraph is either a plain string, or an object with a
 // `label` — e.g. a project name — highlighted in the accent color at the
@@ -44,6 +48,10 @@ export function imageSrc(image: GalleryImage): string {
 
 export function imageCaption(image: GalleryImage): string | undefined {
   return typeof image === "string" ? undefined : image.caption;
+}
+
+export function imageIsSmall(image: GalleryImage): boolean {
+  return typeof image === "string" ? false : (image.small ?? false);
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -87,11 +95,12 @@ export const caseStudies: CaseStudy[] = [
       "Jira",
     ],
     timeline: "",
-    ctaLabel: "View More",
+    ctaLabel: "View Process",
     featuredImages: [
       {
         src: "/images/Systems_Engineering_Process_II.svg.webp",
         caption: "V Model (Verification and Validation Model)",
+        small: true,
       },
       {
         src: "/images/missionengineeringbreakdown.png",
@@ -168,6 +177,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Family Tree Builder",
     summary:
       "An interactive web app that reimagines genealogy by making family tree creation as fast and visual as sketching on paper",
+    ctaLabel: "View Case Study",
     context: [
       "Existing tools are clunky, form-heavy, and locked behind paywalls—making it frustrating to build and share lineage. I built a collaborative, zero-learning-curve editor with cloud sync, Google sign-in, and secure email-sharing.",
       "To eliminate data-entry friction, I prioritized a rapid 'ghost-node' creation flow before implementing two distinct ways to interact with the data: a structured tree view for clarity, and a physics-based, force-directed network map for dynamic exploration.",
@@ -276,6 +286,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Published Research",
     summary:
       "Challenging industry assumptions in Augmented Reality (AR) HUD design",
+    ctaLabel: "View Research",
     context: [
       "Before an enterprise invests in bleeding-edge capabilities like Augmented Reality (AR), product leaders have to validate how humans will actually interact with it in high-consequence environments.",
       "To challenge industry assumptions around driver distraction, I led a formal, mixed-methods user study utilizing a driving simulator to analyze how low-cognitive-load AR tasks impact human performance—establishing a data-backed foundation for future AR interface design.",
@@ -398,6 +409,7 @@ export const caseStudies: CaseStudy[] = [
     category: "Senior Design Project",
     summary:
       "An immersive mixed-reality (MR) training workflow on the Microsoft HoloLens that eliminates the dangers and operational downtime of heavy machinery safety training.",
+    ctaLabel: "View Capstone",
     context: [
       "Abbott Nutrition trains employees on lock-out tag-out (LOTO), a safety procedure that restricts and labels equipment during maintenance. Traditionally, training on the actual production floor is highly hazardous for trainees and forces costly operational shutdowns. To mitigate this risk, Abbott utilized a mobile training cart fitted with physical valves, but this workaround completely lacked the visual layout, scale, and environmental stressors of the real factory floor.",
       "To bridge this gap, I worked within a 4-person Virginia Tech senior design team advised by Dr. Joe Gabbard to research and design a mixed-reality alternative built on Microsoft Guides. As the Workflow and User Testing Lead, I managed the end-to-end design of the spatial training logic and validated it through operator testing. The resulting solution simulates high-fidelity floor context without the safety risks.",

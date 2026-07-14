@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { imageCaption, imageSrc, type GalleryImage } from "@/content/caseStudies";
+import {
+  imageCaption,
+  imageIsSmall,
+  imageSrc,
+  type GalleryImage,
+} from "@/content/caseStudies";
 
 // Renders a case study's screenshots as a single horizontally-scrolling
 // strip (featured images first, larger, then the rest) so the gallery
@@ -41,7 +46,9 @@ export function CaseStudyGallery({
             <img
               src={imageSrc(image)}
               alt={alt}
-              className="h-72 w-auto rounded-2xl border border-ink/10 shadow-soft transition-opacity group-hover:opacity-90 sm:h-96"
+              className={`w-auto rounded-2xl border border-ink/10 shadow-soft transition-opacity group-hover:opacity-90 ${
+                imageIsSmall(image) ? "h-48 sm:h-56" : "h-72 sm:h-96"
+              }`}
             />
             <Caption text={imageCaption(image)} rounded="rounded-b-2xl" />
           </button>
