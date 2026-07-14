@@ -101,7 +101,7 @@ export function AutoScrollGallery({
           src={imageSrc(image)}
           alt={alt}
           draggable={false}
-          className="h-full max-h-40 w-auto shrink-0 rounded-2xl border border-ink/10 object-contain sm:max-h-none"
+          className="h-full max-h-64 w-auto shrink-0 rounded-2xl border border-ink/10 object-contain sm:max-h-none"
         />
       ))}
     </div>
