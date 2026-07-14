@@ -7,7 +7,7 @@ export const site = {
   name: "Anvitha Nachiappan",
   tagline: "making products feel simple, even when they're not",
   email: "anvitha2828@gmail.com",
-  resumeHref: "/Anvitha%20Nachiappan%20Resume%2026.pdf", // public/Anvitha Nachiappan Resume 26.pdf
+  resumeHref: "/Anvitha%20Nachiappan%202026%20July.pdf", // public/Anvitha Nachiappan 2026 July.pdf
 };
 
 export type NavItem = {

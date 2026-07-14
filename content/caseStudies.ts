@@ -52,8 +52,11 @@ export const caseStudies: CaseStudy[] = [
     category: "How I Work",
     summary: "The Systems Lens 🤝 The Product Lens",
     context: [
-      "As a consultant, I manage a portfolio of distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
+      "As a consultant, I work on many distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
       "I look at every challenge through two distinct lenses: the Systems Lens (macro strategy) and the Product Lens (micro delivery).",
+      "Anomaly Detection Tool: Owned product definition and delivery of an ML-enabled prototype by driving UX design, wireframing, defining data requirements, and aligning data science and development teams.",
+      "Model-Based Systems Engineering: Modeled mission-specific end-to-end user journeys to map events, ownership, data flows, and timing dependencies needed to achieve target operational outcomes.",
+      "Autonomy Strategy: Delivered an enterprise-level strategy by translating extensive field research into organizational, technical, and operational decision-making.",
     ],
     role: ["Systems Engineer"],
     tools: [
