@@ -10,6 +10,10 @@ export type CaseStudySection = {
   bullets?: { label?: string; text: string }[]; // use instead of `body` for a bullet list
 };
 
+// A photo is either a plain path (no caption) or an object with a caption —
+// e.g. "/images/shot.png" or { src: "/images/shot.png", caption: "..." }.
+export type GalleryImage = string | { src: string; caption?: string };
+
 export type CaseStudy = {
   slug: string; // URL: /portfolio/<slug>
   title: string;
@@ -21,13 +25,21 @@ export type CaseStudy = {
   timeline: string; // e.g. "2026" or "February 2026"
   ctaLabel?: string; // button text on the /portfolio scroll-stack card — defaults to "View case study"
   cover?: string; // e.g. "/images/project-a.jpg" (optional — falls back to a muted title tile)
-  featuredImages?: string[]; // 1-2 hero screenshots, shown large, full-width, in order
-  gallery?: string[]; // additional screenshots, shown smaller in a grid below the featured images
+  featuredImages?: GalleryImage[]; // 1-2 hero screenshots, shown large, full-width, in order
+  gallery?: GalleryImage[]; // additional screenshots, shown smaller in a grid below the featured images
   links?: { label: string; href: string }[]; // e.g. published paper, live site — shown under Context
   // Optional deeper write-up, rendered further down the page below the
   // "Read Case Study" button. Leave empty until you're ready to break it out.
   sections: CaseStudySection[];
 };
+
+export function imageSrc(image: GalleryImage): string {
+  return typeof image === "string" ? image : image.src;
+}
+
+export function imageCaption(image: GalleryImage): string | undefined {
+  return typeof image === "string" ? undefined : image.caption;
+}
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -60,8 +72,14 @@ export const caseStudies: CaseStudy[] = [
     timeline: "",
     ctaLabel: "View More",
     featuredImages: [
-      "/images/Systems_Engineering_Process_II.svg.webp",
-      "/images/missionengineeringbreakdown.png",
+      {
+        src: "/images/Systems_Engineering_Process_II.svg.webp",
+        caption: "V Model (Verification and Validation Model)",
+      },
+      {
+        src: "/images/missionengineeringbreakdown.png",
+        caption: "Mission engineering guide breakdown of mission thread",
+      },
     ],
     sections: [
       {
@@ -76,15 +94,15 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             label: "Visio/CAMEO Mission Threads",
-            text: "I draw out end-to-end user journeys showing exactly how data, people, and technology interact in the real world. By formally tracing these requirements, I ensure the technical handoff is completely seamless.",
+            text: "I draw out end-to-end user journeys showing exactly how data, people, and technology interact in the real world.",
           },
           {
             label: "Systemic Risk Analysis",
-            text: "I run formal assessments early to call out technical and programmatic roadblocks before they disrupt the timeline or budget.",
+            text: "I run formal risk assessments in order to identify, prioritize, and mitigate potential threats.",
           },
           {
             label: "Strategic Capability Plans",
-            text: "For high-level organizational initiatives, I translate complex regulations, staffing hurdles, and technical constraints into straightforward, step-by-step strategy documents that help sponsors stand up new units or capabilities.",
+            text: "I translate high-level strategies into clear, operational roadmaps designed for the entire enterprise: keeping leaders aligned, daily users empowered, and support teams fully equipped.",
           },
         ],
       },
@@ -106,9 +124,22 @@ export const caseStudies: CaseStudy[] = [
             label: "Jira Backlogs & User Stories",
             text: "I translate high-level sponsor goals into bite-sized, actionable technical user stories in Jira, running the day-to-day cycles with dev and data science teams.",
           },
+        ],
+      },
+      {
+        heading: "Key Wins for Sponsors",
+        bullets: [
           {
-            label: "Training & Implementation Roadmaps",
-            text: "A product is only successful if it is adopted. I design user enablement playbooks to make onboarding seamless for the workforce, actively bridging the gap from high-level strategy documents to concrete implementation plans.",
+            label: "No Telephone Game",
+            text: "Developers, systems engineers, and stakeholders stay perfectly aligned because we trace system constraints from day one.",
+          },
+          {
+            label: "De-risked Projects",
+            text: "Validating concepts early via frontend prototypes and clear strategic plans ensures the final solution actually matches what users need to do their jobs.",
+          },
+          {
+            label: "Whole-Picture Success",
+            text: "Sponsors don't just get a piece of software or a static strategy deck; they get a holistic, enterprise-ready capability designed to scale and survive long-term.",
           },
         ],
       },
@@ -118,10 +149,11 @@ export const caseStudies: CaseStudy[] = [
     slug: "roots-family-tree-builder",
     title: "Rooted",
     category: "Family Tree Builder",
-    summary: "A web app for building, sharing, and exploring family trees.",
+    summary:
+      "An interactive web app that reimagines genealogy by making family tree creation as fast and visual as sketching on paper",
     context: [
-      "Existing family-tree tools are either clunky, locked behind paywalls, or make it hard to actually see and share how a family connects.",
-      "I built a fast, visual tree editor with cloud sync, Google sign-in, email-based sharing (view or edit), photos, and two ways to view the same data — a structured tree and a force-directed network map.",
+      "Existing tools are clunky, form-heavy, and locked behind paywalls—making it frustrating to build and share lineage. I built a collaborative, zero-learning-curve editor with cloud sync, Google sign-in, and secure email-sharing.",
+      "To eliminate data-entry friction, I prioritized a rapid 'ghost-node' creation flow before implementing two distinct ways to interact with the data: a structured tree view for clarity, and a physics-based, force-directed network map for dynamic exploration.",
     ],
     role: ["Product Manager", "Designer", "Engineer"],
     tools: [
@@ -141,25 +173,95 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     featuredImages: [
-      "/images/full_view.png",
-      "/images/full_visualizedview.png",
+      {
+        src: "/images/full_view.png",
+        caption: "Full Rooted UI tree building view",
+      },
+      {
+        src: "/images/full_visualizedview.png",
+        caption: "Full Rooted UI visualization view",
+      },
     ],
     gallery: [
-      "/images/immediate_family.png",
-      "/images/details_window.png",
-      "/images/image_crop.png",
+      {
+        src: "/images/immediate_family.png",
+        caption: "View of immediate family",
+      },
+      { src: "/images/details_window.png", caption: "Person details window" },
+      {
+        src: "/images/ghost_node.png",
+        caption: "Adding relationships — 'ghost node' example",
+      },
+      { src: "/images/image_crop.png", caption: "Cropping image upload UI" },
     ],
-    sections: [],
+    sections: [
+      {
+        heading: "Target Metrics",
+        bullets: [
+          {
+            label: "Activation Speed",
+            text: "Minimizing the time elapsed from initial sign-in to a user anchoring their first parent, child, or partner relationship node.",
+          },
+          {
+            label: "Task Completion Rate",
+            text: "The percentage of active user sessions that successfully build out a 3-generation branch in a single session without dropping off.",
+          },
+        ],
+      },
+      {
+        heading: "Product Scoping & Sequencing",
+        bullets: [
+          {
+            label: "The Phase 1 Priority",
+            text: "Focused entirely on the data-input UX. Before users can enjoy exploring a massive network, they need an effortless way to build it. I funneled all initial development into the 'ghost-node' connector.",
+          },
+          {
+            label: "The Phase 2 Milestones",
+            text: "Only after the creation flow was seamless did I introduce the dual-view interaction engine: a structured tree view for hierarchy, and a force-directed network map for dynamic playground exploration.",
+          },
+          {
+            label: "The Strategic Trade-off",
+            text: "I intentionally delayed interactive physics animations until basic creation mechanics were locked. A beautifully animating canvas means nothing if users struggle to input their data.",
+          },
+        ],
+      },
+      {
+        heading: "Feature Breakdown",
+        bullets: [
+          {
+            label: "Ghost-Node Interface",
+            text: "Eliminated traditional sidebar forms. Clicking an active node triggers instant contextual connectors directly on the canvas, enabling users to spawn relatives with a single click.",
+          },
+          {
+            label: "Force-Directed Map",
+            text: "Utilized physics-based properties to make navigating massive networks tactile. Dragging family nodes pulls, stretches, and bounces connected branches dynamically in real-time.",
+          },
+          {
+            label: "The Excel View Tab",
+            text: "Implemented a toggleable spreadsheet panel at the bottom, allowing users to group, search, and isolate specific branches (e.g., maternal lineage) to manage visual noise.",
+          },
+        ],
+      },
+      {
+        heading: "PM Lessons Learned",
+        bullets: [
+          {
+            label: "Execution Insight",
+            text: "Product management is about sequencing. Prioritizing the high-utility creation flow before high-delight physics animations ensured the product was fundamentally functional before it was visually impressive.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "ar-hud-monotonous-driving",
-    title: "AR Driving Research",
+    title: "AR HUD Driving Research",
     category: "Published Research",
     summary:
-      "A user study on how secondary tasks on an augmented-reality head-up display affect driver workload and performance during monotonous driving.",
+      "Challenging industry assumptions in Augmented Reality (AR) HUD design",
     context: [
-      "Drivers frequently engage with secondary in-vehicle displays even though driving is already a complex, multitask activity — and emerging tech like augmented-reality head-up displays (AR HUDs) opens new opportunities to make that secondary-task engagement safer. Adapting NHTSA's driver distraction guidelines, I helped design a study with 24 gender-balanced participants who performed AR HUD tasks of varying duration while driving in a monotonous environment on a medium-fidelity driving simulator.",
-      "A mixed-methods analysis evaluated perceived workload (NASA-TLX) alongside lateral and longitudinal driving performance. Drivers subjectively rated the AR HUD tasks as more cognitively demanding and distracting than driving alone — yet those same tasks improved objective driving performance, and task duration had no measurable effect either way. The findings suggest AR HUDs have real potential to improve driver alertness and vigilance on monotonous drives, rather than simply adding risk.",
+      "Before an enterprise invests in bleeding-edge capabilities like Augmented Reality (AR), product leaders have to validate how humans will actually interact with it in high-consequence environments.",
+      "To challenge industry assumptions around driver distraction, I led a formal, mixed-methods user study utilizing a driving simulator to analyze how low-cognitive-load AR tasks impact human performance—establishing a data-backed foundation for future AR interface design.",
     ],
     role: ["Co-Author", "Study Design", "Data Collection", "Data Analysis"],
     tools: [
@@ -175,14 +277,103 @@ export const caseStudies: CaseStudy[] = [
         href: "https://par.nsf.gov/servlets/purl/10283675",
       },
     ],
-    featuredImages: ["/images/semiauto_setup.png", "/images/ar_hud.jpg"],
-    gallery: [
-      "/images/trust_autoagent.jpg",
-      "/images/trust_autoagent2.jpg",
-      "/images/lettertask.png",
-      "/images/metrics.png",
+    featuredImages: [
+      {
+        src: "/images/semiauto_setup.png",
+        caption: "Semiautonomous driving simulator and screen view",
+      },
+      {
+        src: "/images/ar_hud.jpg",
+        caption: "Semiautonomous vehicle driving simulator",
+      },
     ],
-    sections: [],
+    gallery: [
+      {
+        src: "/images/lettertask.png",
+        caption: "Low cognitive load letter task",
+      },
+      { src: "/images/metrics.png", caption: "NASA-TLX metrics tracked" },
+    ],
+    sections: [
+      {
+        heading: "Validating Emerging Tech Through User Research",
+        bullets: [
+          {
+            label: "The Problem",
+            text: "When designing software for complex environments (like driving or tactical operations), the default assumption is that adding information equals adding distraction. As Augmented Reality Head-Up Displays (AR HUDs) emerge, I wanted to test this assumption: Can low-cognitive-load AR tasks actually improve user focus during monotonous, low-stimulation tasks?",
+          },
+        ],
+      },
+      {
+        heading: "The Research Framework",
+        bullets: [
+          {
+            label: "The Methodology",
+            text: "To gather rigorous data, I adapted federal NHTSA distraction guidelines and designed a controlled, mixed-methods user study.",
+          },
+          {
+            label: "The Test Group",
+            text: "Built a balanced testing pool of 24 participants.",
+          },
+          {
+            label: "The Environment",
+            text: "Leveraged a medium-fidelity simulator to track precise lateral and longitudinal telemetry.",
+          },
+          {
+            label: "The Metrics",
+            text: "Combined objective vehicle data with subjective user feedback using the industry-standard NASA-TLX index to measure perceived cognitive workload.",
+          },
+        ],
+      },
+      {
+        heading: "1. Look Beyond Subjective Feedback",
+        bullets: [
+          {
+            label: "The Data",
+            text: "Participants subjectively reported that the AR HUD felt more cognitively demanding and distracting than just driving alone. However, the hard telemetry data proved their actual performance improved when the AR tasks were present.",
+          },
+          {
+            label: "The Product Strategy",
+            text: "Users aren't always accurate judges of their own performance. When evaluating complex tech, you cannot rely solely on qualitative feedback—you have to validate what users say against hard behavioral telemetry.",
+          },
+        ],
+      },
+      {
+        heading: "2. Combat User Fatigue with Micro-Interactions",
+        bullets: [
+          {
+            label: "The Data",
+            text: "In boring, low-stimulation environments, user focus naturally drops off. Strategically injecting low-cognitive-load AR tasks actively broke up the boredom, keeping drivers alert and stabilizing their reaction times.",
+          },
+          {
+            label: "The Product Strategy",
+            text: "In high-consequence, monotonous environments, an entirely silent interface isn't always the ideal state. Designers can strategically use micro-interactions as an alertness mechanism to keep users locked into the loop.",
+          },
+        ],
+      },
+      {
+        heading: "3. Focus on Cognitive Load, Not Time-on-Task",
+        bullets: [
+          {
+            label: "The Data",
+            text: "We tested secondary tasks of varying lengths, assuming longer tasks would degrade focus over time. Surprisingly, task duration had zero measurable impact on user performance.",
+          },
+          {
+            label: "The Product Strategy",
+            text: "When launching features for complex systems, time-on-task is secondary to cognitive architecture. If the interface is built correctly to minimize cognitive clutter, users can stay engaged longer without performance drops.",
+          },
+        ],
+      },
+      {
+        heading: "The Takeaway",
+        bullets: [
+          {
+            label: "The Impact",
+            text: "This project highlights my approach to early product discovery. I anchor my strategy in rigorous testing, using standardized benchmarks (NHTSA, NASA-TLX), and challenging baseline assumptions.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "abbott-loto-mixed-reality",
@@ -204,8 +395,18 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     cover: "/images/abbott.jpg",
-    featuredImages: ["/images/abbott.jpg"],
-    gallery: ["/images/hololens.png"],
+    featuredImages: [
+      {
+        src: "/images/abbott.jpg",
+        caption: "Mixed reality safety training poster",
+      },
+    ],
+    gallery: [
+      {
+        src: "/images/hololens.png",
+        caption: "HoloLens augmented reality view with Microsoft Guides",
+      },
+    ],
     sections: [],
   },
 ];

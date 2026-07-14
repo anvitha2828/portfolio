@@ -21,6 +21,7 @@ type HeroItem = {
   size: number; // px, square
   href?: string; // opens in a new tab on click (not drag)
   tooltip?: string; // shown in a speech bubble below the icon on hover
+  floatDelay?: number; // seconds — staggers the bobbing so sketches don't move in sync
   render: () => ReactNode;
 };
 
@@ -36,6 +37,7 @@ const items: HeroItem[] = [
     href: "https://eng.vt.edu/about/biographies/anvitha-nachiappan.html",
     tooltip:
       "BS Industrial and Systems Engineering and MEng Human Factors Engineering @ VT",
+    floatDelay: 0,
     render: () => <BurrussHallSketch className="h-full w-full" />,
   },
   {
@@ -43,6 +45,7 @@ const items: HeroItem[] = [
     x: 94,
     y: 22,
     size: 110,
+    floatDelay: 1,
     render: () => <WashingtonMonumentSketch className="h-full w-full" />,
   },
   {
@@ -52,6 +55,7 @@ const items: HeroItem[] = [
     size: 90,
     href: "https://chantillyhs.fcps.edu/features/students-compete-qualify-global-robotics-championship-first-r-robotics-competition",
     tooltip: "CEO Chantilly Robotics 2018, went to the world competition!",
+    floatDelay: 2,
     render: () => <RobotSketch className="h-full w-full" />,
   },
   {
@@ -61,6 +65,7 @@ const items: HeroItem[] = [
     size: 70,
     href: "https://montcova.com/2019/07/09/virginia-tech-takes-first-place-in-sourceamerica-2019-college-design-challenge/",
     tooltip: "Won the 2019 Source America Design Challenge",
+    floatDelay: 0.5,
     render: () => <MouseSketch className="h-full w-full" />,
   },
 ];
@@ -148,7 +153,12 @@ function SketchItem({
       onPointerMove={drag.onPointerMove}
       onPointerUp={drag.onPointerUp}
     >
-      {item.render()}
+      <div
+        className="h-full w-full animate-float"
+        style={{ animationDelay: `${item.floatDelay ?? 0}s` }}
+      >
+        {item.render()}
+      </div>
       {item.href && (
         <span
           className="absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-white text-ink shadow-soft"

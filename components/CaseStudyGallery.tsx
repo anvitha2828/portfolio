@@ -2,19 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { imageCaption, imageSrc, type GalleryImage } from "@/content/caseStudies";
 
 // Renders a case study's screenshots as a single horizontally-scrolling
 // strip (featured images first, larger, then the rest) so the gallery
 // doesn't eat vertical space, and wires every one of them into a shared
 // full-screen lightbox — click any image to open it, then step through
-// the whole set with the arrows, the filmstrip, or the keyboard.
+// the whole set with the arrows, the filmstrip, or the keyboard. Captions
+// (when set on an image) show as a bar over the bottom edge of the
+// thumbnail — faded in on hover on pointer devices, always-on on touch
+// devices since there's no hover there — and repeated under the photo in
+// the full-screen lightbox.
 export function CaseStudyGallery({
   featuredImages = [],
   gallery = [],
   alt,
 }: {
-  featuredImages?: string[];
-  gallery?: string[];
+  featuredImages?: GalleryImage[];
+  gallery?: GalleryImage[];
   alt: string;
 }) {
   const allImages = [...featuredImages, ...gallery];
@@ -24,36 +29,38 @@ export function CaseStudyGallery({
 
   return (
     <>
-      <div className="mt-16 flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
-        {featuredImages.map((src, i) => (
+      <div className="mt-16 flex items-center gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
+        {featuredImages.map((image, i) => (
           <button
-            key={src}
+            key={imageSrc(image)}
             type="button"
             onClick={() => setOpenIndex(i)}
-            className="block shrink-0 cursor-zoom-in snap-start"
+            className="group relative block shrink-0 cursor-zoom-in snap-start"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={src}
+              src={imageSrc(image)}
               alt={alt}
-              className="h-72 w-auto rounded-2xl border border-ink/10 shadow-soft transition-opacity hover:opacity-90 sm:h-96"
+              className="h-72 w-auto rounded-2xl border border-ink/10 shadow-soft transition-opacity group-hover:opacity-90 sm:h-96"
             />
+            <Caption text={imageCaption(image)} rounded="rounded-b-2xl" />
           </button>
         ))}
 
-        {gallery.map((src, i) => (
+        {gallery.map((image, i) => (
           <button
-            key={src}
+            key={imageSrc(image)}
             type="button"
             onClick={() => setOpenIndex(featuredImages.length + i)}
-            className="block shrink-0 cursor-zoom-in snap-start"
+            className="group relative block shrink-0 cursor-zoom-in snap-start"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={src}
+              src={imageSrc(image)}
               alt={alt}
-              className="h-48 w-auto rounded-xl border border-ink/10 shadow-soft transition-opacity hover:opacity-90 sm:h-56"
+              className="h-48 w-auto rounded-xl border border-ink/10 shadow-soft transition-opacity group-hover:opacity-90 sm:h-56"
             />
+            <Caption text={imageCaption(image)} rounded="rounded-b-xl" />
           </button>
         ))}
       </div>
@@ -69,6 +76,20 @@ export function CaseStudyGallery({
   );
 }
 
+// The caption bar overlaid on a thumbnail's bottom edge. Hidden by default
+// and faded in with `group-hover`, but forced visible on touch devices
+// (`hover: none`) since there's no hover state to reveal it there.
+function Caption({ text, rounded }: { text?: string; rounded: string }) {
+  if (!text) return null;
+  return (
+    <span
+      className={`absolute inset-x-0 bottom-0 ${rounded} bg-ink/75 px-3 py-2 text-left text-xs text-cream opacity-0 transition-opacity duration-200 group-hover:opacity-100 [@media(hover:none)]:opacity-100`}
+    >
+      {text}
+    </span>
+  );
+}
+
 function Lightbox({
   images,
   alt,
@@ -76,7 +97,7 @@ function Lightbox({
   onClose,
   onIndexChange,
 }: {
-  images: string[];
+  images: GalleryImage[];
   alt: string;
   index: number | null;
   onClose: () => void;
@@ -139,13 +160,22 @@ function Lightbox({
               </button>
             )}
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={images[index]}
-              alt={alt}
+            <div
+              className="relative z-10 flex max-h-full max-w-full flex-col items-center gap-3"
               onClick={(e) => e.stopPropagation()}
-              className="relative z-10 max-h-full max-w-full cursor-default rounded-xl object-contain shadow-soft"
-            />
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imageSrc(images[index])}
+                alt={alt}
+                className="max-h-[75vh] max-w-full cursor-default rounded-xl object-contain shadow-soft"
+              />
+              {imageCaption(images[index]) && (
+                <p className="max-w-xl text-center text-sm text-cream/80">
+                  {imageCaption(images[index])}
+                </p>
+              )}
+            </div>
 
             {images.length > 1 && (
               <button
@@ -167,9 +197,9 @@ function Lightbox({
               className="mt-4 flex justify-center gap-2 overflow-x-auto pb-1"
               onClick={(e) => e.stopPropagation()}
             >
-              {images.map((src, i) => (
+              {images.map((image, i) => (
                 <button
-                  key={src}
+                  key={imageSrc(image)}
                   type="button"
                   onClick={() => onIndexChange(i)}
                   aria-label={`Go to image ${i + 1}`}
@@ -181,7 +211,7 @@ function Lightbox({
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={src}
+                    src={imageSrc(image)}
                     alt=""
                     className="h-full w-full object-cover"
                   />

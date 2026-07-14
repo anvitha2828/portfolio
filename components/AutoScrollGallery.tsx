@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { imageSrc, type GalleryImage } from "@/content/caseStudies";
 
 const SPEED = 0.35; // px per frame — slow drift, not a ticker
 const RESUME_DELAY = 2000; // ms of no interaction before auto-scroll resumes
@@ -18,7 +19,7 @@ export function AutoScrollGallery({
   images,
   alt,
 }: {
-  images: string[];
+  images: GalleryImage[];
   alt: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -93,11 +94,11 @@ export function AutoScrollGallery({
       onPointerCancel={endDrag}
       className="flex h-full w-full cursor-grab gap-6 overflow-x-auto select-none active:cursor-grabbing [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
-      {images.map((src, i) => (
+      {images.map((image, i) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           key={i}
-          src={src}
+          src={imageSrc(image)}
           alt={alt}
           draggable={false}
           className="h-full w-auto shrink-0 rounded-2xl border border-ink/10 object-cover"
