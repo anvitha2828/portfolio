@@ -31,22 +31,88 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    // TODO: replace this placeholder with your real process write-up —
-    // how you go from an ambiguous problem to a shipped solution, the
-    // frameworks/principles you lean on, and how you work with engineers,
-    // designers, and stakeholders along the way.
+    // TODO: keep expanding this write-up — how you go from an ambiguous
+    // problem to a shipped solution, the frameworks/principles you lean
+    // on, and how you work with engineers, designers, and stakeholders
+    // along the way.
     slug: "my-process",
-    title: "My Process",
+    title: "Systems Engineering Meets Product Management",
     category: "How I Work",
-    summary: "How I approach product problems — from framing to shipping.",
+    summary: "The Systems Lens 🤝 The Product Lens",
     context: [
-      "TODO: Describe your process here. What does the first week of a new problem look like? How do you decide what to build, and how do you know when it's working?",
+      "As a consultant, I manage a portfolio of distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
+      "I look at every challenge through two distinct lenses: the Systems Lens (macro strategy) and the Product Lens (micro delivery).",
     ],
-    role: ["Product Manager"],
-    tools: [],
+    role: ["Systems Engineer"],
+    tools: [
+      "CAMEO (SysML)",
+      "Visio",
+      "Requirements Writing/Tracking",
+      "Formal Risk Analysis",
+      "User Research",
+      "User Interviews",
+      "User Personas",
+      "Wireframing",
+      "Sketch",
+      "Material UI",
+      "Jira",
+    ],
     timeline: "",
     ctaLabel: "View More",
-    sections: [],
+    featuredImages: [
+      "/images/Systems_Engineering_Process_II.svg.webp",
+      "/images/missionengineeringbreakdown.png",
+    ],
+    sections: [
+      {
+        heading: "Lens 1: The Systems Lens (Macro Strategy)",
+        bullets: [
+          {
+            text: "How I align sponsors, map complex operational landscapes, and design the overarching strategy. My first step is always to zoom out and look at the whole system.",
+          },
+          {
+            label: "Sponsor Alignment & Discovery",
+            text: "I sit down with users and stakeholders for direct interviews to untangle their daily operational realities and map out their true constraints.",
+          },
+          {
+            label: "Visio/CAMEO Mission Threads",
+            text: "I draw out end-to-end user journeys showing exactly how data, people, and technology interact in the real world. By formally tracing these requirements, I ensure the technical handoff is completely seamless.",
+          },
+          {
+            label: "Systemic Risk Analysis",
+            text: "I run formal assessments early to call out technical and programmatic roadblocks before they disrupt the timeline or budget.",
+          },
+          {
+            label: "Strategic Capability Plans",
+            text: "For high-level organizational initiatives, I translate complex regulations, staffing hurdles, and technical constraints into straightforward, step-by-step strategy documents that help sponsors stand up new units or capabilities.",
+          },
+        ],
+      },
+      {
+        heading: "Lens 2: The Product Lens (Micro Delivery)",
+        bullets: [
+          {
+            text: "How I translate technical complexity and build intuitive tools. My job is to act as the translation layer - converting deep technical complexity into clean, low-cognitive-load products.",
+          },
+          {
+            label: "Sketch & Adobe XD Mockups",
+            text: "I design clean user interfaces that highlight critical status alerts while hiding unnecessary data clutter. I purposefully design UI elements that explain why a technical system is giving a certain output, which builds immediate user trust.",
+          },
+          {
+            label: "Frontend Code Sandboxes",
+            text: "I work with developers to build clickable, interactive software prototypes. Testing a live mockup with users saves weeks of engineering time by fixing design flaws before production.",
+          },
+          {
+            label: "Jira Backlogs & User Stories",
+            text: "I translate high-level sponsor goals into bite-sized, actionable technical user stories in Jira, running the day-to-day cycles with dev and data science teams.",
+          },
+          {
+            label: "Training & Implementation Roadmaps",
+            text: "A product is only successful if it is adopted. I design user enablement playbooks to make onboarding seamless for the workforce, actively bridging the gap from high-level strategy documents to concrete implementation plans.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "roots-family-tree-builder",

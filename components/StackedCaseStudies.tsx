@@ -54,8 +54,9 @@ function StackedCard({ study }: { study: CaseStudy }) {
               {study.timeline ? ` — ${study.timeline}` : ""}
             </p>
             <h2 className="mt-2 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
-              {study.summary}
+              {study.title}
             </h2>
+            <p className="mt-3 text-lg text-ink/70">{study.summary}</p>
             {study.role.length > 0 && (
               <p className="mt-3 text-ink/60">{study.role.join(" • ")}</p>
             )}

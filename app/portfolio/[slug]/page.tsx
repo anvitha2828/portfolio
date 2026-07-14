@@ -114,9 +114,9 @@ export default async function CaseStudyPage({
         </div>
       </div>
 
-      {/* Screenshots — featuredImages shown large and full-width first,
-          gallery shown smaller in a grid below; click any to open a
-          full-screen, arrow-key/filmstrip-navigable lightbox */}
+      {/* Screenshots — horizontal scroll strip so the gallery doesn't eat
+          vertical space; click any to open a full-screen,
+          arrow-key/filmstrip-navigable lightbox */}
       <CaseStudyGallery
         featuredImages={study.featuredImages}
         gallery={study.gallery}
@@ -133,24 +133,31 @@ export default async function CaseStudyPage({
               </h2>
               {section.bullets ? (
                 <ul className="mt-3 space-y-3">
-                  {section.bullets.map((bullet, j) => (
-                    <li
-                      key={j}
-                      className="flex gap-2 text-lg leading-relaxed text-ink/80"
-                    >
-                      <span className="mt-1 text-coral" aria-hidden="true">
-                        •
-                      </span>
-                      <span>
-                        {bullet.label && (
+                  {section.bullets.map((bullet, j) =>
+                    bullet.label ? (
+                      <li
+                        key={j}
+                        className="flex gap-2 text-lg leading-relaxed text-ink/80"
+                      >
+                        <span className="mt-1 text-coral" aria-hidden="true">
+                          •
+                        </span>
+                        <span>
                           <span className="font-semibold text-ink">
                             {bullet.label}:{" "}
                           </span>
-                        )}
+                          {bullet.text}
+                        </span>
+                      </li>
+                    ) : (
+                      <li
+                        key={j}
+                        className="text-sm italic leading-relaxed text-ink/70"
+                      >
                         {bullet.text}
-                      </span>
-                    </li>
-                  ))}
+                      </li>
+                    )
+                  )}
                 </ul>
               ) : (
                 <p className="mt-2 text-lg leading-relaxed text-ink/80">

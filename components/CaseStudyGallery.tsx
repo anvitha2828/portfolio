@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-// Renders a case study's screenshots (featured images large and full-width,
-// then the rest in a smaller grid) and wires every one of them into a
-// shared full-screen lightbox — click any image to open it, then step
-// through the whole set with the arrows, the filmstrip, or the keyboard.
+// Renders a case study's screenshots as a single horizontally-scrolling
+// strip (featured images first, larger, then the rest) so the gallery
+// doesn't eat vertical space, and wires every one of them into a shared
+// full-screen lightbox — click any image to open it, then step through
+// the whole set with the arrows, the filmstrip, or the keyboard.
 export function CaseStudyGallery({
   featuredImages = [],
   gallery = [],
@@ -23,42 +24,38 @@ export function CaseStudyGallery({
 
   return (
     <>
-      <div className="mt-16 space-y-6">
+      <div className="mt-16 flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
         {featuredImages.map((src, i) => (
           <button
             key={src}
             type="button"
             onClick={() => setOpenIndex(i)}
-            className="block w-full cursor-zoom-in"
+            className="block shrink-0 cursor-zoom-in snap-start"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={src}
               alt={alt}
-              className="w-full rounded-2xl border border-ink/10 shadow-soft transition-opacity hover:opacity-90"
+              className="h-72 w-auto rounded-2xl border border-ink/10 shadow-soft transition-opacity hover:opacity-90 sm:h-96"
             />
           </button>
         ))}
 
-        {gallery.length > 0 && (
-          <div className="grid gap-4 sm:grid-cols-3">
-            {gallery.map((src, i) => (
-              <button
-                key={src}
-                type="button"
-                onClick={() => setOpenIndex(featuredImages.length + i)}
-                className="block cursor-zoom-in"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src}
-                  alt={alt}
-                  className="w-full rounded-xl border border-ink/10 shadow-soft transition-opacity hover:opacity-90"
-                />
-              </button>
-            ))}
-          </div>
-        )}
+        {gallery.map((src, i) => (
+          <button
+            key={src}
+            type="button"
+            onClick={() => setOpenIndex(featuredImages.length + i)}
+            className="block shrink-0 cursor-zoom-in snap-start"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={src}
+              alt={alt}
+              className="h-48 w-auto rounded-xl border border-ink/10 shadow-soft transition-opacity hover:opacity-90 sm:h-56"
+            />
+          </button>
+        ))}
       </div>
 
       <Lightbox
