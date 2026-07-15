@@ -127,7 +127,7 @@ export const caseStudies: CaseStudy[] = [
             text: "I run formal risk assessments in order to identify, prioritize, and mitigate potential threats.",
           },
           {
-            label: "Strategic Capability Plans",
+            label: "Roadmapping",
             text: "I translate high-level strategies into clear, operational roadmaps designed for the entire enterprise: keeping leaders aligned, daily users empowered, and support teams fully equipped.",
           },
         ],
