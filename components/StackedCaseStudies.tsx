@@ -12,6 +12,8 @@ import {
 import type { CaseStudy } from "@/content/caseStudies";
 import { imageSrc, isVideoSrc } from "@/content/caseStudies";
 
+const MotionLink = motion(Link);
+
 const CARD_HEIGHT_VH = 72;
 const STEP_VH = 9; // vertical gap between each card's resting spot — this is how much of each earlier card's header stays peeking above the next
 const START_TOP_VH = 4;
@@ -137,14 +139,17 @@ function StackedCard({
   if (photos.length === 0 && study.cover) photos.push(study.cover);
 
   return (
-    <motion.section
+    <MotionLink
+      href={`/portfolio/${study.slug}`}
+      data-cursor-label="Open"
+      data-cursor-color={study.accentColor ?? "#2B2A26"}
       style={{
         top,
         scale,
         height: `${CARD_HEIGHT_VH}vh`,
         zIndex: index + 1,
       }}
-      className="absolute inset-x-0 mx-auto flex w-full max-w-[1600px] origin-top flex-col overflow-hidden rounded-[2.5rem] bg-cream shadow-[0_8px_30px_rgba(43,42,38,0.18)]"
+      className="group absolute inset-x-0 mx-auto flex w-full max-w-[1600px] origin-top flex-col overflow-hidden rounded-[2.5rem] bg-cream shadow-[0_8px_30px_rgba(43,42,38,0.18)]"
     >
       {/* Kept the tighter top padding from the peek-visibility tweak (so
           the CTA stays high on the card), but restored category-then-title
@@ -170,14 +175,13 @@ function StackedCard({
             )}
           </div>
 
-          <Link
-            href={`/portfolio/${study.slug}`}
+          <span
             style={{ backgroundColor: study.accentColor ?? "#2B2A26" }}
-            className="absolute right-0 top-0 inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 font-semibold text-cream transition-transform hover:scale-105"
+            className="absolute right-0 top-0 inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 font-semibold text-cream transition-transform group-hover:scale-105"
           >
             {study.ctaLabel ?? "View case study"}
             <ArrowUpRight className="h-4 w-4" />
-          </Link>
+          </span>
         </div>
       </div>
 
@@ -217,7 +221,7 @@ function StackedCard({
           </div>
         )}
       </div>
-    </motion.section>
+    </MotionLink>
   );
 }
 

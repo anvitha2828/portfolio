@@ -1,9 +1,23 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Compass, Layers, ListChecks, Map, Route, ShieldAlert, Users } from "lucide-react";
 import { caseStudies, getCaseStudy, isVideoSrc } from "@/content/caseStudies";
 import { site } from "@/lib/site";
 import { CaseStudyGallery } from "@/components/CaseStudyGallery";
+
+// Maps a bullet's `icon` name (see CaseStudySection in content/caseStudies.ts)
+// to its lucide-react component. Add an entry here whenever a new icon name
+// is used in content.
+const ICONS: Record<string, typeof Users> = {
+  Users,
+  Route,
+  ShieldAlert,
+  Map,
+  Compass,
+  Layers,
+  ListChecks,
+};
 
 // Pre-render a static page for every case study.
 export function generateStaticParams() {
@@ -169,33 +183,82 @@ export default async function CaseStudyPage({
                 </figure>
               )}
               {section.bullets ? (
-                <ul className="mt-3 space-y-3">
-                  {section.bullets.map((bullet, j) =>
-                    bullet.label ? (
-                      <li
+                <>
+                  {section.bullets
+                    .filter((bullet) => !bullet.label)
+                    .map((bullet, j) => (
+                      <p
                         key={j}
-                        className="flex gap-2 text-lg leading-relaxed text-ink/80"
-                      >
-                        <span className="mt-1 text-coral" aria-hidden="true">
-                          •
-                        </span>
-                        <span>
-                          <span className="font-semibold text-ink">
-                            {bullet.label}:{" "}
-                          </span>
-                          {bullet.text}
-                        </span>
-                      </li>
-                    ) : (
-                      <li
-                        key={j}
-                        className="text-sm italic leading-relaxed text-ink/70"
+                        className="mt-3 text-sm italic leading-relaxed text-ink/70"
                       >
                         {bullet.text}
-                      </li>
-                    )
-                  )}
-                </ul>
+                      </p>
+                    ))}
+                  {(() => {
+                    const labeled = section.bullets.filter((b) => b.label);
+                    if (labeled.length === 0) return null;
+
+                    // Bullets with an icon get the bigger, card-style
+                    // treatment; without one they keep the plain
+                    // bullet-dot list used everywhere else.
+                    if (labeled.some((b) => b.icon)) {
+                      return (
+                        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                          {labeled.map((bullet, j) => {
+                            const Icon = bullet.icon
+                              ? ICONS[bullet.icon]
+                              : undefined;
+                            return (
+                              <div
+                                key={j}
+                                className="group rounded-2xl bg-cream p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-chip hover:ring-2 hover:ring-coral/40"
+                              >
+                                {Icon && (
+                                  <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-coral/10 transition-colors duration-300 group-hover:bg-coral/20">
+                                    <Icon
+                                      className="h-5 w-5 text-coral transition-transform duration-300 group-hover:animate-float"
+                                      aria-hidden="true"
+                                    />
+                                  </span>
+                                )}
+                                <p className="font-display text-lg font-bold text-ink">
+                                  {bullet.label}
+                                </p>
+                                <p className="mt-2 text-ink/70">
+                                  {bullet.text}
+                                </p>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <ul className="mt-3 space-y-3">
+                        {labeled.map((bullet, j) => (
+                          <li
+                            key={j}
+                            className="flex gap-2 text-lg leading-relaxed text-ink/80"
+                          >
+                            <span
+                              className="mt-1 text-coral"
+                              aria-hidden="true"
+                            >
+                              •
+                            </span>
+                            <span>
+                              <span className="font-semibold text-ink">
+                                {bullet.label}:{" "}
+                              </span>
+                              {bullet.text}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  })()}
+                </>
               ) : section.body ? (
                 <p className="mt-2 text-lg leading-relaxed text-ink/80">
                   {section.body}

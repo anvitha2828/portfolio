@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   imageCaption,
+  imageHideFromGallery,
   imageIsSmall,
   imageSrc,
   isVideoSrc,
@@ -54,6 +55,10 @@ export function CaseStudyGallery({
   gallery?: GalleryImage[];
   alt: string;
 }) {
+  // Clips already shown inline in a write-up section (hideFromGallery)
+  // are dropped here so they don't also show up duplicated in this strip.
+  featuredImages = featuredImages.filter((img) => !imageHideFromGallery(img));
+  gallery = gallery.filter((img) => !imageHideFromGallery(img));
   const allImages = [...featuredImages, ...gallery];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 

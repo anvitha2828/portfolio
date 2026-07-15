@@ -7,17 +7,29 @@
 export type CaseStudySection = {
   heading?: string; // omit for a section that's just an inline image (e.g. a GIF between write-up sections)
   body?: string; // plain paragraph text
-  bullets?: { label?: string; text: string }[]; // use instead of `body` for a bullet list
+  bullets?: {
+    label?: string;
+    text: string;
+    icon?: string; // lucide-react icon name, e.g. "Compass" — swaps out the default "•" (see ICONS map in app/portfolio/[slug]/page.tsx)
+  }[]; // use instead of `body` for a bullet list
   image?: { src: string; caption?: string }; // inline photo/GIF, shown below the heading
 };
 
 // A photo is either a plain path (no caption) or an object with a caption —
 // e.g. "/images/shot.png" or { src: "/images/shot.png", caption: "..." }.
 // Set `small: true` to render a featured image at the smaller gallery
-// size instead of the default large hero size.
+// size instead of the default large hero size. Set `hideFromGallery: true`
+// when the same clip already appears inline in a section further down —
+// it still counts as the card's cover photo, it just won't also show up
+// (duplicated) in the detail page's gallery scroll/lightbox.
 export type GalleryImage =
   | string
-  | { src: string; caption?: string; small?: boolean };
+  | {
+      src: string;
+      caption?: string;
+      small?: boolean;
+      hideFromGallery?: boolean;
+    };
 
 // A context paragraph is either a plain string, or an object with a
 // `label` — e.g. a project name — highlighted in the accent color at the
@@ -54,6 +66,10 @@ export function imageCaption(image: GalleryImage): string | undefined {
 
 export function imageIsSmall(image: GalleryImage): boolean {
   return typeof image === "string" ? false : (image.small ?? false);
+}
+
+export function imageHideFromGallery(image: GalleryImage): boolean {
+  return typeof image === "string" ? false : (image.hideFromGallery ?? false);
 }
 
 // GIF-replacement clips (.mp4/.webm) render as a looping muted <video>
@@ -132,18 +148,22 @@ export const caseStudies: CaseStudy[] = [
           {
             label: "Customer Alignment & Discovery",
             text: "I sit down with users and stakeholders for direct interviews to untangle their daily operational realities and map out their true constraints.",
+            icon: "Users",
           },
           {
             label: "User Journeys",
             text: "I draw out end-to-end user journeys showing exactly how data, people, and technology interact in the real world.",
+            icon: "Route",
           },
           {
             label: "Risk Analysis",
             text: "I run formal risk assessments in order to identify, prioritize, and mitigate potential threats.",
+            icon: "ShieldAlert",
           },
           {
             label: "Roadmaps",
             text: "I translate high-level strategies into clear, operational roadmaps designed for the entire enterprise: keeping leaders aligned, daily users empowered, and support teams fully equipped.",
+            icon: "Map",
           },
         ],
       },
@@ -156,14 +176,17 @@ export const caseStudies: CaseStudy[] = [
           {
             label: "Personas as a North Star",
             text: "I keep a clear picture of the end user front and center throughout the entire process. Personas aren't just a design exercise, they are a critical communication tool I use to guide multi-disciplinary teams make well-informed decisions about the product's direction.",
+            icon: "Compass",
           },
           {
             label: "Iterative Prototyping",
             text: "I design clean interfaces that explain why a complex system gave a specific output to build immediate user trust. I then live-test these mockups to get rapid feedback, using real user data to guide our next design iterations.",
+            icon: "Layers",
           },
           {
             label: "Task Prioritization & Backlogs",
             text: "I translate requirements into actionable tasks while maintaining a clean backlog for the team. I make sure we prioritize the most important work today without losing track of great ideas for tomorrow.",
+            icon: "ListChecks",
           },
         ],
       },
@@ -232,10 +255,12 @@ export const caseStudies: CaseStudy[] = [
       {
         src: "/images/standard.mp4",
         caption: "Phase 1: Standard Tree View",
+        hideFromGallery: true,
       },
       {
         src: "/images/dynamic.mp4",
         caption: "Phase 2: Force-Directed Map",
+        hideFromGallery: true,
       },
       {
         src: "/images/full_view.png",
@@ -365,6 +390,11 @@ export const caseStudies: CaseStudy[] = [
         caption: "Semiautonomous driving simulator and screen view",
       },
       {
+        src: "/images/study_summary.png",
+        caption: "Study summary",
+        hideFromGallery: true,
+      },
+      {
         src: "/images/ar_hud.jpg",
         caption: "Semiautonomous vehicle driving simulator",
       },
@@ -385,6 +415,12 @@ export const caseStudies: CaseStudy[] = [
             text: "When designing software for complex environments (like driving or tactical operations), the default assumption is that adding information equals adding distraction. As Augmented Reality Head-Up Displays (AR HUDs) emerge, I wanted to test this assumption: Can low-cognitive-load AR tasks actually improve user focus during monotonous, low-stimulation tasks?",
           },
         ],
+      },
+      {
+        image: {
+          src: "/images/study_summary.png",
+          caption: "Study summary",
+        },
       },
       {
         heading: "The Research Framework",
