@@ -63,10 +63,10 @@ export const caseStudies: CaseStudy[] = [
     slug: "my-process",
     title: "Systems Engineering Meets Product Management",
     category: "How I Work",
-    summary: "The Systems Lens 🤝 The Product Lens",
+    summary: "Systems Lens 🤝 Product Lens",
     context: [
       "As a consultant, I work on many distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
-      "I look at every challenge through two distinct lenses: the Systems Lens (macro strategy) and the Product Lens (micro delivery).",
+      "I look at every challenge through two lenses: the Systems Lens (macro strategy) and the Product Lens (micro delivery).",
       {
         label: "Anomaly Detection Tool",
         text: "Owned product definition and delivery of an ML-enabled prototype by driving UX design, wireframing, defining data requirements, and aligning data science and development teams.",
@@ -109,7 +109,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     sections: [
       {
-        heading: "Lens 1: The Systems Lens (Macro Strategy)",
+        heading: "The Systems Lens",
         bullets: [
           {
             text: "How I align sponsors, map complex operational landscapes, and design the overarching strategy. My first step is always to zoom out and look at the whole system.",
@@ -133,7 +133,7 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
-        heading: "Lens 2: The Product Lens (Micro Delivery)",
+        heading: "The Product Lens",
         bullets: [
           {
             text: "How I translate technical complexity and build intuitive tools. My job is to act as the translation layer - converting deep technical complexity into clean, low-cognitive-load products.",
