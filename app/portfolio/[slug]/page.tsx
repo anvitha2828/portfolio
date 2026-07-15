@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { caseStudies, getCaseStudy } from "@/content/caseStudies";
+import { caseStudies, getCaseStudy, isVideoSrc } from "@/content/caseStudies";
 import { site } from "@/lib/site";
 import { CaseStudyGallery } from "@/components/CaseStudyGallery";
 
@@ -137,9 +137,37 @@ export default async function CaseStudyPage({
         <div id="details" className="mx-auto mt-16 max-w-2xl space-y-8 scroll-mt-24">
           {study.sections.map((section, i) => (
             <section key={i}>
-              <h2 className="font-display text-2xl font-bold text-ink">
-                {section.heading}
-              </h2>
+              {section.heading && (
+                <h2 className="font-display text-2xl font-bold text-ink">
+                  {section.heading}
+                </h2>
+              )}
+              {section.image && (
+                <figure className={section.heading ? "mt-4" : undefined}>
+                  {isVideoSrc(section.image.src) ? (
+                    <video
+                      src={section.image.src}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full rounded-2xl border border-ink/10 shadow-soft"
+                    />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={section.image.src}
+                      alt={section.image.caption ?? ""}
+                      className="w-full rounded-2xl border border-ink/10 shadow-soft"
+                    />
+                  )}
+                  {section.image.caption && (
+                    <figcaption className="mt-2 text-center text-sm text-ink/60">
+                      {section.image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
               {section.bullets ? (
                 <ul className="mt-3 space-y-3">
                   {section.bullets.map((bullet, j) =>
@@ -168,11 +196,11 @@ export default async function CaseStudyPage({
                     )
                   )}
                 </ul>
-              ) : (
+              ) : section.body ? (
                 <p className="mt-2 text-lg leading-relaxed text-ink/80">
                   {section.body}
                 </p>
-              )}
+              ) : null}
             </section>
           ))}
         </div>

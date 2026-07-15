@@ -10,7 +10,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import type { CaseStudy } from "@/content/caseStudies";
-import { imageSrc } from "@/content/caseStudies";
+import { imageSrc, isVideoSrc } from "@/content/caseStudies";
 
 const CARD_HEIGHT_VH = 72;
 const STEP_VH = 9; // vertical gap between each card's resting spot — this is how much of each earlier card's header stays peeking above the next
@@ -189,17 +189,26 @@ function StackedCard({
           side-by-side rather than one photo blown up. */}
       <div className="relative flex min-h-0 flex-1 gap-1 bg-ink/[0.03]">
         {photos.length > 0 ? (
-          photos.map((photo, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={imageSrc(photo)}
-              src={imageSrc(photo)}
-              alt={study.title}
-              className={`h-full flex-1 object-contain ${
-                i === 1 ? "hidden sm:block" : i === 2 ? "hidden lg:block" : ""
-              }`}
-            />
-          ))
+          photos.map((photo, i) => {
+            const src = imageSrc(photo);
+            const className = `h-full flex-1 object-contain ${
+              i === 1 ? "hidden sm:block" : i === 2 ? "hidden lg:block" : ""
+            }`;
+            return isVideoSrc(src) ? (
+              <video
+                key={src}
+                src={src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={className}
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={src} src={src} alt={study.title} className={className} />
+            );
+          })
         ) : (
           <div className="flex h-full items-center justify-center">
             <span className="font-display text-3xl font-bold text-ink/20">

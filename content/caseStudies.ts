@@ -5,9 +5,10 @@
 // Drop cover images into /public/images and reference them as "/images/your-file.jpg".
 
 export type CaseStudySection = {
-  heading: string;
+  heading?: string; // omit for a section that's just an inline image (e.g. a GIF between write-up sections)
   body?: string; // plain paragraph text
   bullets?: { label?: string; text: string }[]; // use instead of `body` for a bullet list
+  image?: { src: string; caption?: string }; // inline photo/GIF, shown below the heading
 };
 
 // A photo is either a plain path (no caption) or an object with a caption —
@@ -53,6 +54,12 @@ export function imageCaption(image: GalleryImage): string | undefined {
 
 export function imageIsSmall(image: GalleryImage): boolean {
   return typeof image === "string" ? false : (image.small ?? false);
+}
+
+// GIF-replacement clips (.mp4/.webm) render as a looping muted <video>
+// instead of an <img> wherever photos are shown.
+export function isVideoSrc(src: string): boolean {
+  return /\.(mp4|webm)$/i.test(src);
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -165,7 +172,7 @@ export const caseStudies: CaseStudy[] = [
         bullets: [
           {
             label: "No Telephone Game",
-            text: "Everyone stays aligned on the same product vision. Using clear personas, sharp requirements, and a shared roadmap ensures developers and stakeholders are always on the same page.",
+            text: "Everyone stays aligned on the same product vision. Using clear personas, defined requirements, and a shared roadmap ensures developers and stakeholders are always on the same page.",
           },
           {
             label: "Early Validation",
@@ -188,8 +195,21 @@ export const caseStudies: CaseStudy[] = [
     ctaLabel: "View Case Study",
     accentColor: "#4F9D6E",
     context: [
-      "I built a collaborative, zero-learning-curve editor for family trees that allows users to quickly add, remove, and visualize relationships.",
-      "To eliminate data-entry friction, I prioritized a rapid 'ghost-node' creation flow before implementing two distinct ways to interact with the data: a structured tree view for clarity, and a physics-based, force-directed network map for dynamic exploration.",
+      "I saw a great opportunity to build this tool after sitting down with my grandparents to hear stories about their siblings and cousins. Trying to visualize all those complex, winding relationships on a flat piece of paper made me realize how fun it would be to bring that dynamic family history to life in real time.",
+      "My goal was to create a collaborative tool where anyone could sit down and immediately start building a tree with zero learning curve. I wanted to skip the tedious process of filling out forms and defining rigid relationships. Instead, you can start with just one person and watch the tree grow naturally as you sketch it out.",
+      "To make exploring these stories easy, I built a few different ways to look at the data:",
+      {
+        label: "Standard Tree View",
+        text: "A clean, structured layout.",
+      },
+      {
+        label: "Dynamic Network Map",
+        text: "Uses physics-based animations for a big-picture, interactive exploration of the family.",
+      },
+      {
+        label: "Branch Isolation Feature",
+        text: "Lets you filter out the noise and focus on just one specific family lineage at a time.",
+      },
     ],
     role: ["Product Manager", "Designer", "Engineer"],
     tools: [
@@ -209,6 +229,14 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     featuredImages: [
+      {
+        src: "/images/standard.mp4",
+        caption: "Phase 1: Standard Tree View",
+      },
+      {
+        src: "/images/dynamic.mp4",
+        caption: "Phase 2: Force-Directed Map",
+      },
       {
         src: "/images/full_view.png",
         caption: "Full Rooted UI tree building view",
@@ -262,8 +290,24 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
+        image: {
+          src: "/images/standard.mp4",
+          caption: "Phase 1: Standard Tree View",
+        },
+      },
+      {
+        image: {
+          src: "/images/dynamic.mp4",
+          caption: "Phase 2: Force-Directed Map",
+        },
+      },
+      {
         heading: "Feature Breakdown",
         bullets: [
+          {
+            label: "Standard Tree View",
+            text: "A clean, structured layout for a clear top-down read of hierarchy and lineage.",
+          },
           {
             label: "Ghost-Node Interface",
             text: "Eliminated traditional sidebar forms. Clicking an active node triggers instant contextual connectors directly on the canvas, enabling users to spawn relatives with a single click.",
@@ -301,7 +345,7 @@ export const caseStudies: CaseStudy[] = [
       "Before an enterprise invests in bleeding-edge capabilities like Augmented Reality (AR), product leaders have to validate how humans will actually interact with it in high-consequence environments.",
       "To challenge industry assumptions around driver distraction, I led a formal, mixed-methods user study utilizing a driving simulator to analyze how low-cognitive-load AR tasks impact human performance—establishing a data-backed foundation for future AR interface design.",
     ],
-    role: ["Co-Author", "Study Design", "Data Collection", "Data Analysis"],
+    role: ["Author", "Researcher"],
     tools: [
       "Driving Simulator",
       "AR HUD",
@@ -425,7 +469,7 @@ export const caseStudies: CaseStudy[] = [
       "Abbott Nutrition trains employees on lock-out tag-out (LOTO), a safety procedure that restricts and labels equipment during maintenance. Traditionally, training on the actual production floor is highly hazardous for trainees and forces costly operational shutdowns. To mitigate this risk, Abbott utilized a mobile training cart fitted with physical valves, but this workaround completely lacked the visual layout, scale, and environmental stressors of the real factory floor.",
       "To bridge this gap, I worked within a 4-person Virginia Tech senior design team advised by Dr. Joe Gabbard to research and design a mixed-reality alternative built on Microsoft Guides. As the Workflow and User Testing Lead, I managed the end-to-end design of the spatial training logic and validated it through operator testing. The resulting solution simulates high-fidelity floor context without the safety risks.",
     ],
-    role: ["User Research", "Training Design"],
+    role: ["User Researcher", "UX Designer"],
     tools: ["Microsoft Guides", "HoloLens", "Mixed Reality"],
     timeline: "2021 - 2022",
     links: [

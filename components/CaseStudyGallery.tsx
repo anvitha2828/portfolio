@@ -6,8 +6,35 @@ import {
   imageCaption,
   imageIsSmall,
   imageSrc,
+  isVideoSrc,
   type GalleryImage,
 } from "@/content/caseStudies";
+
+// Renders a GIF-replacement clip (.mp4/.webm) as a looping muted video, or
+// a plain photo as an <img> — same call sites, whichever the src needs.
+function Photo({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+}) {
+  return isVideoSrc(src) ? (
+    <video
+      src={src}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className={className}
+    />
+  ) : (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} className={className} />
+  );
+}
 
 // Renders a case study's screenshots as a single horizontally-scrolling
 // strip (featured images first, larger, then the rest) so the gallery
@@ -42,8 +69,7 @@ export function CaseStudyGallery({
             onClick={() => setOpenIndex(i)}
             className="group relative block shrink-0 cursor-zoom-in snap-start"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Photo
               src={imageSrc(image)}
               alt={alt}
               className={`w-auto rounded-2xl border border-ink/10 shadow-soft transition-opacity group-hover:opacity-90 ${
@@ -61,8 +87,7 @@ export function CaseStudyGallery({
             onClick={() => setOpenIndex(featuredImages.length + i)}
             className="group relative block shrink-0 cursor-zoom-in snap-start"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Photo
               src={imageSrc(image)}
               alt={alt}
               className="h-48 w-auto rounded-xl border border-ink/10 shadow-soft transition-opacity group-hover:opacity-90 sm:h-56"
@@ -171,8 +196,7 @@ function Lightbox({
               className="relative z-10 flex max-h-full max-w-full flex-col items-center gap-3"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Photo
                 src={imageSrc(images[index])}
                 alt={alt}
                 className="max-h-[75vh] max-w-full cursor-default rounded-xl object-contain shadow-soft"
@@ -216,8 +240,7 @@ function Lightbox({
                       : "border-transparent opacity-50 hover:opacity-80"
                   }`}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Photo
                     src={imageSrc(image)}
                     alt=""
                     className="h-full w-full object-cover"
