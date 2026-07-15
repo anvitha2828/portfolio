@@ -115,11 +115,11 @@ export const caseStudies: CaseStudy[] = [
             text: "How I align customers, map complex operational landscapes, and design the overarching strategy. My first step is always to zoom out and look at the whole system.",
           },
           {
-            label: "Stakeholder Alignment & Discovery",
+            label: "Customer Alignment & Discovery",
             text: "I sit down with users and stakeholders for direct interviews to untangle their daily operational realities and map out their true constraints.",
           },
           {
-            label: "Mapping User Journeys",
+            label: "User Journeys",
             text: "I draw out end-to-end user journeys showing exactly how data, people, and technology interact in the real world.",
           },
           {
@@ -127,7 +127,7 @@ export const caseStudies: CaseStudy[] = [
             text: "I run formal risk assessments in order to identify, prioritize, and mitigate potential threats.",
           },
           {
-            label: "Roadmapping",
+            label: "Roadmaps",
             text: "I translate high-level strategies into clear, operational roadmaps designed for the entire enterprise: keeping leaders aligned, daily users empowered, and support teams fully equipped.",
           },
         ],
