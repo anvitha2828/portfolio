@@ -61,9 +61,9 @@ export const caseStudies: CaseStudy[] = [
     // on, and how you work with engineers, designers, and stakeholders
     // along the way.
     slug: "my-process",
-    title: "Systems Engineering Meets Product Management",
+    title: "Product Management meets Systems Engineering",
     category: "How I Work",
-    summary: "Systems Lens 🤝 Product Lens",
+    summary: "Product Lens 🤝 Systems Lens",
     context: [
       "As a consultant, I work on many distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
       "I look at every challenge through two lenses: the Systems Lens (macro strategy) and the Product Lens (micro delivery).",
@@ -80,7 +80,7 @@ export const caseStudies: CaseStudy[] = [
         text: "Delivered an enterprise-level strategy by translating extensive field research into organizational, technical, and operational decision-making.",
       },
     ],
-    role: ["Systems Engineer"],
+    role: ["Product Manager", "Systems Engineer"],
     tools: [
       "CAMEO (SysML)",
       "Visio",
@@ -143,21 +143,21 @@ export const caseStudies: CaseStudy[] = [
             text: "I design clean user interfaces that highlight critical status alerts while hiding unnecessary data clutter. I purposefully design UI elements that explain why a technical system is giving a certain output, which builds immediate user trust.",
           },
           {
-            label: "Frontend Code Sandboxes",
-            text: "I work with developers to build clickable, interactive software prototypes. Testing a live mockup with users saves weeks of engineering time by fixing design flaws before production.",
+            label: "Prototypes",
+            text: "I work with developers to build interactive software prototypes. Testing a live mockup with users saves weeks of engineering time by fixing design flaws before production.",
           },
           {
-            label: "Jira Backlogs & User Stories",
-            text: "I translate high-level sponsor goals into bite-sized, actionable technical user stories in Jira, running the day-to-day cycles with dev and data science teams.",
+            label: "Backlogs & User Stories",
+            text: "I translate high-level project goals into actionable user stories running the day-to-day cycles with dev and data science teams.",
           },
         ],
       },
       {
-        heading: "Key Wins for Sponsors",
+        heading: "My Value Add",
         bullets: [
           {
             label: "No Telephone Game",
-            text: "Developers, systems engineers, and stakeholders stay perfectly aligned because we trace system constraints from day one.",
+            text: "Developers, systems engineers, and stakeholders stay aligned because we trace system constraints from day one.",
           },
           {
             label: "De-risked Projects",
