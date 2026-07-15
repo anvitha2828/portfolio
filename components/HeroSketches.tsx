@@ -54,7 +54,7 @@ const items: HeroItem[] = [
     y: 90,
     size: 90,
     href: "https://chantillyhs.fcps.edu/features/students-compete-qualify-global-robotics-championship-first-r-robotics-competition",
-    tooltip: "CEO Chantilly Robotics 2018, went to the world competition!",
+    tooltip: "President Chantilly Robotics 2018, went to the world competition!",
     floatDelay: 2,
     render: () => <RobotSketch className="h-full w-full" />,
   },
