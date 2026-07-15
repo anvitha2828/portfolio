@@ -112,7 +112,7 @@ export const caseStudies: CaseStudy[] = [
         heading: "The Systems Lens",
         bullets: [
           {
-            text: "How I align customers, map complex operational landscapes, and design the overarching strategy. My first step is always to zoom out and look at the whole system.",
+            text: "My first step is always to zoom out and look at the whole system.",
           },
           {
             label: "Customer Alignment & Discovery",
@@ -136,7 +136,7 @@ export const caseStudies: CaseStudy[] = [
         heading: "The Product Lens",
         bullets: [
           {
-            text: "How I translate technical complexity and build intuitive tools. My job is to act as the translation layer - converting deep technical complexity into clean, low-cognitive-load products.",
+            text: "I act as the translation layer - converting deep technical complexity into clean, low-cognitive-load products.",
           },
           {
             label: "Sketch & Adobe XD Mockups",
