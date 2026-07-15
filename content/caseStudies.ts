@@ -66,7 +66,7 @@ export const caseStudies: CaseStudy[] = [
     summary: "Product Lens 🤝 Systems Lens",
     context: [
       "As a consultant, I work on many distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
-      "I look at every challenge through two lenses: the Systems Lens (macro strategy) and the Product Lens (micro delivery).",
+      "I look at every challenge through two lenses: the Systems Lens and the Product Lens.",
       {
         label: "Anomaly Detection Tool",
         text: "Owned product definition and delivery of an ML-enabled prototype by driving UX design, wireframing, defining data requirements, and aligning data science and development teams.",
@@ -139,7 +139,7 @@ export const caseStudies: CaseStudy[] = [
             text: "I act as the translation layer - converting deep technical complexity into clean, low-cognitive-load products.",
           },
           {
-            label: "Sketch & Adobe XD Mockups",
+            label: "UI Mockups",
             text: "I design clean user interfaces that highlight critical status alerts while hiding unnecessary data clutter. I purposefully design UI elements that explain why a technical system is giving a certain output, which builds immediate user trust.",
           },
           {
