@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Compass, Layers, ListChecks, Map, Route, ShieldAlert, Users } from "lucide-react";
 import { caseStudies, getCaseStudy, isVideoSrc } from "@/content/caseStudies";
 import { site } from "@/lib/site";
 import { CaseStudyGallery } from "@/components/CaseStudyGallery";
+import { ClickToRevealImage } from "@/components/ClickToRevealImage";
 
 // Maps a bullet's `icon` name (see CaseStudySection in content/caseStudies.ts)
 // to its lucide-react component. Add an entry here whenever a new icon name
@@ -18,6 +20,46 @@ const ICONS: Record<string, typeof Users> = {
   Layers,
   ListChecks,
 };
+
+// Renders a bullet's text, supporting **this** as inline bold+italic
+// emphasis and swapping `reveal.phrase` (verbatim substring, may fall
+// inside or outside an emphasized run) for a click-to-reveal image
+// trigger. Split on emphasis first, then look for the reveal phrase
+// within each resulting segment, so the two features nest correctly
+// regardless of which segment the phrase lands in.
+function renderBulletText(
+  text: string,
+  reveal?: { phrase: string; src: string; caption?: string },
+) {
+  const segments = text
+    .split(/\*\*(.+?)\*\*/g)
+    .map((segment, i) => ({ text: segment, emphasis: i % 2 === 1 }));
+
+  return segments.map((segment, i) => {
+    const idx = reveal ? segment.text.indexOf(reveal.phrase) : -1;
+    const inner =
+      idx === -1 ? (
+        segment.text
+      ) : (
+        <>
+          {segment.text.slice(0, idx)}
+          <ClickToRevealImage
+            trigger={reveal!.phrase}
+            src={reveal!.src}
+            caption={reveal!.caption}
+          />
+          {segment.text.slice(idx + reveal!.phrase.length)}
+        </>
+      );
+    return segment.emphasis ? (
+      <strong key={i} className="my-3 block text-center">
+        <em>{inner}</em>
+      </strong>
+    ) : (
+      <Fragment key={i}>{inner}</Fragment>
+    );
+  });
+}
 
 // Pre-render a static page for every case study.
 export function generateStaticParams() {
@@ -247,11 +289,11 @@ export default async function CaseStudyPage({
                             >
                               •
                             </span>
-                            <span>
+                            <span className="whitespace-pre-line">
                               <span className="font-semibold text-ink">
                                 {bullet.label}:{" "}
                               </span>
-                              {bullet.text}
+                              {renderBulletText(bullet.text, bullet.imageReveal)}
                             </span>
                           </li>
                         ))}

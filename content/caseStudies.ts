@@ -11,6 +11,11 @@ export type CaseStudySection = {
     label?: string;
     text: string;
     icon?: string; // lucide-react icon name, e.g. "Compass" — swaps out the default "•" (see ICONS map in app/portfolio/[slug]/page.tsx)
+    imageReveal?: {
+      phrase: string; // must appear verbatim inside `text` — that substring becomes a click-to-reveal trigger
+      src: string;
+      caption?: string;
+    };
   }[]; // use instead of `body` for a bullet list
   image?: { src: string; caption?: string }; // inline photo/GIF, shown below the heading
 };
@@ -175,12 +180,12 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             label: "Personas as a North Star",
-            text: "I keep a clear picture of the end user front and center throughout the entire process. Personas aren't just a design exercise, they are a critical communication tool I use to guide multi-disciplinary teams make well-informed decisions about the product's direction.",
+            text: "I keep a clear picture of the end user front and center throughout the entire process. Personas aren't just a design exercise, they are a critical communication tool that I use to guide teams to make informed decisions about the product's direction.",
             icon: "Compass",
           },
           {
             label: "Iterative Prototyping",
-            text: "I design clean interfaces that explain why a complex system gave a specific output to build immediate user trust. I then live-test these mockups to get rapid feedback, using real user data to guide our next design iterations.",
+            text: "I design clean interfaces that explain why a complex system gave a specific output to build immediate user trust. I then live-test mockups to get rapid feedback, using real user data to guide our next design iterations.",
             icon: "Layers",
           },
           {
@@ -199,7 +204,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             label: "Early Validation",
-            text: "Testing concepts early with mockups and prototypes keeps sponsors in the loop and ensures we build the right thing before writing code.",
+            text: "Testing concepts early with mockups and prototypes keeps stakeholders in the loop and ensures we build the right thing before writing code.",
           },
           {
             label: "Beyond Just Software",
@@ -214,13 +219,13 @@ export const caseStudies: CaseStudy[] = [
     title: "Family Tree Builder: Rooted",
     category: "Web App",
     summary:
-      "An interactive web app that reimagines genealogy by making family tree creation as fast and visual as sketching on paper",
+      "An interactive web app that reimagines genealogy by making family tree creation as fast and as visual as sketching on paper",
     ctaLabel: "View Case Study",
     accentColor: "#4F9D6E",
     context: [
       "I saw a great opportunity to build this tool after sitting down with my grandparents to hear stories about their siblings and cousins. Trying to visualize all those complex, winding relationships on a flat piece of paper made me realize how fun it would be to bring that dynamic family history to life in real time.",
       "My goal was to create a collaborative tool where anyone could sit down and immediately start building a tree with zero learning curve. I wanted to skip the tedious process of filling out forms and defining rigid relationships. Instead, you can start with just one person and watch the tree grow naturally as you sketch it out.",
-      "To make exploring these stories easy, I built a few different ways to look at the data:",
+      "To make exploring these stories easily, I built a few different ways to look at the data:",
       {
         label: "Standard Tree View",
         text: "A clean, structured layout.",
@@ -231,7 +236,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         label: "Branch Isolation Feature",
-        text: "Lets you filter out the noise and focus on just one specific family lineage at a time.",
+        text: "Lets you filter out the noise and focus on just one specific family branch at a time.",
       },
     ],
     role: ["Product Manager", "Designer", "Engineer"],
@@ -263,6 +268,11 @@ export const caseStudies: CaseStudy[] = [
         hideFromGallery: true,
       },
       {
+        src: "/images/adding_tabs.mp4",
+        caption: "Creating family specific tabs",
+        hideFromGallery: true,
+      },
+      {
         src: "/images/full_view.png",
         caption: "Full Rooted UI tree building view",
       },
@@ -285,32 +295,30 @@ export const caseStudies: CaseStudy[] = [
     ],
     sections: [
       {
-        heading: "Target Metrics",
-        bullets: [
-          {
-            label: "Activation Speed",
-            text: "Minimizing the time elapsed from initial sign-in to a user anchoring their first parent, child, or partner relationship node.",
-          },
-          {
-            label: "Task Completion Rate",
-            text: "The percentage of active user sessions that successfully build out a 3-generation branch in a single session without dropping off.",
-          },
-        ],
-      },
-      {
         heading: "Product Scoping & Sequencing",
         bullets: [
           {
-            label: "The Phase 1 Priority",
-            text: "Focused entirely on the data-input UX. Before users can enjoy exploring a massive network, they need an effortless way to build it. I funneled all initial development into the 'ghost-node' connector.",
+            label: "The Phase 1",
+            text: `Standard Tree + Ghost Connectors 
+                  I put all my early energy into the data-entry experience. Before anyone can enjoy exploring a network of information, they need an easy, intuitive way to actually build it. 
+                  **Think about how we talk about family: you might say, "my sister's husband's parents." I wanted the app to work exactly like that train of thought.**
+                  You should be able to just click, chain relationships together, and add people to the tree on the fly. That's why I started by building the ghost-node connector—to make adding new connections feel that natural.`,
+            imageReveal: {
+              phrase: "ghost-node connector",
+              src: "/images/ghost_node.png",
+              caption: "Adding relationships — 'ghost node' example",
+            },
           },
           {
-            label: "The Phase 2 Milestones",
-            text: "Only after the creation flow was seamless did I introduce the dual-view interaction engine: a structured tree view for hierarchy, and a force-directed network map for dynamic playground exploration.",
+            label: "The Phase 2",
+            text: `Dynamic View
+            Once the creation flow felt seamless, I introduced the dual-view. Alongside the structured tree view for hierarchy, I built a force-directed network map.
+            The goal was to give users that "wow" moment when they step back and see a complex family tree come to life as a dynamic and connected web.`,
           },
           {
-            label: "The Strategic Trade-off",
-            text: "I intentionally delayed interactive physics animations until basic creation mechanics were locked. A beautifully animating canvas means nothing if users struggle to input their data.",
+            label: "The Trade-off",
+            text: `Delay Feature
+            I intentionally delayed interactive physics animations until basic creation mechanics were locked. A beautifully animating canvas means nothing if users struggle to input their data.`,
           },
         ],
       },
@@ -335,7 +343,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             label: "Ghost-Node Interface",
-            text: "Eliminated traditional sidebar forms. Clicking an active node triggers instant contextual connectors directly on the canvas, enabling users to spawn relatives with a single click.",
+            text: "Eliminated the need to use traditional sidebar forms. Clicking an active node triggers ghost nodes directly on the canvas, enabling users to spawn relatives with a single click.",
           },
           {
             label: "Force-Directed Map",
@@ -343,16 +351,29 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             label: "The Excel View Tab",
-            text: "Implemented a toggleable spreadsheet panel at the bottom, allowing users to group, search, and isolate specific branches (e.g., maternal lineage) to manage visual noise.",
+            text: "Implemented a toggleable spreadsheet panel at the bottom, allowing users to group, search, and isolate specific branches (e.g., dad's side) to manage visual noise.",
           },
         ],
       },
       {
-        heading: "PM Lessons Learned",
+        image: {
+          src: "/images/adding_tabs.mp4",
+          caption: "Creating family specific tabs",
+        },
+      },
+      {
+        heading: "Target Metrics",
         bullets: [
           {
-            label: "Execution Insight",
-            text: "Product management is about sequencing. Prioritizing the high-utility creation flow before high-delight physics animations ensured the product was fundamentally functional before it was visually impressive.",
+            text: "These metrics were informed by my desire for any user to be able to access this tool and immediately start building.",
+          },
+          {
+            label: "Activation Speed",
+            text: "Minimizing the time elapsed from initial sign-in to a user anchoring their first parent, child, or partner relationship node.",
+          },
+          {
+            label: "Task Completion Rate",
+            text: "The percentage of active user sessions that successfully build out a 3-generation branch in a single session without dropping off.",
           },
         ],
       },
@@ -363,7 +384,7 @@ export const caseStudies: CaseStudy[] = [
     title: "AR HUD Driving Research",
     category: "Published Research",
     summary:
-      "Challenging industry assumptions in Augmented Reality (AR) HUD design",
+      "Challenging industry assumptions in Augmented Reality (AR) Heads-up Display (HUD) design",
     ctaLabel: "View Research",
     accentColor: "#4A90C2",
     context: [
