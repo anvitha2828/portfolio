@@ -12,7 +12,7 @@ import { site } from "@/lib/site";
 // next/font self-hosts these at build time (no runtime external requests).
 const display = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
   variable: "--font-display",
 });
 

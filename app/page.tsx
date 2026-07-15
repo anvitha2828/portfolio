@@ -3,26 +3,24 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
+import { experience } from "@/content/experience";
 import { caseStudies } from "@/content/caseStudies";
 import { StackedCaseStudies } from "@/components/StackedCaseStudies";
-import { HeroSketches } from "@/components/HeroSketches";
+import { DefinitionTerm } from "@/components/DefinitionTerm";
+import { MagneticText, type MagneticTextSegment } from "@/components/MagneticText";
+import { FadeUp } from "@/components/FadeUp";
 
 export default function HomePage() {
   return (
     <>
       <section
-        className="relative w-screen min-h-screen py-16 sm:py-24"
+        id="top"
+        className="relative w-screen py-16 sm:py-20"
         style={{
           marginLeft: "calc(50% - 50vw)",
           marginRight: "calc(50% - 50vw)",
         }}
       >
-        {/* Every line-art drawing from the map, scattered here instead —
-            draggable, so they can be dragged around freely. */}
-        <div className="hidden sm:block">
-          <HeroSketches />
-        </div>
-
         <div className="relative z-10 mx-auto max-w-2xl text-center">
           {/* Sparkle decorations — offset enough to clear the h1's own
               bounding box (icon height + top offset must stay negative),
@@ -37,7 +35,7 @@ export default function HomePage() {
             transition={{ type: "spring", stiffness: 120 }}
             className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl"
           >
-            {site.name}
+            <MagneticText segments={[{ text: site.name }]} />
           </motion.h1>
 
           <motion.p
@@ -46,7 +44,7 @@ export default function HomePage() {
             transition={{ delay: 0.15 }}
             className="mx-auto mt-6 max-w-lg font-title text-3xl leading-snug text-ink sm:text-4xl"
           >
-            {renderTagline(site.tagline)}
+            <MagneticText segments={taglineSegments(site.tagline)} />
           </motion.p>
 
           <motion.div
@@ -56,21 +54,126 @@ export default function HomePage() {
             className="mt-8 flex flex-wrap items-center justify-center gap-6"
           >
             <Link
-              href="/portfolio"
+              href="#work"
               className="rounded-full border-2 border-ink px-6 py-3 font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
             >
               See my Portfolio
             </Link>
-            <a
-              href={site.resumeHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-ink/70 underline decoration-1 underline-offset-4 transition-colors hover:text-ink"
-            >
-              Resume
-            </a>
           </motion.div>
         </div>
+      </section>
+
+      {/* About Me — bio + work history. Edit content/experience.ts for the
+          latter, not this markup. */}
+      <section id="about" className="scroll-mt-24 py-6">
+        {/* Intro — full width, centered, no columns */}
+        <div className="mx-auto max-w-2xl text-center">
+          <FadeUp>
+            <h2 className="font-display text-4xl font-bold text-ink sm:text-5xl">
+              About Me
+            </h2>
+          </FadeUp>
+
+          <FadeUp delay={0.1}>
+            <div className="mt-8 space-y-4 text-lg leading-relaxed text-ink/80">
+              <p>
+                I&apos;m a product manager with a background in{" "}
+                <DefinitionTerm
+                  term="systems"
+                  definition="Systems engineering is the discipline of designing and managing complex systems so all their interconnected parts work together effectively."
+                />{" "}
+                and human factors engineering. I enjoy taking complex
+                problems, understanding the people behind them, and working
+                with cross-functional teams to build intuitive solutions.
+              </p>
+              <p>
+                Want to reach out? Email me at{" "}
+                <a
+                  href="mailto:anvitha2828@gmail.com"
+                  className="font-semibold text-coral underline decoration-solid underline-offset-4"
+                >
+                  anvitha2828@gmail.com
+                </a>{" "}
+                and check out my{" "}
+                <a
+                  href={site.resumeHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-coral underline decoration-wavy underline-offset-4"
+                >
+                  resume
+                </a>
+                , or connect with me on{" "}
+                <a
+                  href="https://www.linkedin.com/in/anvitha-nachi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-coral underline decoration-wavy underline-offset-4"
+                >
+                  LinkedIn
+                </a>
+                .
+              </p>
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={0.2}>
+            <a
+              href="#work"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-coral underline decoration-1 underline-offset-4 transition-colors hover:text-ink"
+            >
+              Jump to selected work ↓
+            </a>
+          </FadeUp>
+        </div>
+
+        {/* Work history (left) + what I bring to the table (right) */}
+        <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Work history — edit content/experience.ts, not this markup */}
+          <FadeUp>
+            <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+              Where I&apos;ve Worked
+            </h3>
+            <div className="mt-6 divide-y divide-ink/10">
+              {experience.map((role, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col gap-1 py-5 sm:flex-row sm:items-center sm:gap-8"
+                >
+                  <span className="w-full shrink-0 text-ink/50 sm:w-36">
+                    {role.period}
+                  </span>
+                  <span className="text-lg text-ink">
+                    <span className="font-semibold">{role.role}</span>{" "}
+                    <span className="text-ink/60">@ {role.company}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+
+          {/* TODO: content to come */}
+          <FadeUp delay={0.1}>
+            <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+              What I Bring to the Table
+            </h3>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* Selected work — edit content/caseStudies.ts, not this markup.
+          Each case study below is its own full-page, scroll-stacked
+          section (see StackedCaseStudies.tsx) rather than a grid. */}
+      <section id="work" className="mt-6 scroll-mt-24">
+        <FadeUp>
+          <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
+            Selected Work
+          </h2>
+          <p className="mt-3 max-w-xl text-lg text-ink/70">
+            A selection of case studies and projects. Keep scrolling.
+          </p>
+        </FadeUp>
+        <div className="h-6" aria-hidden="true" />
       </section>
 
       <StackedCaseStudies caseStudies={caseStudies} />
@@ -78,18 +181,14 @@ export default function HomePage() {
   );
 }
 
-// Italicizes the word "feel" wherever it appears in the tagline, echoing
-// the reference typography (upright serif with one italicized word).
-function renderTagline(text: string) {
-  return text.split(/(\bfeel\b)/i).map((part, i) =>
-    /^feel$/i.test(part) ? (
-      <em key={i} className="italic">
-        {part}
-      </em>
-    ) : (
-      part
-    )
-  );
+// Splits the tagline into MagneticText segments, italicizing "feel"
+// wherever it appears — echoing the reference typography (upright serif
+// with one italicized word).
+function taglineSegments(text: string): MagneticTextSegment[] {
+  return text
+    .split(/(\bfeel\b)/i)
+    .filter(Boolean)
+    .map((part) => ({ text: part, italic: /^feel$/i.test(part) }));
 }
 
 function Sparkle({ className }: { className?: string }) {

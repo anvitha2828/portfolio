@@ -38,7 +38,7 @@ export default async function CaseStudyPage({
   return (
     <article className="py-6">
       <Link
-        href="/portfolio"
+        href="/#work"
         className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/60 transition-colors hover:text-coral"
       >
         <span aria-hidden="true">←</span> Back to portfolio
@@ -80,7 +80,7 @@ export default async function CaseStudyPage({
               <div className="mt-2 space-y-4 text-lg leading-relaxed text-ink/80">
                 {study.context.map((paragraph, i) =>
                   typeof paragraph === "string" ? (
-                    <p key={i}>{paragraph}</p>
+                    <p key={i}>{renderBold(paragraph)}</p>
                   ) : (
                     <p key={i} className="text-base">
                       <span className="font-semibold text-coral">
@@ -193,6 +193,15 @@ function Meta({ label, items }: { label: string; items: string[] }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+// Lets content data mark specific words bold inline with **this** syntax,
+// instead of only being able to bold a whole leading label.
+function renderBold(text: string) {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i}>{part}</strong> : part,
   );
 }
 

@@ -33,6 +33,7 @@ export type CaseStudy = {
   tools: string[]; // e.g. ["Figma", "React"] — sidebar list
   timeline: string; // e.g. "2026" or "February 2026"
   ctaLabel?: string; // button text on the /portfolio scroll-stack card — defaults to "View case study"
+  accentColor?: string; // hex color for the scroll-stack card's category label + CTA button — defaults to ink
   cover?: string; // e.g. "/images/project-a.jpg" (optional — falls back to a muted title tile)
   featuredImages?: GalleryImage[]; // 1-2 hero screenshots, shown large, full-width, in order
   gallery?: GalleryImage[]; // additional screenshots, shown smaller in a grid below the featured images
@@ -63,22 +64,11 @@ export const caseStudies: CaseStudy[] = [
     slug: "my-process",
     title: "Product Management meets Systems Engineering",
     category: "How I Work",
-    summary: "Product Lens 🤝 Systems Lens",
+    summary:
+      "Product Lens 🤝 Systems Lens: Solving complex problems with products people actually use.",
     context: [
       "As a consultant, I work on many distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
-      "I look at every challenge through two lenses: the Systems Lens and the Product Lens.",
-      {
-        label: "Anomaly Detection Tool",
-        text: "Owned product definition and delivery of an ML-enabled prototype by driving UX design, wireframing, defining data requirements, and aligning data science and development teams.",
-      },
-      {
-        label: "Model-Based Systems Engineering",
-        text: "Modeled mission-specific end-to-end user journeys to map events, ownership, data flows, and timing dependencies needed to achieve target operational outcomes.",
-      },
-      {
-        label: "Autonomy Strategy",
-        text: "Delivered an enterprise-level strategy by translating extensive field research into organizational, technical, and operational decision-making.",
-      },
+      "I look at every challenge through two lenses: the **Systems Lens** and the **Product Lens**. For me, this is about bridging a massive gap: taking highly complex, technically impressive engineering and translating it so real users and organizations are actually ready to adopt it.",
     ],
     role: ["Product Manager", "Systems Engineer"],
     tools: [
@@ -94,8 +84,9 @@ export const caseStudies: CaseStudy[] = [
       "Material UI",
       "Jira",
     ],
-    timeline: "",
+    timeline: "2023 - Present",
     ctaLabel: "View Process",
+    accentColor: "#FF7A59",
     featuredImages: [
       {
         src: "/images/Systems_Engineering_Process_II.svg.webp",
@@ -108,6 +99,23 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     sections: [
+      {
+        heading: "Here are examples of efforts I've supported:",
+        bullets: [
+          {
+            label: "Anomaly Detection Tool",
+            text: "Owned product definition and delivery of an ML-enabled prototype by driving UX design, wireframing, defining data requirements, and aligning data science and development teams.",
+          },
+          {
+            label: "Model-Based Systems Engineering",
+            text: "Modeled mission-specific end-to-end user journeys to map events, ownership, data flows, and timing dependencies needed to achieve target operational outcomes.",
+          },
+          {
+            label: "Autonomy Strategy",
+            text: "Delivered an enterprise-level strategy by translating extensive field research into organizational, technical, and operational decision-making.",
+          },
+        ],
+      },
       {
         heading: "The Systems Lens",
         bullets: [
@@ -136,19 +144,19 @@ export const caseStudies: CaseStudy[] = [
         heading: "The Product Lens",
         bullets: [
           {
-            text: "I act as the translation layer - converting deep technical complexity into clean, low-cognitive-load products.",
+            text: "I act as the translation layer: converting deep technical complexity into clean & easy to use products.",
           },
           {
-            label: "UI Mockups",
-            text: "I design clean user interfaces that highlight critical status alerts while hiding unnecessary data clutter. I purposefully design UI elements that explain why a technical system is giving a certain output, which builds immediate user trust.",
+            label: "Personas as a North Star",
+            text: "I keep a clear picture of the end user front and center throughout the entire process. Personas aren't just a design exercise, they are a critical communication tool I use to guide multi-disciplinary teams make well-informed decisions about the product's direction.",
           },
           {
-            label: "Prototypes",
-            text: "I work with developers to build interactive software prototypes. Testing a live mockup with users saves weeks of engineering time by fixing design flaws before production.",
+            label: "Iterative Prototyping",
+            text: "I design clean interfaces that explain why a complex system gave a specific output to build immediate user trust. I then live-test these mockups to get rapid feedback, using real user data to guide our next design iterations.",
           },
           {
-            label: "Backlogs & User Stories",
-            text: "I translate high-level project goals into actionable user stories running the day-to-day cycles with dev and data science teams.",
+            label: "Task Prioritization & Backlogs",
+            text: "I translate requirements into actionable tasks while maintaining a clean backlog for the team. I make sure we prioritize the most important work today without losing track of great ideas for tomorrow.",
           },
         ],
       },
@@ -157,15 +165,15 @@ export const caseStudies: CaseStudy[] = [
         bullets: [
           {
             label: "No Telephone Game",
-            text: "Developers, systems engineers, and stakeholders stay aligned because we trace system constraints from day one.",
+            text: "Everyone stays aligned on the same product vision. Using clear personas, sharp requirements, and a shared roadmap ensures developers and stakeholders are always on the same page.",
           },
           {
-            label: "De-risked Projects",
-            text: "Validating concepts early via frontend prototypes and clear strategic plans ensures the final solution actually matches what users need to do their jobs.",
+            label: "Early Validation",
+            text: "Testing concepts early with mockups and prototypes keeps sponsors in the loop and ensures we build the right thing before writing code.",
           },
           {
-            label: "Whole-Picture Success",
-            text: "Sponsors don't just get a piece of software or a static strategy deck; they get a holistic, enterprise-ready capability designed to scale and survive long-term.",
+            label: "Beyond Just Software",
+            text: "Users don't just get a tool; they get a complete implementation plan mapping out the real-world impact on users, leadership, and technical support.",
           },
         ],
       },
@@ -173,13 +181,14 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "roots-family-tree-builder",
-    title: "Rooted",
-    category: "Family Tree Builder",
+    title: "Family Tree Builder: Rooted",
+    category: "Web App",
     summary:
       "An interactive web app that reimagines genealogy by making family tree creation as fast and visual as sketching on paper",
     ctaLabel: "View Case Study",
+    accentColor: "#4F9D6E",
     context: [
-      "Existing tools are clunky, form-heavy, and locked behind paywalls—making it frustrating to build and share lineage. I built a collaborative, zero-learning-curve editor with cloud sync, Google sign-in, and secure email-sharing.",
+      "I built a collaborative, zero-learning-curve editor for family trees that allows users to quickly add, remove, and visualize relationships.",
       "To eliminate data-entry friction, I prioritized a rapid 'ghost-node' creation flow before implementing two distinct ways to interact with the data: a structured tree view for clarity, and a physics-based, force-directed network map for dynamic exploration.",
     ],
     role: ["Product Manager", "Designer", "Engineer"],
@@ -287,6 +296,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Challenging industry assumptions in Augmented Reality (AR) HUD design",
     ctaLabel: "View Research",
+    accentColor: "#4A90C2",
     context: [
       "Before an enterprise invests in bleeding-edge capabilities like Augmented Reality (AR), product leaders have to validate how humans will actually interact with it in high-consequence environments.",
       "To challenge industry assumptions around driver distraction, I led a formal, mixed-methods user study utilizing a driving simulator to analyze how low-cognitive-load AR tasks impact human performance—establishing a data-backed foundation for future AR interface design.",
@@ -410,6 +420,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "An immersive mixed-reality (MR) training workflow on the Microsoft HoloLens that eliminates the dangers and operational downtime of heavy machinery safety training.",
     ctaLabel: "View Capstone",
+    accentColor: "#C9932E",
     context: [
       "Abbott Nutrition trains employees on lock-out tag-out (LOTO), a safety procedure that restricts and labels equipment during maintenance. Traditionally, training on the actual production floor is highly hazardous for trainees and forces costly operational shutdowns. To mitigate this risk, Abbott utilized a mobile training cart fitted with physical valves, but this workaround completely lacked the visual layout, scale, and environmental stressors of the real factory floor.",
       "To bridge this gap, I worked within a 4-person Virginia Tech senior design team advised by Dr. Joe Gabbard to research and design a mixed-reality alternative built on Microsoft Guides. As the Workflow and User Testing Lead, I managed the end-to-end design of the spatial training logic and validated it through operator testing. The resulting solution simulates high-fidelity floor context without the safety risks.",

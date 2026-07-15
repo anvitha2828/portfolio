@@ -14,10 +14,19 @@ export type NavItem = {
   label: string;
   href: string;
   external?: boolean; // opens in a new tab (used for the resume PDF)
+  // Which pathname prefix lights this item up as "active" — only needed
+  // when it differs from `href` (e.g. a same-page anchor like "/#work"
+  // whose href never matches a real pathname, but should still show
+  // active while on a /portfolio/[slug] case study detail page).
+  activePrefix?: string;
 };
 
-// Order here == order in the nav chip.
+// Order here == order in the nav chip. Home, Portfolio, and About Me all
+// live on the single landing page ("/") now — Portfolio/About Me just
+// scroll-jump to a section via a hash anchor instead of navigating to a
+// separate route. Resume isn't in this list — it's its own icon button in
+// NavChip, next to the copy-email icon.
 export const navItems: NavItem[] = [
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Resume", href: site.resumeHref, external: true },
+  { label: "About Me", href: "/#about" },
+  { label: "Portfolio", href: "/#work", activePrefix: "/portfolio" },
 ];

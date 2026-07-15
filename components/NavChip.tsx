@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { navItems } from "@/lib/site";
 import { CopyEmailButton } from "./CopyEmailButton";
+import { ResumeButton } from "./ResumeButton";
 
 export function NavChip() {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ export function NavChip() {
         {/* Home icon — back to the landing page */}
         <motion.div whileHover={{ scale: 1.12, rotate: -8 }} whileTap={{ scale: 0.92 }}>
           <Link
-            href="/"
+            href="/#top"
             aria-label="Go to home"
             title="Home"
             className={`grid h-9 w-9 place-items-center rounded-full transition-colors ${
@@ -53,11 +54,12 @@ export function NavChip() {
         {/* Primary nav links */}
         <ul className="flex items-center gap-0.5 sm:gap-1">
           {navItems.map((item) => {
+            const matchAgainst = item.activePrefix ?? item.href;
             const active =
               !item.external &&
-              (item.href === "/"
+              (matchAgainst === "/"
                 ? pathname === "/"
-                : pathname.startsWith(item.href));
+                : pathname.startsWith(matchAgainst));
             return (
               <li key={item.href}>
                 <Link
@@ -87,7 +89,8 @@ export function NavChip() {
 
         <span className="mx-1 h-5 w-px bg-ink/10" aria-hidden="true" />
 
-        {/* Copy-email icon */}
+        {/* Resume + copy-email icons */}
+        <ResumeButton />
         <CopyEmailButton />
       </nav>
     </motion.header>

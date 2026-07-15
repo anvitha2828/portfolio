@@ -16,10 +16,10 @@ body {
   color: var(--foreground);
   /* Subtle whimsical dotted texture */
   background-image: radial-gradient(
-    rgba(43, 42, 38, 0.05) 1px,
+    rgba(74, 55, 40, 0.12) 1px,
     transparent 1px
   );
-  background-size: 22px 22px;
+  background-size: 14px 14px;
 }
 
 /* Respect users who prefer reduced motion */
