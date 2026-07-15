@@ -30,27 +30,27 @@ export default function HomePage() {
           <Starburst className="absolute -top-14 left-24 h-8 w-8 text-butter animate-wiggle sm:-top-20 sm:left-40" />
 
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 120 }}
-            className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl"
+            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0, x: -24 }}
+            animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-7xl font-bold leading-[0.95] tracking-tight text-ink sm:text-8xl"
           >
             <MagneticText segments={[{ text: site.name }]} />
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-            className="mx-auto mt-6 max-w-lg font-title text-3xl leading-snug text-ink sm:text-4xl"
+            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0, x: -24 }}
+            animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            className="mx-auto mt-6 max-w-lg font-title text-4xl leading-snug text-ink sm:text-5xl"
           >
             <MagneticText segments={taglineSegments(site.tagline)} />
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0, x: -24 }}
+            animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             className="mt-8 flex flex-wrap items-center justify-center gap-6"
           >
             <Link
