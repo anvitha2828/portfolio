@@ -112,18 +112,18 @@ export const caseStudies: CaseStudy[] = [
         heading: "The Systems Lens",
         bullets: [
           {
-            text: "How I align sponsors, map complex operational landscapes, and design the overarching strategy. My first step is always to zoom out and look at the whole system.",
+            text: "How I align customers, map complex operational landscapes, and design the overarching strategy. My first step is always to zoom out and look at the whole system.",
           },
           {
-            label: "Sponsor Alignment & Discovery",
+            label: "Stakeholder Alignment & Discovery",
             text: "I sit down with users and stakeholders for direct interviews to untangle their daily operational realities and map out their true constraints.",
           },
           {
-            label: "Visio/CAMEO Mission Threads",
+            label: "Mapping User Journeys",
             text: "I draw out end-to-end user journeys showing exactly how data, people, and technology interact in the real world.",
           },
           {
-            label: "Systemic Risk Analysis",
+            label: "Risk Analysis",
             text: "I run formal risk assessments in order to identify, prioritize, and mitigate potential threats.",
           },
           {
