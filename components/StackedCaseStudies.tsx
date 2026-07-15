@@ -72,19 +72,22 @@ function StackedCard({ study }: { study: CaseStudy }) {
         </div>
       </div>
 
-      {/* Full window width, left to right — deliberately outside the
-          max-w-5xl column above. No rounding on this boundary itself; each
-          photo inside (AutoScrollGallery) has its own curved corners. */}
+      {/* Background tint stays full window width for the "sticky page"
+          look, but the photos themselves are capped to the same max-w-5xl
+          column as the text above — otherwise they'd spread edge-to-edge
+          on ultra-wide screens, same issue as the hero sketches. */}
       <div className="relative min-h-0 flex-1 bg-ink/[0.03]">
-        {images.length > 0 ? (
-          <AutoScrollGallery images={images} alt={study.title} />
-        ) : (
-          <div className="flex h-full items-center justify-center">
-            <span className="font-display text-3xl font-bold text-ink/20">
-              {study.title}
-            </span>
-          </div>
-        )}
+        <div className="mx-auto h-full max-w-5xl">
+          {images.length > 0 ? (
+            <AutoScrollGallery images={images} alt={study.title} />
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <span className="font-display text-3xl font-bold text-ink/20">
+                {study.title}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

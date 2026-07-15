@@ -18,8 +18,14 @@ export default function HomePage() {
         }}
       >
         {/* Every line-art drawing from the map, scattered here instead —
-            draggable, so they can be dragged around freely. */}
-        <div className="hidden sm:block">
+            draggable, so they can be dragged around freely. Constrained to
+            a centered column (not the full-bleed w-screen section) so the
+            sketches don't fly out toward the edges on ultra-wide screens.
+            `absolute inset-0` + `max-width` + `mx-auto` fills the section's
+            full height while centering a capped-width box — HeroSketches'
+            own `absolute inset-0` div then binds to *this* box, since an
+            absolutely positioned element is itself a positioned ancestor. */}
+        <div className="absolute inset-0 mx-auto hidden max-w-5xl sm:block">
           <HeroSketches />
         </div>
 
