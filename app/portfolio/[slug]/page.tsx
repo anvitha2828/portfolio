@@ -279,9 +279,9 @@ export default async function CaseStudyPage({
                                 className="group rounded-2xl bg-cream p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-chip hover:ring-2 hover:ring-coral/40"
                               >
                                 {Icon && (
-                                  <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-coral/10 transition-colors duration-300 group-hover:bg-coral/20">
+                                  <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-coral/20 transition-colors duration-300 group-hover:bg-coral/30">
                                     <Icon
-                                      className="h-5 w-5 text-coral transition-transform duration-300 group-hover:animate-float"
+                                      className="h-5 w-5 text-coral transition-transform duration-300 group-hover:animate-float-sm"
                                       aria-hidden="true"
                                     />
                                   </span>

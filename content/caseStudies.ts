@@ -95,12 +95,12 @@ export const caseStudies: CaseStudy[] = [
     // along the way.
     slug: "my-process",
     title: "Product Management meets Systems Engineering",
-    category: "How I Work",
+    category: "My Process",
     summary:
-      "Product Lens 🤝 Systems Lens: Solving complex problems with products people actually use.",
+      "Product Management 🤝 Systems Engineering: Solving complex problems with products people actually use.",
     context: [
       "As a consultant, I work on many distinct projects across multiple government sponsors. Their mission needs, technical maturity levels, and operational goals vary wildly.",
-      "I look at every challenge through two lenses: the **Systems Lens** and the **Product Lens**. For me, this is about bridging a massive gap: taking highly complex, technically impressive engineering and translating it so real users and organizations are actually ready to adopt it.",
+      "I tackle every challenge from both a product and a systems view. To me, the systems view is about understanding how all the moving parts (technology, policy, and organizational constraints) fit together. The product view is about focusing on the human at the center of it all. Balancing both means I can take complex engineering work and translate it into something that users actually want to use and organizations can easily adopt.",
     ],
     role: ["Product Manager", "Systems Engineer"],
     tools: [
@@ -116,13 +116,13 @@ export const caseStudies: CaseStudy[] = [
       "Material UI",
       "Jira",
     ],
-    timeline: "2023 - Present",
+    timeline: "",
     ctaLabel: "View Process",
     accentColor: "#FF7A59",
     featuredImages: [
       {
         src: "/images/Systems_product.png",
-        caption: "Systems Lens meets Product Lens",
+        caption: "Product & Systems",
       },
       {
         src: "/images/Systems_Engineering_Process_II.svg.webp",
@@ -153,7 +153,7 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
-        heading: "The Systems Lens",
+        heading: "Systems Thinking",
         bullets: [
           {
             text: "My first step is always to zoom out and look at the whole system.",
@@ -181,7 +181,7 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
-        heading: "The Product Lens",
+        heading: "Product Management",
         bullets: [
           {
             text: "I act as the translation layer: converting deep technical complexity into clean & easy to use products.",
@@ -212,7 +212,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             label: "Early Validation",
-            text: "Testing concepts early with mockups and prototypes keeps stakeholders in the loop and ensures we build the right thing before writing code.",
+            text: "Testing concepts early with mockups and prototypes keeps stakeholders in the loop and ensures we build the right thing.",
           },
           {
             label: "Beyond Just Software",
@@ -233,7 +233,7 @@ export const caseStudies: CaseStudy[] = [
     context: [
       "I saw a great opportunity to build this tool after sitting down with my grandparents to hear stories about their siblings and cousins. Trying to visualize all those complex, winding relationships on a flat piece of paper made me realize how fun it would be to bring that dynamic family history to life in real time.",
       "My goal was to create a collaborative tool where anyone could sit down and immediately start building a tree with zero learning curve. I wanted to skip the tedious process of filling out forms and defining rigid relationships. Instead, you can start with just one person and watch the tree grow naturally as you sketch it out.",
-      "To make exploring these stories easily, I built a few different ways to look at the data:",
+      "To make exploring these stories easy, I built a few different ways to look at the data:",
       {
         label: "Standard Tree View",
         text: "A clean, structured layout.",
@@ -244,7 +244,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         label: "Branch Isolation Feature",
-        text: "Lets you filter out the noise and focus on just one specific family branch at a time.",
+        text: "Lets you focus on just one specific family branch at a time.",
       },
     ],
     role: ["Product Manager", "Designer", "Engineer"],
@@ -306,11 +306,10 @@ export const caseStudies: CaseStudy[] = [
         heading: "Product Scoping & Sequencing",
         bullets: [
           {
-            label: "The Phase 1",
+            label: "Phase 1",
             text: `Standard Tree + Ghost Connectors 
-                  I put all my early energy into the data-entry experience. Before anyone can enjoy exploring a network of information, they need an easy, intuitive way to actually build it. 
-                  **Think about how we talk about family: you might say, "my sister's husband's parents." I wanted the app to work exactly like that train of thought.**
-                  You should be able to just click, chain relationships together, and add people to the tree on the fly. That's why I started by building the ghost-node connector—to make adding new connections feel that natural.`,
+                I started with the data entry experience. Before anyone can enjoy exploring a network of information, they need an easy, intuitive way to actually build it. 
+                **Think about how we talk about family: you might say, "my sister's husband's parents." I wanted the app to work exactly like that train of thought.** You should be able to just click, chain relationships together, and add people to the tree on the fly. That's why I started by building the ghost-node connector, to make adding new connections feel that natural.`,
             imageReveal: {
               phrase: "ghost-node connector",
               src: "/images/ghost_node.png",
@@ -318,13 +317,13 @@ export const caseStudies: CaseStudy[] = [
             },
           },
           {
-            label: "The Phase 2",
+            label: "Phase 2",
             text: `Dynamic View
             Once the creation flow felt seamless, I introduced the dual-view. Alongside the structured tree view for hierarchy, I built a force-directed network map.
             The goal was to give users that "wow" moment when they step back and see a complex family tree come to life as a dynamic and connected web.`,
           },
           {
-            label: "The Trade-off",
+            label: "Evaluating Trade-off",
             text: `Delay Feature
             I intentionally delayed interactive physics animations until basic creation mechanics were locked. A beautifully animating canvas means nothing if users struggle to input their data.`,
           },
@@ -569,7 +568,7 @@ export const caseStudies: CaseStudy[] = [
         bullets: [
           {
             label: "Constraint",
-            text: "Plant operators are used to physical, tactile hardware. If the HoloLens felt like a clunky and technical, they would be unlikely to use it.",
+            text: "Plant operators are used to physical, tactile hardware. If the HoloLens felt clunky and technical, they would be unlikely to use it.",
           },
         ],
       },

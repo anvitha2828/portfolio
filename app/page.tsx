@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import Link from "next/link";
@@ -7,7 +9,10 @@ import { experience } from "@/content/experience";
 import { caseStudies } from "@/content/caseStudies";
 import { StackedCaseStudies } from "@/components/StackedCaseStudies";
 import { DefinitionTerm } from "@/components/DefinitionTerm";
-import { MagneticText, type MagneticTextSegment } from "@/components/MagneticText";
+import {
+  MagneticText,
+  type MagneticTextSegment,
+} from "@/components/MagneticText";
 import { FadeUp } from "@/components/FadeUp";
 
 export default function HomePage() {
@@ -79,12 +84,12 @@ export default function HomePage() {
               <p>
                 I&apos;m a product manager with a background in{" "}
                 <DefinitionTerm
-                  term="systems"
+                  term="systems engineering"
                   definition="Systems engineering is the discipline of designing and managing complex systems so all their interconnected parts work together effectively."
                 />{" "}
-                and human factors engineering. I enjoy taking complex
-                problems, understanding the people behind them, and working
-                with cross-functional teams to build intuitive solutions.
+                and human factors. I enjoy taking complex problems,
+                understanding the people behind them, and working with
+                cross-functional teams to build intuitive solutions.
               </p>
               <p>
                 Want to reach out? Email me at{" "}
@@ -94,7 +99,7 @@ export default function HomePage() {
                 >
                   anvitha2828@gmail.com
                 </a>{" "}
-                and check out my{" "}
+                , check out my{" "}
                 <a
                   href={site.resumeHref}
                   target="_blank"
@@ -193,7 +198,12 @@ function taglineSegments(text: string): MagneticTextSegment[] {
 
 function Sparkle({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
       <path d="M12 0c.6 4.2 1.4 7 3 8.6 1.6 1.6 4.4 2.4 9 3-4.6.6-7.4 1.4-9 3-1.6 1.6-2.4 4.4-3 8.6-.6-4.2-1.4-7-3-8.6-1.6-1.6-4.4-2.4-9-3 4.6-.6 7.4-1.4 9-3 1.6-1.6 2.4-4.4 3-8.6Z" />
     </svg>
   );

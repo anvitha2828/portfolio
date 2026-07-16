@@ -39,10 +39,18 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
+        "float-sm": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-1.5px)" },
+        },
       },
       animation: {
         wiggle: "wiggle 1.2s ease-in-out infinite",
         float: "float 4s ease-in-out infinite",
+        // Subtler amplitude/pace for small icons inside cards — the
+        // full `float` bounce (used for the hero's decorative sparkles)
+        // reads as too much motion at that size.
+        "float-sm": "float-sm 2.5s ease-in-out infinite",
       },
     },
   },
