@@ -15,6 +15,21 @@ import {
 } from "@/components/MagneticText";
 import { FadeUp } from "@/components/FadeUp";
 
+const STRENGTHS: { title: string; text: string }[] = [
+  {
+    title: "Workflow-First Product Strategy",
+    text: "I design products by deeply understanding the exact physical setting and workflows where they live. Designing around real-world environments makes adoption intuitive and easy.",
+  },
+  {
+    title: "Data-Backed Decisions",
+    text: "I prioritize gathering hard data at every opportunity during the product lifecycle. Iterating on a continuous loop of user feedback and behavioral metrics results in highly informed products.",
+  },
+  {
+    title: "Emerging Tech Execution",
+    text: "I have experience deploying enterprise-level AI tools and conducting research into mixed reality and autonomous systems. I am passionate about next-gen technologies and learning exactly how to deliver them to users effectively.",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -157,11 +172,27 @@ export default function HomePage() {
             </div>
           </FadeUp>
 
-          {/* TODO: content to come */}
           <FadeUp delay={0.1}>
             <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl">
               What I Bring to the Table
             </h3>
+            <div className="mt-6 space-y-4">
+              {STRENGTHS.map((strength, i) => (
+                <div
+                  key={i}
+                  className="group rounded-2xl bg-cream p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-chip hover:ring-2 hover:ring-coral/40"
+                >
+                  <p className="font-semibold text-ink">{strength.title}</p>
+                  <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover:grid-rows-[1fr]">
+                    <div className="overflow-hidden">
+                      <p className="mt-1 text-sm text-ink/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        {strength.text}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </FadeUp>
         </div>
       </section>
