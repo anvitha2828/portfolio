@@ -121,6 +121,10 @@ export const caseStudies: CaseStudy[] = [
     accentColor: "#FF7A59",
     featuredImages: [
       {
+        src: "/images/Systems_product.png",
+        caption: "Systems Lens meets Product Lens",
+      },
+      {
         src: "/images/Systems_Engineering_Process_II.svg.webp",
         caption: "V Model (Verification and Validation Model)",
         small: true,
@@ -534,7 +538,7 @@ export const caseStudies: CaseStudy[] = [
     accentColor: "#C9932E",
     context: [
       "When you’re training factory operators on Lock-out/Tag-out (LOTO), the process of shutting down heavy machinery when you perform maintenance or inspections, you’re stuck in a classic lose-lose situation. Training operators on the actual factory floor is incredibly dangerous, but shutting down active assembly lines to train them safely costs the company a fortune in downtime.",
-      "To work around this, Abbott Nutrition uses a mobile training cart with dummy valves. It was safe, but it was totally unrealistic. It couldn't replicate the actual scale, layout, or stressful environment of the real factory floor, leaving operators unprepared.",
+      "To work around this, Abbott Nutrition uses a mobile training cart with dummy valves. It was safe, but it was totally unrealistic. It couldn't replicate the actual scale, layout, or stressful environment of the real factory floor.",
       "I teamed up with three other VT engineers to build an immersive, mixed-reality alternative using Microsoft Guides and the HoloLens. As the Workflow and User Testing Lead, I designed the spatial training logic and ran hands-on tests with actual operators. We were able to bring the factory floor to any location, giving trainees critical & life-saving context without needing operational downtime.",
     ],
     role: ["User Researcher", "UX Designer"],
@@ -616,7 +620,7 @@ export const caseStudies: CaseStudy[] = [
         heading: "Financial Impact",
         bullets: [
           {
-            label: "$387.820 Projected 3-Year Savings",
+            label: "$387,820 Projected 3-Year Savings",
             text: "",
           },
           {
