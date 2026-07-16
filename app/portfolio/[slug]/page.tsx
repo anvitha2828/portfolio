@@ -240,6 +240,29 @@ export default async function CaseStudyPage({
                     const labeled = section.bullets.filter((b) => b.label);
                     if (labeled.length === 0) return null;
 
+                    // One full-width card with each bullet as its own
+                    // column (left/right on desktop, stacked on mobile)
+                    // — for pairing "here's the data" with "here's what
+                    // it means".
+                    if (section.layout === "split") {
+                      return (
+                        <div className="group mt-4 rounded-2xl bg-cream p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-chip hover:ring-2 hover:ring-coral/40 sm:p-8">
+                          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            {labeled.map((bullet, j) => (
+                              <div key={j}>
+                                <p className="font-display text-lg font-bold text-ink">
+                                  {bullet.label}
+                                </p>
+                                <p className="mt-2 text-ink/70">
+                                  {renderBulletText(bullet.text, bullet.imageReveal)}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    }
+
                     // Bullets with an icon get the bigger, card-style
                     // treatment; without one they keep the plain
                     // bullet-dot list used everywhere else.

@@ -7,6 +7,10 @@
 export type CaseStudySection = {
   heading?: string; // omit for a section that's just an inline image (e.g. a GIF between write-up sections)
   body?: string; // plain paragraph text
+  // "split" renders `bullets` side-by-side (left/right) inside a single
+  // full-width card, instead of the default plain bullet-dot list — use
+  // for a "here's the data, here's what it means" pairing.
+  layout?: "split";
   bullets?: {
     label?: string;
     text: string;
@@ -388,8 +392,8 @@ export const caseStudies: CaseStudy[] = [
     ctaLabel: "View Research",
     accentColor: "#4A90C2",
     context: [
-      "Before an enterprise invests in bleeding-edge capabilities like Augmented Reality (AR), product leaders have to validate how humans will actually interact with it in high-consequence environments.",
-      "To challenge industry assumptions around driver distraction, I led a formal, mixed-methods user study utilizing a driving simulator to analyze how low-cognitive-load AR tasks impact human performance—establishing a data-backed foundation for future AR interface design.",
+      "When I think about in-vehicle displays, I usually assume they’re a hazard. It's another distraction pulling our eyes off the road. But as we look toward future tech like Augmented Reality (AR) and Heads-up Displays (HUDs), I wanted to flip that assumption on its head and answer a different question: Could AR HUDs actually make us better drivers?",
+      "This is especially crucial during long, monotonous drives. When drivers are understimulated they can often feel drowsy or tired which are massive safety concerns. To see if AR could actually help keep drivers engaged and improve their performance, I ran a formal user study. We put participants in a driving simulator to test how interacting with a low-cognitive-load AR task affected their driving performance.",
     ],
     role: ["Author", "Researcher"],
     tools: [
@@ -432,8 +436,8 @@ export const caseStudies: CaseStudy[] = [
         heading: "Validating Emerging Tech Through User Research",
         bullets: [
           {
-            label: "The Problem",
-            text: "When designing software for complex environments (like driving or tactical operations), the default assumption is that adding information equals adding distraction. As Augmented Reality Head-Up Displays (AR HUDs) emerge, I wanted to test this assumption: Can low-cognitive-load AR tasks actually improve user focus during monotonous, low-stimulation tasks?",
+            label: "The Challenge",
+            text: "In high-stakes environments like driving, the default design rule is usually 'less is more.' The assumption is that throwing any new digital information at a user just adds distraction.",
           },
         ],
       },
@@ -444,70 +448,76 @@ export const caseStudies: CaseStudy[] = [
         },
       },
       {
-        heading: "The Research Framework",
+        heading: "How We Ran the Study",
         bullets: [
           {
             label: "The Methodology",
-            text: "To gather rigorous data, I adapted federal NHTSA distraction guidelines and designed a controlled, mixed-methods user study.",
+            text: "Adapted federal NHTSA distraction guidelines and designed a controlled, mixed-methods user study.",
           },
           {
             label: "The Test Group",
-            text: "Built a balanced testing pool of 24 participants.",
+            text: "Built a balanced testing pool of 22 participants.",
           },
           {
             label: "The Environment",
-            text: "Leveraged a medium-fidelity simulator to track precise lateral and longitudinal telemetry.",
+            text: "Used a medium-fidelity driving simulator to track driving behavior (lane keeping, following distances).",
           },
           {
             label: "The Metrics",
-            text: "Combined objective vehicle data with subjective user feedback using the industry-standard NASA-TLX index to measure perceived cognitive workload.",
+            text: "Combined vehicle driving data with subjective workload ratings using NASA-TLX the industry-standard NASA-TLX index to measure perceived cognitive workload.",
           },
         ],
       },
       {
-        heading: "1. Look Beyond Subjective Feedback",
+        heading: "Key Takeaways",
+      },
+      {
+        heading: "1. What users say isn't always what they do",
+        layout: "split",
         bullets: [
           {
-            label: "The Data",
-            text: "Participants subjectively reported that the AR HUD felt more cognitively demanding and distracting than just driving alone. However, the hard telemetry data proved their actual performance improved when the AR tasks were present.",
+            label: "Data",
+            text: "Interestingly, drivers reported that the AR HUD felt more demanding than driving without it. But the simulator's driving data told a completely different story. Driver's actual performance significantly improved when the AR tasks were active.",
           },
           {
-            label: "The Product Strategy",
-            text: "Users aren't always accurate judges of their own performance. When evaluating complex tech, you cannot rely solely on qualitative feedback—you have to validate what users say against hard behavioral telemetry.",
+            label: "Finding",
+            text: "Users are not always the best at self-reporting cognitive workload. When you are validating novel tech, qualitative feedback only tells half the story. You have to back up what users say with hard data.",
           },
         ],
       },
       {
-        heading: "2. Combat User Fatigue with Micro-Interactions",
+        heading: `2. Fight "drowsiness" with small interactions`,
+        layout: "split",
         bullets: [
           {
-            label: "The Data",
-            text: "In boring, low-stimulation environments, user focus naturally drops off. Strategically injecting low-cognitive-load AR tasks actively broke up the boredom, keeping drivers alert and stabilizing their reaction times.",
+            label: "Data",
+            text: "On long, monotonous drives, a driver's attention naturally bottoms out. By strategically introducing quick, low-effort AR tasks, we essentially broke up the boredom. This kept drivers alert, stabilized their reaction times, and prevented them from tuning out.",
           },
           {
-            label: "The Product Strategy",
-            text: "In high-consequence, monotonous environments, an entirely silent interface isn't always the ideal state. Designers can strategically use micro-interactions as an alertness mechanism to keep users locked into the loop.",
+            label: "Finding",
+            text: "In high-consequence, low-stimulation environments, a totally silent interface isn't always the safest choice. We can strategically use interactions to gently pull users back into the loop and keep them attentive.",
           },
         ],
       },
       {
-        heading: "3. Focus on Cognitive Load, Not Time-on-Task",
+        heading: "3. Design for cognitive load, not time-on-task",
+        layout: "split",
         bullets: [
           {
-            label: "The Data",
-            text: "We tested secondary tasks of varying lengths, assuming longer tasks would degrade focus over time. Surprisingly, task duration had zero measurable impact on user performance.",
+            label: "Data",
+            text: "We tested secondary tasks of varying durations, fully expecting longer tasks to degrade focus. Surprisingly, the length of the task had no measurable impact on driving performance.",
           },
           {
-            label: "The Product Strategy",
-            text: "When launching features for complex systems, time-on-task is secondary to cognitive architecture. If the interface is built correctly to minimize cognitive clutter, users can stay engaged longer without performance drops.",
+            label: "Finding",
+            text: `When building features for complex systems, don't just obsess over "time-on-task." If the information is layered correctly, users can interact with it longer without a drop in performance`,
           },
         ],
       },
       {
-        heading: "The Takeaway",
+        heading: "My Value Add",
         bullets: [
           {
-            label: "The Impact",
+            label: "Mindset",
             text: "This project highlights my approach to early product discovery. I anchor my strategy in rigorous testing, using standardized benchmarks (NHTSA, NASA-TLX), and challenging baseline assumptions.",
           },
         ],
@@ -516,15 +526,16 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "abbott-loto-mixed-reality",
-    title: "Mixed Reality LOTO Training",
+    title: "Mixed Reality Safety Training",
     category: "Senior Design Project",
     summary:
-      "An immersive mixed-reality (MR) training workflow on the Microsoft HoloLens that eliminates the dangers and operational downtime of heavy machinery safety training.",
+      "An immersive mixed-reality (MR) training workflow on the Microsoft HoloLens that eliminates the physical dangers and costly operational downtime of heavy machinery safety training.",
     ctaLabel: "View Capstone",
     accentColor: "#C9932E",
     context: [
-      "Abbott Nutrition trains employees on lock-out tag-out (LOTO), a safety procedure that restricts and labels equipment during maintenance. Traditionally, training on the actual production floor is highly hazardous for trainees and forces costly operational shutdowns. To mitigate this risk, Abbott utilized a mobile training cart fitted with physical valves, but this workaround completely lacked the visual layout, scale, and environmental stressors of the real factory floor.",
-      "To bridge this gap, I worked within a 4-person Virginia Tech senior design team advised by Dr. Joe Gabbard to research and design a mixed-reality alternative built on Microsoft Guides. As the Workflow and User Testing Lead, I managed the end-to-end design of the spatial training logic and validated it through operator testing. The resulting solution simulates high-fidelity floor context without the safety risks.",
+      "When you’re training factory operators on Lock-out/Tag-out (LOTO), the process of shutting down heavy machinery when you perform maintenance or inspections, you’re stuck in a classic lose-lose situation. Training operators on the actual factory floor is incredibly dangerous, but shutting down active assembly lines to train them safely costs the company a fortune in downtime.",
+      "To work around this, Abbott Nutrition uses a mobile training cart with dummy valves. It was safe, but it was totally unrealistic. It couldn't replicate the actual scale, layout, or stressful environment of the real factory floor, leaving operators unprepared.",
+      "I teamed up with three other VT engineers to build an immersive, mixed-reality alternative using Microsoft Guides and the HoloLens. As the Workflow and User Testing Lead, I designed the spatial training logic and ran hands-on tests with actual operators. We were able to bring the factory floor to any location, giving trainees critical & life-saving context without needing operational downtime.",
     ],
     role: ["User Researcher", "UX Designer"],
     tools: ["Microsoft Guides", "HoloLens", "Mixed Reality"],
@@ -550,6 +561,45 @@ export const caseStudies: CaseStudy[] = [
     ],
     sections: [
       {
+        heading: "Overcoming Adoption Inertia",
+        bullets: [
+          {
+            label: "Constraint",
+            text: "Plant operators are used to physical, tactile hardware. If the HoloLens felt like a clunky and technical, they would be unlikely to use it.",
+          },
+        ],
+      },
+      {
+        layout: "split",
+        bullets: [
+          {
+            label: "Strategy",
+            text: "Instead of just mimicking the training hardware, the HoloLens overlay pulled up real world examples, holographic indicators, hazard warnings, and guidance when the worker looked at the machinery.",
+          },
+          {
+            label: "Result",
+            text: "By turning the headset into a tool that actually made their jobs easier rather than a forced compliance exercise, we shifted operator perception.",
+          },
+        ],
+      },
+      {
+        heading: "Key Features",
+        bullets: [
+          {
+            label: "Spatial Step-by-Step Guides",
+            text: "An intuitive HoloLens workflow that overlays digital checkpoints directly onto the physicalhardware, guiding operators through the LOTO sequence.",
+          },
+          {
+            label: "Context-Aware Visuals",
+            text: "Instead of text-heavy instructions, the system anchors markers (like arrows and indicators) directly onto the machinery, keeping the operator’s eyes on the hardware.",
+          },
+          {
+            label: "Seamless Interface",
+            text: "Refined through iterative user testing to ensure the interface is accessible to employees of all digital literacy levels.",
+          },
+        ],
+      },
+      {
         heading: "Success Metrics",
         bullets: [
           {
@@ -559,40 +609,6 @@ export const caseStudies: CaseStudy[] = [
           {
             label: "Cognitive Error Rate",
             text: "Minimize the number of visual or procedural missteps during critical equipment isolation sequences.",
-          },
-        ],
-      },
-      {
-        heading: "Overcoming Adoption Inertia",
-        bullets: [
-          {
-            label: "Constraint",
-            text: "Plant operators are accustomed to physical hardware; if the HoloLens felt like a technical gimmick or added unnecessary administrative steps, it would be rejected on the factory floor.",
-          },
-          {
-            label: "The Strategy",
-            text: "I designed the workflow to leverage 'holographic context' to provide explicit, new value that a physical cart could not. Instead of just mimicking the training hardware, the HoloLens overlay pulled up real world examples, hazard warnings, and guidance when the worker looked at the machinery.",
-          },
-          {
-            label: "The Result",
-            text: "By turning the headset into an asset that gave workers clear operational advantages rather than a rigid digital checklist, we shifted operator perception from a forced compliance tool to an new interactive training opportunity.",
-          },
-        ],
-      },
-      {
-        heading: "Key Features",
-        bullets: [
-          {
-            label: "Spatial Step-by-Step Guides",
-            text: "An intuitive HoloLens workflow that overlays digital checkpoints directly onto the hardware, guiding operators flawlessly through the physical LOTO sequence.",
-          },
-          {
-            label: "Context-Aware Visuals",
-            text: "Instead of text-heavy instructions, the system anchors clean spatial markers (like arrows and indicators) directly onto the machinery, keeping the operator’s eyes on the hardware.",
-          },
-          {
-            label: "Low Cognitive-Load Interface",
-            text: "Defined through iterative user testing to ensure the interface is highly accessible to frontline workers of all digital literacy levels.",
           },
         ],
       },
