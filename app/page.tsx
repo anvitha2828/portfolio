@@ -18,15 +18,15 @@ import { FadeUp } from "@/components/FadeUp";
 const STRENGTHS: { title: string; text: string }[] = [
   {
     title: "Workflow-First Product Strategy",
-    text: "I design products by deeply understanding the exact physical setting and workflows where they live. Designing around real-world environments makes adoption intuitive and easy.",
+    text: "I design products by deeply understanding the **setting and workflows** where they live. Designing around **real world environments** makes adoption intuitive and easy.",
   },
   {
     title: "Data-Backed Decisions",
-    text: "I prioritize gathering hard data at every opportunity during the product lifecycle. Iterating on a continuous loop of user feedback and behavioral metrics results in highly informed products.",
+    text: "I prioritize gathering data at every opportunity during the product lifecycle. Iterating on a continuous loop of **user feedback and metrics** results in highly informed products.",
   },
   {
     title: "Emerging Tech Execution",
-    text: "I have experience deploying enterprise-level AI tools and conducting research into mixed reality and autonomous systems. I am passionate about next-gen technologies and learning exactly how to deliver them to users effectively.",
+    text: "I have experience deploying **enterprise-level AI tools** and conducting research into **mixed reality and autonomous systems**. I am passionate about next-gen technologies and learning exactly how to deliver them to users effectively.",
   },
 ];
 
@@ -186,7 +186,7 @@ export default function HomePage() {
                   <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover:grid-rows-[1fr]">
                     <div className="overflow-hidden">
                       <p className="mt-1 text-sm text-ink/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        {strength.text}
+                        {renderBold(strength.text)}
                       </p>
                     </div>
                   </div>
@@ -214,6 +214,14 @@ export default function HomePage() {
 
       <StackedCaseStudies caseStudies={caseStudies} />
     </>
+  );
+}
+
+// Lets content data mark specific words bold inline with **this** syntax.
+function renderBold(text: string) {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i}>{part}</strong> : part,
   );
 }
 
