@@ -17,11 +17,11 @@ import { FadeUp } from "@/components/FadeUp";
 
 const STRENGTHS: { title: string; text: string }[] = [
   {
-    title: "Workflow-First Product Strategy",
+    title: "Workflow First Product Strategy",
     text: "I design products by deeply understanding the **setting and workflows** where they live. Designing around **real world environments** makes adoption intuitive and easy.",
   },
   {
-    title: "Data-Backed Decisions",
+    title: "Data Backed Decisions",
     text: "I prioritize gathering data at every opportunity during the product lifecycle. Iterating on a continuous loop of **user feedback and metrics** results in highly informed products.",
   },
   {
