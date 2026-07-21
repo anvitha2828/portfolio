@@ -179,7 +179,10 @@ function StackedCard({
             style={{ backgroundColor: study.accentColor ?? "#2B2A26" }}
             className="absolute right-0 top-0 inline-flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-cream transition-transform group-hover:scale-105 sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
           >
-            {study.ctaLabel ?? "View case study"}
+            <span className="sm:hidden">See more</span>
+            <span className="hidden sm:inline">
+              {study.ctaLabel ?? "View case study"}
+            </span>
             <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </span>
         </div>

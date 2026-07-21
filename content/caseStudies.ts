@@ -542,7 +542,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     role: ["User Researcher", "UX Designer"],
     tools: ["Microsoft Guides", "HoloLens", "Mixed Reality"],
-    timeline: "2021 - 2022",
+    timeline: "2022",
     links: [
       {
         label: "View Project",
