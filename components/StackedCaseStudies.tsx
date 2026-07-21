@@ -158,7 +158,7 @@ function StackedCard({
           to lead. */}
       <div className="mx-auto w-full max-w-5xl px-5 pb-6 pt-4 sm:px-8 sm:pt-5">
         <div className="relative">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl pr-24 sm:pr-0">
             <p
               className="text-sm font-bold"
               style={{ color: study.accentColor ?? "#2B2A26" }}
@@ -177,10 +177,10 @@ function StackedCard({
 
           <span
             style={{ backgroundColor: study.accentColor ?? "#2B2A26" }}
-            className="absolute right-0 top-0 inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 font-semibold text-cream transition-transform group-hover:scale-105"
+            className="absolute right-0 top-0 inline-flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-cream transition-transform group-hover:scale-105 sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
           >
             {study.ctaLabel ?? "View case study"}
-            <ArrowUpRight className="h-4 w-4" />
+            <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </span>
         </div>
       </div>
