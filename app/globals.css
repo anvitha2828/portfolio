@@ -7,6 +7,16 @@
   --foreground: #2b2a26;
 }
 
+/* Wordmark font used for the "A" home icon in the nav — matches the
+   favicon (see app/icon.tsx), which bakes the same font into a PNG since
+   @font-face isn't available there. */
+@font-face {
+  font-family: "Against";
+  src: url("/against regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 html {
   scroll-behavior: smooth;
 }
